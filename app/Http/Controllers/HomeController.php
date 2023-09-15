@@ -86,24 +86,31 @@ class HomeController extends Controller
         return redirect()->route('employees')->with('success','Employee updated Successfully!!');
     }
 
-    public function attendance(Request $request){
-        if($request->ajax())
-        {
-            $data = Employee::all();
-            return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                        $btn =' <a href="'.route('editemployee',$row->id).'"><i class="fa fa-pencil"></i></a>';
-                        $btn = $btn.' &nbsp;&nbsp;<a href="javascript:void(0);"" id="'.$row->id.'" class="delete"><i class="fa fa-trash"></i></a>';
-                        return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        }
+    public function attendance(){
+        $employees = Employee::all();
         // if(Session::has('user')){
-            return view('attendance');
+            return view('attendance',compact('employees'));
         // }else{return redirect()->route('index');}
         
+    }
+
+    public function saveattendance(Request $request){
+        $validated = $request->validate([
+            'date' => 'required',
+            'name' => 'required',
+            'status' => 'required',
+            'id' => 'required',
+        ]);
+
+        $count = count(Employee::all());
+        for($i=0; $i<$count; $i++){
+            $attendance = new AttendanceRecord;
+            $attendance->employee_id = $request->id[$i];
+            $attendance->status = $request->status[$i];
+            $attendance->date = $request->date;
+            $attendance->save(); 
+        }
+        return redirect()->route('employees');
     }
 }
 

@@ -24,4 +24,5 @@ Route::get('delete_employee/{id}',[HomeController::class,'delete_employee'])->na
 Route::get('edit_employee/{id}',[HomeController::class,'editemployee'])->name('editemployee');
 Route::post('updateemployee',[HomeController::class,'updateemployee'])->name('updateemployee');
 Route::get('attendance',[HomeController::class,'attendance'])->name('attendance');
+Route::post('saveattendance',[HomeController::class,'saveattendance'])->name('saveattendance');
 Route::get('logout',[HomeController::class,'logout'])->name('logout');
