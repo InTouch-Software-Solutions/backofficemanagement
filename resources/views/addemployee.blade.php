@@ -1,4 +1,4 @@
-@extends('index_main')
+@extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
   <h1 class="mt-5">Add Employee</h1>

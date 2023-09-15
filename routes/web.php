@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('indexnew');
+    return view('index');
 })->name('index');
 Route::get('employees',[HomeController::class,'employees'])->name('employees');
 Route::get('addemployee',[HomeController::class,'addemployee'])->name('addemployee');
