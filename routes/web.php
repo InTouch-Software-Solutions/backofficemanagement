@@ -26,5 +26,8 @@ Route::post('updateemployee',[HomeController::class,'updateemployee'])->name('up
 Route::get('attendance',[HomeController::class,'attendance'])->name('attendance');
 Route::get('attendancerecord',[HomeController::class,'attendancerecord'])->name('attendancerecord');
 Route::post('filter',[HomeController::class,'filter'])->name('filter');
+Route::post('filter2',[HomeController::class,'filter2'])->name('filter2');
 Route::post('saveattendance',[HomeController::class,'saveattendance'])->name('saveattendance');
+Route::get('employeesalary',[HomeController::class,'employeesalary'])->name('employeesalary');
+Route::get('payslip/{id}',[HomeController::class,'payslip'])->name('payslip');
 Route::get('logout',[HomeController::class,'logout'])->name('logout');

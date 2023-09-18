@@ -1,7 +1,7 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-  <h1 class="mt-5">Add Employee</h1>
+  <h1 class="mt-5">Edit Employee</h1>
 </div>
 <div class="container mt-5">
     <div class="row">
@@ -29,6 +29,7 @@
                   <label for="joining">Date of Joining</label>
                   <input type="date" class="form-control" id="joining" name="joining" value="{{ $employee->joining }}" placeholder="Enter joining date">
                 </div>
+                <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form> 
         </div>    

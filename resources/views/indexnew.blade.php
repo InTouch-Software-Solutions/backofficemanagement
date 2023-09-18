@@ -14,7 +14,7 @@
     @yield('csscontent')
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="{{asset('assets/css/main.css') }}">
 </head>
 
 <body>
@@ -157,7 +157,7 @@
         <div id="left-sidebar" class="sidebar">
             <div class="user-account p-3 mb-3">
                 <div class="d-flex mb-3 pb-3 border-bottom align-items-center">
-                    <img src="assets/images/user.png" class="avatar lg rounded me-3" alt="User Profile Picture">
+                    <img src="{{asset('assets/images/user.png') }}" class="avatar lg rounded me-3" alt="User Profile Picture">
                     <div class="dropdown flex-grow-1">
                         <span>Welcome,</span>
                         <a href="#" class="dropdown-toggle user-name" data-bs-toggle="dropdown"><strong>Jessica Doe</strong></a>
@@ -223,7 +223,7 @@
                                 <a href="#Payroll" class="has-arrow"><i class="fa fa-credit-card"></i><span>Payroll</span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="payroll-payslip.html">Payslip</a></li>
-                                    <li><a href="payroll-salary.html">Employee Salary</a></li>
+                                    <li><a href="{{ Route('employeesalary') }}">Employee Salary</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -523,11 +523,11 @@
 
 </div>
 <!-- core js file -->
-<script src="assets/bundles/libscripts.bundle.js"></script>
+<script src="{{asset('assets/bundles/libscripts.bundle.js') }}"></script>
 
 <!-- page js file -->
-<script src="assets/bundles/mainscripts.bundle.js"></script>
-<script src="assets/js/pages/index.js"></script>
+<script src="{{asset('assets/bundles/mainscripts.bundle.js') }}"></script>
+<script src="{{asset('assets/js/pages/index.js') }}"></script>
 @yield('jscontent')
 </body>
 

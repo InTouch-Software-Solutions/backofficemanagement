@@ -6,6 +6,7 @@ use App\Models\AttendanceRecord;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use DateTime;
 
 
 class HomeController extends Controller
@@ -122,13 +123,79 @@ class HomeController extends Controller
 
         $count = count(Employee::all());
         for($i=0; $i<$count; $i++){
-            $attendance = new AttendanceRecord;
-            $attendance->employee_id = $request->id[$i];
-            $attendance->status = $request->status[$i];
-            $attendance->date = $request->date;
-            $attendance->save(); 
+            $attendance = AttendanceRecord::where('date',$request->date)->where('employee_id',$request->id[$i])->first();
+            if($attendance){
+                $attendance->status = $request->status[$i];
+                $attendance->save();    
+            }else{
+                $attendance = new AttendanceRecord;
+                $attendance->employee_id = $request->id[$i];
+                $attendance->status = $request->status[$i];
+                $attendance->date = $request->date;
+                $attendance->save(); 
+            }
         }
         return redirect()->route('employees');
+    }
+
+    public function employeesalary(){
+        $employees = Employee::all();
+        return view('employeesalary',compact('employees'));
+    }
+
+    public function payslip($id){
+        $employee = Employee::find($id);
+        return view('payslip',compact('employee'));
+    }
+
+    public function filter2(Request $request){
+        $validated = $request->validate([
+            'year' => 'required',
+            'month' => 'required'
+        ]);
+        $employee = Employee::find($request->id);
+        $attendance = AttendanceRecord::where('employee_id',$request->id)->whereYear('date',$request->year)->whereMonth('date',$request->month)->get();
+        $date = new DateTime("$request->year-$request->month-01");
+        $sundays = 0;
+        while($date->format('m') == $request->month){
+            if($date->format('w') == 0){
+                $sundays++;
+            }
+            $date->modify('+1 day');
+        }
+        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $request->month, $request->year);
+        $working_days = $daysInMonth - $sundays;
+        $presents = 0;
+        $absents = 0;
+        $halfdays = 0;
+        foreach($attendance as $a){
+            if($a->status == 'present'){
+                $presents++;
+            }elseif($a->status == 'absent'){
+                $absents++;
+            }elseif($a->status == 'halfday'){
+                $halfdays++;
+            }else{
+                $absents++;
+            }
+        }
+        if(($working_days - $presents - $halfdays/2) > 2){
+            $total_days = $presents + $halfdays/2 + 2;
+        }else{
+            $total_days = $working_days;
+        }
+        $final_salary = ($employee->salary/$working_days)*($total_days);
+        $data = [
+            'working' => $working_days,
+            'present' => $presents,
+            'absent' => $absents,
+            'halfday' => $halfdays,
+            'salary' => $final_salary,
+            'year' => $request->year,
+            'month' => $request->month,
+        ];
+        return view('payslip',compact('employee','data'));
+
     }
 }
 

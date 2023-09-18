@@ -28,6 +28,7 @@
                   <label for="joining">Date of Joining</label>
                   <input type="date" class="form-control" id="joining" name="joining" placeholder="Enter joining date">
                 </div>
+                <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form> 
         </div>    
