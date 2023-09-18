@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2023 at 12:38 PM
+-- Generation Time: Sep 18, 2023 at 08:53 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `attendance_records` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `employee_id` bigint(20) UNSIGNED NOT NULL,
-  `status` enum('present','absent','halfday') DEFAULT NULL,
+  `status` enum('present','absent','halfday','null') DEFAULT NULL,
   `date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -58,7 +58,8 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `name`, `age`, `phone`, `salary`, `joining`, `created_at`, `updated_at`) VALUES
-(2, 'Aayush Patidar', 24, 9982414226, 100000, '2023-06-15', '2023-09-15 02:46:02', '2023-09-15 02:47:20');
+(2, 'Aayush Patidar', 24, 9982414226, 100000, '2023-06-15', '2023-09-15 02:46:02', '2023-09-15 02:47:20'),
+(3, 'Aman', 26, 741852963, 100000, '2023-09-15', '2023-09-15 09:11:47', '2023-09-15 09:11:47');
 
 -- --------------------------------------------------------
 
@@ -213,7 +214,7 @@ ALTER TABLE `attendance_records`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
