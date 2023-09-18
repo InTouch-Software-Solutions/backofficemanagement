@@ -5,7 +5,7 @@
 <!-- Mirrored from wrraptheme.com/templates/lucid/hr/bs5/dist/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Sep 2023 12:25:39 GMT -->
 <head>
     <meta charset="utf-8">
-    <title>:: Lucid HR BS5 :: Home</title>
+    <title>Dalal Rameshchand Madanlal Bhaya</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Lucid HR & Project Admin Dashboard Template with Bootstrap 5x">
@@ -24,17 +24,8 @@
     <!-- Page Loader -->
     <div class="page-loader-wrapper text-center">
         <div class="loader">
-            <svg class="p-3 bg-light rounded" width="120px" viewBox="0 0 85 25">
-                <path d="M12.3,7.2l1.5-3.7l8.1,19.4H19l-2.4-5.7H8.2l1.1-2.5h6.1L12.3,7.2z M14.8,20.2l1,2.7H0L9.5,0h3.1L4.3,20.2H14.8
-                z M29,18.5v-14h1.6v12.6h6.2v1.5H29V18.5z M49.6,4.5v9.1c0,1.6-0.5,2.9-1.5,3.8s-2.3,1.4-4,1.4s-3-0.5-3.9-1.4s-1.4-2.2-1.4-3.8V4.5
-                h1.6v9.1c0,1.2,0.3,2.1,1,2.7c0.6,0.6,1.6,0.9,2.8,0.9s2.1-0.3,2.7-0.9c0.6-0.6,1-1.5,1-2.7V4.5H49.6z M59.4,5.7
-                c-1.5,0-2.8,0.5-3.7,1.5s-1.3,2.4-1.3,4.2s0.4,3.3,1.3,4.3c0.9,1,2.1,1.5,3.7,1.5c1,0,2.1-0.2,3.4-0.5v1.4c-1,0.4-2.2,0.5-3.6,0.5
-                c-2.1,0-3.7-0.6-4.8-1.9s-1.7-3-1.7-5.4c0-1.4,0.3-2.7,0.8-3.8c0.5-0.9,1.3-1.8,2.3-2.4s2.2-0.9,3.6-0.9c1.5,0,2.8,0.3,3.9,0.8
-                l-0.7,1.4C61.5,6,60.4,5.7,59.4,5.7z M65.8,18.5v-14h1.6v14.1h-1.6V18.5z M82.5,11.3c0,2.3-0.6,4.1-1.9,5.3s-3.1,1.8-5.4,1.8h-3.9
-                V4.5h4.3c2.2,0,3.9,0.6,5.1,1.8S82.5,9.2,82.5,11.3z M80.8,11.4c0-1.8-0.5-3.2-1.4-4.1s-2.3-1.4-4.1-1.4h-2.4v11.2h2
-                c1.9,0,3.4-0.5,4.4-1.4S80.8,13.3,80.8,11.4z" />
-            </svg>
-            <div class="h5 fw-light mt-3">Please wait Bhaya....</div>
+            <img style="width: 85px; height:85px; " src="{{ asset('assets/images/logo.jpeg') }}" alt="">
+            <div class="h5 fw-light mt-3">Please wait....</div>
         </div>
     </div>
     <!-- Overlay For Sidebars -->
@@ -50,36 +41,14 @@
 
                 <div class="navbar-brand ps-2">
                     <a href="index-2.html" class="d-flex">
-                        <svg width="85px" viewBox="0 0 85 25">
-                            <path class="fill-primary" d="M12.3,7.2l1.5-3.7l8.1,19.4H19l-2.4-5.7H8.2l1.1-2.5h6.1L12.3,7.2z M14.8,20.2l1,2.7H0L9.5,0h3.1L4.3,20.2H14.8
-                            z M29,18.5v-14h1.6v12.6h6.2v1.5H29V18.5z M49.6,4.5v9.1c0,1.6-0.5,2.9-1.5,3.8s-2.3,1.4-4,1.4s-3-0.5-3.9-1.4s-1.4-2.2-1.4-3.8V4.5
-                            h1.6v9.1c0,1.2,0.3,2.1,1,2.7c0.6,0.6,1.6,0.9,2.8,0.9s2.1-0.3,2.7-0.9c0.6-0.6,1-1.5,1-2.7V4.5H49.6z M59.4,5.7
-                            c-1.5,0-2.8,0.5-3.7,1.5s-1.3,2.4-1.3,4.2s0.4,3.3,1.3,4.3c0.9,1,2.1,1.5,3.7,1.5c1,0,2.1-0.2,3.4-0.5v1.4c-1,0.4-2.2,0.5-3.6,0.5
-                            c-2.1,0-3.7-0.6-4.8-1.9s-1.7-3-1.7-5.4c0-1.4,0.3-2.7,0.8-3.8c0.5-0.9,1.3-1.8,2.3-2.4s2.2-0.9,3.6-0.9c1.5,0,2.8,0.3,3.9,0.8
-                            l-0.7,1.4C61.5,6,60.4,5.7,59.4,5.7z M65.8,18.5v-14h1.6v14.1h-1.6V18.5z M82.5,11.3c0,2.3-0.6,4.1-1.9,5.3s-3.1,1.8-5.4,1.8h-3.9
-                            V4.5h4.3c2.2,0,3.9,0.6,5.1,1.8S82.5,9.2,82.5,11.3z M80.8,11.4c0-1.8-0.5-3.2-1.4-4.1s-2.3-1.4-4.1-1.4h-2.4v11.2h2
-                            c1.9,0,3.4-0.5,4.4-1.4S80.8,13.3,80.8,11.4z" />
-                        </svg>
+                        <img style="width: 85px; height:85px; " src="{{ asset('assets/images/logo.jpeg') }}" alt="">
+                        
                     </a>
                 </div>
 
                 <div class="d-flex flex-grow-1 align-items-center">
-                    <div class="d-flex">
-                        <ul class="nav nav-pills me-4 ms-2 d-none d-lg-block">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Menu Version</a>
-                                <ul class="dropdown-menu shadow-sm">
-                                    <li><a class="dropdown-item" href="index-2.html">Sidebar menu</a></li>
-                                    <li><a class="dropdown-item" href="horizontal/index.html">Horizontal menu</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="sidebar-mini/index.html">Sidebar mini</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <form id="navbar-search" class="navbar-form search-form position-relative d-none d-md-block">
-                            <input value="" class="form-control" placeholder="Search here..." type="text">
-                            <button type="button" class="btn btn-secondary"><i class="fa fa-search"></i></button>
-                        </form>
+                    <div>
+                        <h1>DALAL RAMESHCHAND MADANLAL BHAYA</h1>
                     </div>
 
                     <div class="flex-grow-1">
@@ -152,15 +121,15 @@
                 </div>
             </div>
         </nav>
-
+        <br><br>
         <!-- Sidbar menu -->
         <div id="left-sidebar" class="sidebar">
             <div class="user-account p-3 mb-3">
                 <div class="d-flex mb-3 pb-3 border-bottom align-items-center">
-                    <img src="{{asset('assets/images/user.png') }}" class="avatar lg rounded me-3" alt="User Profile Picture">
+                    <img src="{{asset('assets/images/employee.jpg') }}" class="avatar lg rounded me-3" alt="User Profile Picture">
                     <div class="dropdown flex-grow-1">
                         <span>Welcome,</span>
-                        <a href="#" class="dropdown-toggle user-name" data-bs-toggle="dropdown"><strong>Jessica Doe</strong></a>
+                        <a href="#" class="dropdown-toggle user-name" data-bs-toggle="dropdown"><br><strong>Admin</strong></a>
                         <ul class="dropdown-menu p-2 shadow-sm">
                             <li><a href="page-profile2.html"><i class="fa fa-user me-2"></i>My Profile</a></li>
                             <li><a href="app-inbox.html"><i class="fa fa-envelope-open me-2"></i>Messages</a></li>
@@ -170,7 +139,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row g-3">
+                {{-- <div class="row g-3">
                     <div class="col">
                         <h6 class="mb-0">5+</h6>
                         <small class="text-muted">Experience</small>
@@ -183,7 +152,7 @@
                         <h6 class="mb-0">80+</h6>
                         <small class="text-muted">Clients</small>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <!-- nav tab: menu list -->
             <ul class="nav nav-tabs text-center mb-2" role="tablist">
@@ -214,9 +183,9 @@
                             <li>
                                 <a href="#Accounts" class="has-arrow"><i class="fa fa-briefcase"></i><span>Accounts</span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="acc-payments.html">Payments</a></li>
-                                    <li><a href="acc-expenses.html">Expenses</a></li>
-                                    <li><a href="acc-invoices.html">Invoices</a></li>
+                                    <li><a href="{{ Route('cashbook') }}">Add Expenses</a></li>
+                                    <li><a href="{{ Route('expenses') }}">Expenses</a></li>
+                                    <li><a href="{{ Route('tally') }}">Expenses Tally</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -483,12 +452,9 @@
                     <div class="row g-3">
                         <div class="col-md-6 col-sm-12">
                             <h2 class="m-0 fs-5"><a href="javascript:void(0);" class="btn btn-sm btn-link ps-0 btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Dashboard</h2>
-                            <ul class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="index-2.html">Lucid</a></li>
-                                <li class="breadcrumb-item active">Dashboard</li>
-                            </ul>
+                            
                         </div>
-                        <div class="col-md-6 col-sm-12 text-md-end">
+                        {{-- <div class="col-md-6 col-sm-12 text-md-end">
                             <div class="d-inline-flex text-start">
                                 <div class="me-2">
                                     <h6 class="mb-0"><i class="fa fa-user"></i> 1,784</h6>
@@ -510,7 +476,7 @@
                                 </div>
                                 <span id="bh_chats"></span>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 @yield('content')

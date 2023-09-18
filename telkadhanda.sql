@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2023 at 08:53 AM
+-- Generation Time: Sep 18, 2023 at 03:41 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,6 +32,32 @@ CREATE TABLE `attendance_records` (
   `employee_id` bigint(20) UNSIGNED NOT NULL,
   `status` enum('present','absent','halfday','null') DEFAULT NULL,
   `date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `attendance_records`
+--
+
+INSERT INTO `attendance_records` (`id`, `employee_id`, `status`, `date`, `created_at`, `updated_at`) VALUES
+(1, 2, 'halfday', '2023-09-18', '2023-09-18 01:40:59', '2023-09-18 01:41:31'),
+(2, 3, 'present', '2023-09-18', '2023-09-18 01:40:59', '2023-09-18 01:41:31'),
+(3, 2, 'present', '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36'),
+(4, 3, 'present', '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cash_books`
+--
+
+CREATE TABLE `cash_books` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `reason` varchar(255) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `paid_by` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -99,7 +125,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2023_09_15_061513_create_employees_table', 2),
-(7, '2023_09_15_062843_create_attendance_records_table', 3);
+(7, '2023_09_15_062843_create_attendance_records_table', 3),
+(8, '2023_09_18_120923_create_cash_books_table', 4),
+(9, '2023_09_18_122759_add_column_to_table_cash_books', 5);
 
 -- --------------------------------------------------------
 
@@ -161,6 +189,12 @@ ALTER TABLE `attendance_records`
   ADD KEY `attendance_records_employee_id_foreign` (`employee_id`);
 
 --
+-- Indexes for table `cash_books`
+--
+ALTER TABLE `cash_books`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -208,6 +242,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance_records`
 --
 ALTER TABLE `attendance_records`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `cash_books`
+--
+ALTER TABLE `cash_books`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -226,7 +266,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

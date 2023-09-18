@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AttendanceRecord;
+use App\Models\CashBook;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -179,7 +180,10 @@ class HomeController extends Controller
                 $absents++;
             }
         }
-        if(($working_days - $presents - $halfdays/2) > 2){
+        if($presents + $halfdays/2 == 0){
+            $total_days = 0;
+        }
+        elseif(($working_days - $presents - $halfdays/2) > 2){
             $total_days = $presents + $halfdays/2 + 2;
         }else{
             $total_days = $working_days;
@@ -195,6 +199,54 @@ class HomeController extends Controller
             'month' => $request->month,
         ];
         return view('payslip',compact('employee','data'));
+
+    }
+
+    public function cashbook(){
+        return view('cashbook');
+    }
+
+    public function saveexpenses(Request $request){
+        $validated = $request->validate([
+            'date' => 'required',
+            'reason' => 'required',
+            'amount' => 'required',
+            'paid' => 'required',
+        ]);
+        $expense = new CashBook;
+        $expense->date = $validated['date'];
+        $expense->reason = $validated['reason'];
+        $expense->amount = $validated['amount'];
+        $expense->paid_by = $validated['paid'];
+        $expense->save();
+        return redirect()->route('expenses');
+    }
+
+    public function expenses(){
+        $expenses = CashBook::all();
+        return view('expenses',compact('expenses'));
+    }
+
+    public function tally(){
+        return view('tally');
+    }
+
+    public function filter3(request $request){
+        $validated = $request->validate([
+            'year' => 'required',
+            'month' => 'required',
+        ]);
+        $expenses = CashBook::whereYear('date',$validated['year'])->whereMonth('date',$validated['month'])->get();
+        $total_amount = CashBook::whereYear('date',$validated['year'])->whereMonth('date',$validated['month'])->sum('amount');
+        $count = count($expenses);
+        $data = [
+            'total' => $total_amount,
+            'count' => $count,
+            'month' => $request->month,
+            'year' => $request->year
+        ];
+        return view('tally',compact('data'));
+
 
     }
 }

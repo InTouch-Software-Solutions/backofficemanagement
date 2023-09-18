@@ -1,7 +1,7 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Payslip</h1>
+    <h1 class="mt-5">Expenses Tally</h1>
 </div>
 <br>
 <div class="container-fluid">
@@ -13,9 +13,8 @@
                         <div class="col-6">
                         </div>
                         <div class="col-6">
-                            <form action="{{ Route('filter2') }}" method="post">
+                            <form action="{{ Route('filter3') }}" method="post">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $employee->id }}">
                                 <select name="year" id="year">
                                     <option value="" selected>Select Year</option>
                                     <option value="2023">2023</option>
@@ -56,7 +55,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex">
                                         <div class="logo me-4">
-                                            <img src="{{ asset('assets/images/logo.jpeg') }}" style="width:70px; height:70px;"alt="user" class="img-fluid">
+                                            <img src="{{ asset('assets/images/logo.jpeg') }}" style="width:70px; height:70px;" alt="user" class="img-fluid">
                                         </div>
                                         <div class="info">
                                             <h6>DALAL RAMESHCHAND MADANLAL BHAYA</h6>
@@ -64,19 +63,11 @@
                                         </div>
                                     </div>
                                     <div class="title">
-                                        <p>Salary Month: {{ $data['month'] }}, {{ $data['year'] }}</p>
+                                        <p>Expenditure Month: {{ $data['month'] }}, {{ $data['year'] }}</p>
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="d-flex">
-                                    <div class="clientlogo me-3">
-                                        <img src="{{ asset('assets/images/employee.jpg') }}" alt="user" width="70" class="rounded-circle img-fluid">
-                                    </div>
-                                    <div class="info">
-                                        <h6>{{ $employee->name }}</h6>
-                                        <p>{{ $employee->phone }}</p>
-                                    </div>
-                                </div>
+                                
                                 <div class="row g-3">
                                     <div class="col-lg-6 col-md-12">
                                         <div class="table-responsive">
@@ -91,45 +82,22 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>1</td>
-                                                        <td>Basic Salary</td>
-                                                        <td>{{ $employee->salary }}</td>
+                                                        <td>Total Expenditure</td>
+                                                        <td>{{ $data['total'] }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>2</td>
-                                                        <td>Working Days</td>
-                                                        <td>{{ $data['working'] }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Presents</td>
-                                                        <td>{{ $data['present'] }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Absents</td>
-                                                        <td>{{ $data['absent'] }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>Halfdays</td>
-                                                        <td>{{ $data['halfday'] }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td><strong>Final Salary</strong></td>
-                                                        <td><strong>{{ $data['salary'] }}</strong></td>
+                                                        <td>Number of times</td>
+                                                        <td>{{ $data['count'] }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-12">
-                                        
-                                    </div>
                                     <div class="col-md-6">
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        <h5 class="mb-0">Net Salary Rs.{{ $data['salary'] }}</h5>
+                                        <h5 class="mb-0">Total Expenditure: Rs.{{ $data['total'] }}</h5>
                                     </div>
                                     <div class="col-12 text-end">
                                         <button class="btn btn-outline-secondary" id="printButton"><i class="fa fa-print"></i> Print</button>
