@@ -34,7 +34,7 @@
                 V4.5h4.3c2.2,0,3.9,0.6,5.1,1.8S82.5,9.2,82.5,11.3z M80.8,11.4c0-1.8-0.5-3.2-1.4-4.1s-2.3-1.4-4.1-1.4h-2.4v11.2h2
                 c1.9,0,3.4-0.5,4.4-1.4S80.8,13.3,80.8,11.4z" />
             </svg>
-            <div class="h5 fw-light mt-3">Please wait</div>
+            <div class="h5 fw-light mt-3">Please wait Bhaya....</div>
         </div>
     </div>
     <!-- Overlay For Sidebars -->
@@ -207,8 +207,8 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ Route('employees') }}">All Employees</a></li>
                                     <li><a href="emp-leave.html">Leave Requests</a></li>
-                                    <li><a href="{{ Route('attendance') }}">Attendance</a></li>
-                                    <li><a href="emp-departments.html">Departments</a></li>
+                                    <li><a href="{{ Route('attendance') }}">Mark Attendance</a></li>
+                                    <li><a href="{{ Route('attendancerecord') }}">Attendance Record</a></li>
                                 </ul>
                             </li>
                             <li>

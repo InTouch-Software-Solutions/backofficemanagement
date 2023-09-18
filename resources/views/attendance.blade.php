@@ -7,6 +7,14 @@
 <div class="col-12" style="text-align: center;">
   <h1 class="mt-5">Attendance</h1>
 </div>
+@if(Session::has('errors'))
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif
+
 <form action="{{ Route('saveattendance') }}" method="post">
     @csrf
     <div class="form-group">
@@ -22,8 +30,8 @@
     </div>
     <div class="form-group">
         <label for="status">Status</label>
-        <select class="form-control" name="status[]" required>
-            <option selected>Select Status</option>
+        <select class="form-control" name="status[]">
+            <option value="null">Select Status</option>
             <option value="present">Present</option>
             <option value="absent">Absent</option>
             <option value="halfday">Half-Day</option>

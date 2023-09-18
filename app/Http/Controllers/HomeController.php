@@ -94,6 +94,24 @@ class HomeController extends Controller
         
     }
 
+    public function attendancerecord(){
+        $employees = Employee::all();
+        // if(Session::has('user')){
+            return view('attendancerecord',compact('employees'));
+        // }else{return redirect()->route('index');}
+        
+    }
+
+    public function filter(Request $request){
+        $validated = $request->validate([
+            'year' => 'required',
+            'month' => 'required'
+        ]);
+        $employees = Employee::all();
+        $date = $request->year.'-'.$request->month.'-';
+        return view('attendancerecord',compact('date','employees'));
+    }
+
     public function saveattendance(Request $request){
         $validated = $request->validate([
             'date' => 'required',
