@@ -265,5 +265,21 @@ class HomeController extends Controller
     public function contractnote(){
         return view('contractnote');
     }
+
+    public function addclient(){
+        return view('addclient');
+    }
+
+    public function saveclient(Request $request){
+        $validated = $request->validate([
+            'role' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required|digits:10|numeric',
+            'password' => 'required',
+            'cpassword' => 'required',
+            'username' => 'required'
+        ]);
+    }
 }
 

@@ -24,7 +24,7 @@
     <!-- Page Loader -->
     <div class="page-loader-wrapper text-center">
         <div class="loader">
-            <img style="width: 85px; height:85px; " src="{{ asset('assets/images/logo.jpeg') }}" alt="">
+            <img style="width: 85px; height:85px; " src="{{ asset('assets/images/logo.png') }}" alt="">
             <div class="h5 fw-light mt-3">Please wait....</div>
         </div>
     </div>
@@ -41,7 +41,7 @@
 
                 <div class="navbar-brand ps-2">
                     <a href="index-2.html" class="d-flex">
-                        <img style="width: 85px; height:85px; " src="{{ asset('assets/images/logo.jpeg') }}" alt="">
+                        <img style="width: 85px; height:85px; " src="{{ asset('assets/images/logo.png') }}" alt="">
                         
                     </a>
                 </div>
@@ -157,8 +157,8 @@
             <!-- nav tab: menu list -->
             <ul class="nav nav-tabs text-center mb-2" role="tablist">
                 <li class="nav-item flex-fill"><a class="nav-link active" id="hr_menu_nav_link" data-bs-toggle="tab" href="#hr_menu" role="tab">HR</a></li>
-                <li class="nav-item flex-fill"><a class="nav-link" data-bs-toggle="tab" href="#project_menu" role="tab">Project</a></li>
-                <li class="nav-item flex-fill"><a class="nav-link" data-bs-toggle="tab" href="#sub_menu" role="tab"><i class="fa fa-th-large"></i></a></li>
+                <li class="nav-item flex-fill"><a class="nav-link" data-bs-toggle="tab" href="#project_menu" role="tab">Contract</a></li>
+                {{-- <li class="nav-item flex-fill"><a class="nav-link" data-bs-toggle="tab" href="#sub_menu" role="tab"><i class="fa fa-th-large"></i></a></li> --}}
                 <li class="nav-item flex-fill"><a class="nav-link" data-bs-toggle="tab" href="#setting_menu" role="tab"><i class="fa fa-cog"></i></a></li>
             </ul>
             <!-- nav tab: content -->
@@ -166,10 +166,8 @@
                 <div class="tab-pane fade show active" id="hr_menu" role="tabpanel" >
                     <nav class="sidebar-nav">
                         <ul class="metismenu list-unstyled">
-                            <li class="active"><a href="{{ Route('index') }}"><i class="fa fa-tachometer"></i><span>HR Dashboard</span></a></li>
+                            <li class="active"><a href="{{ Route('index') }}"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                             <li><a href="app-holidays.html"><i class="fa fa-list-ul"></i><span>Holidays</span></a></li>
-                            <li><a href="app-events.html"><i class="fa fa-calendar"></i><span>Events</span></a></li>
-                            <li><a href="app-activities.html"><i class="fa fa-file-text-o"></i><span>Activities</span></a></li>
                             <li>
                                 <a href="#Employees" class="has-arrow"><i class="fa fa-users"></i><span>Employees</span></a>
                                 <ul class="list-unstyled">
@@ -201,29 +199,15 @@
                                     <li><a href="report-invoice.html">Invoice Report</a></li>
                                 </ul>
                             </li>
-                            <li><a href="app-users.html"><i class="fa fa-user"></i><span>Users</span></a></li>
-                            <li>
-                                <a href="#Authentication" class="has-arrow"><i class="fa fa-lock"></i><span>Authentication</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="page-login.html">Login</a></li>
-                                    <li><a href="page-register.html">Register</a></li>
-                                    <li><a href="page-lockscreen.html">Lockscreen</a></li>
-                                    <li><a href="page-forgot-password.html">Forgot Password</a></li>
-                                    <li><a href="page-404.html">Page 404</a></li>
-                                    <li><a href="page-403.html">Page 403</a></li>
-                                    <li><a href="page-500.html">Page 500</a></li>
-                                    <li><a href="page-503.html">Page 503</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </nav>
                 </div>
                 <div class="tab-pane fade" id="project_menu" role="tabpanel" >
                     <nav class="sidebar-nav">
                         <ul class="metismenu list-unstyled">
-                            <li><a href="index2.html"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-                            <li><a href="app-inbox.html"><i class="fa fa-envelope-o"></i><span>Inbox App</span></a></li>
-                            <li><a href="app-chat.html"><i class="fa fa-comments"></i><span>Chat App</span></a></li>
+                            <li><a href="{{ Route('index') }}"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
+                            {{-- <li><a href="app-inbox.html"><i class="fa fa-envelope-o"></i><span>Inbox App</span></a></li>
+                            <li><a href="app-chat.html"><i class="fa fa-comments"></i><span>Chat App</span></a></li> --}}
                             <li>
                                 <a href="#Projects" class="has-arrow"><i class="fa fa-list-ul"></i><span>Contracts</span></a>
                                 <ul class="list-unstyled">
@@ -236,18 +220,15 @@
                             <li>
                                 <a href="#Clients" class="has-arrow"><i class="fa fa-user"></i><span>Clients</span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="client-add.html">Add Clients</a></li>
+                                    <li><a href="{{ Route('addclient') }}">Add Clients</a></li>
                                     <li><a href="client-list.html">Clients List</a></li>
                                     <li><a href="client-detail.html">Clients Detail</a></li>
                                 </ul>
                             </li>
-                            <li><a href="project-team.html"><i class="fa fa-users"></i><span>Team</span></a></li>
-                            <li><a href="app-taskboard.html"><i class="fa fa-tag"></i><span>Taskboard</span></a></li>
-                            <li><a href="app-tickets.html"><i class="fa fa-ticket"></i><span>Tickets</span></a></li>
                         </ul>
                     </nav>
                 </div>
-                <div class="tab-pane fade" id="sub_menu" role="tabpanel" >
+                {{-- <div class="tab-pane fade" id="sub_menu" role="tabpanel" >
                     <nav class="sidebar-nav">
                         <ul class="metismenu list-unstyled">
                             <li>
@@ -359,14 +340,14 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </div> --}}
                 <div class="tab-pane fade" id="setting_menu" role="tabpanel" >
                     <div class="px-3">
                         <h6>Choose Skin</h6>
                         <ul class="choose-skin list-unstyled">
                             <li data-theme="purple" class="mb-2"><div class="purple"></div><span>Purple</span></li>
                             <li data-theme="blue" class="mb-2"><div class="blue"></div><span>Blue</span></li>
-                            <li data-theme="cyan" class="active mb-2"><div class="cyan"></div><span>Cyan</span></li>
+                            <li data-theme="cyan" class=" mb-2"><div class="cyan"></div><span>Cyan</span></li>
                             <li data-theme="green" class="mb-2"><div class="green"></div><span>Green</span></li>
                             <li data-theme="orange" class="mb-2"><div class="orange"></div><span>Orange</span></li>
                             <li data-theme="blush" class="mb-2"><div class="blush"></div><span>Blush</span></li>
@@ -387,12 +368,6 @@
                                 </div>
                             </li>
                             <li class="d-flex align-items-center mb-1">
-                                <div class="form-check form-switch theme-rtl">
-                                    <input class="form-check-input" type="checkbox" id="theme-rtl">
-                                    <label class="form-check-label" for="theme-rtl">Enable RTL Mode!</label>
-                                </div>
-                            </li>
-                            <li class="d-flex align-items-center mb-1">
                                 <div class="form-check form-switch minisidebar-active">
                                     <input class="form-check-input" type="checkbox" id="mini-active">
                                     <label class="form-check-label" for="mini-active">Mini Sidebar</label>
@@ -400,7 +375,7 @@
                             </li>
                         </ul>
                         <hr>
-                        <h6>General Settings</h6>
+                        {{-- <h6>General Settings</h6>
                         <ul class="setting-list list-unstyled">
                             <li>
                                 <div class="form-check">
@@ -438,7 +413,7 @@
                                     <label class="form-check-label" for="flexCheckDefault5">Location Permission</label>
                                 </div>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>

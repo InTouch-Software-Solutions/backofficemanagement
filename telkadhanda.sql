@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2023 at 07:57 AM
+-- Generation Time: Sep 19, 2023 at 02:53 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,7 +44,9 @@ INSERT INTO `attendance_records` (`id`, `employee_id`, `status`, `date`, `create
 (1, 2, 'halfday', '2023-09-18', '2023-09-18 01:40:59', '2023-09-18 01:41:31'),
 (2, 3, 'present', '2023-09-18', '2023-09-18 01:40:59', '2023-09-18 01:41:31'),
 (3, 2, 'present', '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36'),
-(4, 3, 'present', '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36');
+(4, 3, 'present', '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36'),
+(5, 2, 'present', '2023-09-19', '2023-09-19 02:40:57', '2023-09-19 02:40:57'),
+(6, 3, 'present', '2023-09-19', '2023-09-19 02:40:57', '2023-09-19 02:40:57');
 
 -- --------------------------------------------------------
 
@@ -136,7 +138,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2023_09_15_062843_create_attendance_records_table', 3),
 (8, '2023_09_18_120923_create_cash_books_table', 4),
 (9, '2023_09_18_122759_add_column_to_table_cash_books', 5),
-(10, '2023_09_19_051552_add_column_to_cash_books_table', 6);
+(10, '2023_09_19_051552_add_column_to_cash_books_table', 6),
+(11, '2023_09_19_100011_add_column_to_users_table', 7);
 
 -- --------------------------------------------------------
 
@@ -179,6 +182,9 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `role` enum('admin','client') NOT NULL,
+  `phone` bigint(20) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
@@ -251,7 +257,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance_records`
 --
 ALTER TABLE `attendance_records`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `cash_books`
@@ -275,7 +281,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
