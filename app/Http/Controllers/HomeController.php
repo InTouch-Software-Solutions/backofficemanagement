@@ -260,8 +260,10 @@ class HomeController extends Controller
             'year' => $request->year
         ];
         return view('tally',compact('data'));
+    }
 
-
+    public function contractnote(){
+        return view('contractnote');
     }
 }
 

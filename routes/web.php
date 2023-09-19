@@ -39,4 +39,5 @@ Route::get('cashbook',[HomeController::class,'cashbook'])->name('cashbook');
 Route::get('expenses',[HomeController::class,'expenses'])->name('expenses');
 Route::get('tally',[HomeController::class,'tally'])->name('tally');
 Route::post('saveexpenses',[HomeController::class,'saveexpenses'])->name('saveexpenses');
+Route::get('contractnote',[HomeController::class,'contractnote'])->name('contractnote');
 Route::get('logout',[HomeController::class,'logout'])->name('logout');
