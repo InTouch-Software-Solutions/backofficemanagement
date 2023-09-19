@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Lucid HR & Project Admin Dashboard Template with Bootstrap 5x">
     <meta name="author" content="WrapTheme, design by: ThemeMakker.com">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/logo.jpeg') }}" type="image/x-icon">
     @yield('csscontent')
 
     <!-- MAIN CSS -->

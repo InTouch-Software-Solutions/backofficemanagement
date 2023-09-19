@@ -228,7 +228,19 @@ class HomeController extends Controller
     }
 
     public function tally(){
-        return view('tally');
+        $curr_year = date('Y');
+        $expenses = [];
+        for($i=1; $i<13; $i++){
+            if($i < 10){
+                $month = '0'.$i;
+            }else{
+                $month = $i;
+            }
+            $total_amount = CashBook::whereYear('date',$curr_year)->whereMonth('date',$month)->sum('amount');
+            $expenses[$i] = $total_amount;
+
+        }
+        return view('tally',compact('expenses'));
     }
 
     public function filter3(request $request){

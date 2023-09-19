@@ -47,6 +47,7 @@
                         </div>
                     </div>
                 </div>
+                <canvas id="myChart" width="100" height="50"></canvas>
                 @if(isset($data))
                 <div class="row clearfix" >
                     <div class="col-12">
@@ -127,6 +128,36 @@
         document.body.innerHTML = originalContents;
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var expenses = @json($expenses);
+</script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    const keys = Object.keys(expenses);
+    const values = Object.values(expenses);
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: keys,
+            datasets: [{
+                label: 'Monthly Expenses',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                data: values
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
 
 
 @endsection
