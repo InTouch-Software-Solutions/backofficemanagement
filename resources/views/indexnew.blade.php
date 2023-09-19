@@ -170,7 +170,6 @@
                             <li><a href="app-holidays.html"><i class="fa fa-list-ul"></i><span>Holidays</span></a></li>
                             <li><a href="app-events.html"><i class="fa fa-calendar"></i><span>Events</span></a></li>
                             <li><a href="app-activities.html"><i class="fa fa-file-text-o"></i><span>Activities</span></a></li>
-                            <li><a href="app-social.html"><i class="fa fa-globe"></i><span>HR Social</span></a></li>
                             <li>
                                 <a href="#Employees" class="has-arrow"><i class="fa fa-users"></i><span>Employees</span></a>
                                 <ul class="list-unstyled">
@@ -226,10 +225,10 @@
                             <li><a href="app-inbox.html"><i class="fa fa-envelope-o"></i><span>Inbox App</span></a></li>
                             <li><a href="app-chat.html"><i class="fa fa-comments"></i><span>Chat App</span></a></li>
                             <li>
-                                <a href="#Projects" class="has-arrow"><i class="fa fa-list-ul"></i><span>Projects</span></a>
+                                <a href="#Projects" class="has-arrow"><i class="fa fa-list-ul"></i><span>Contracts</span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="project-add.html">Add Projects</a></li>
-                                    <li><a href="project-list.html">Projects List</a></li>
+                                    <li><a href="project-add.html">Add Contract</a></li>
+                                    <li><a href="project-list.html">Contracts List</a></li>
                                     <li><a href="project-grid.html">Projects Grid</a></li>
                                     <li><a href="project-detail.html">Projects Detail</a></li>
                                 </ul>

@@ -24,6 +24,10 @@
                   <label for="paid">Paid By</label>
                   <input type="text" class="form-control" id="paid" name="paid" placeholder="Enter name">
                 </div>
+                <div class="form-group mt-2">
+                  <label for="paidto">Paid To</label>
+                  <input type="text" class="form-control" id="paidto" name="paidto" placeholder="Enter name">
+                </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form> 

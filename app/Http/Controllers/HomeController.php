@@ -212,12 +212,14 @@ class HomeController extends Controller
             'reason' => 'required',
             'amount' => 'required',
             'paid' => 'required',
+            'paidto' => 'required',
         ]);
         $expense = new CashBook;
         $expense->date = $validated['date'];
         $expense->reason = $validated['reason'];
         $expense->amount = $validated['amount'];
         $expense->paid_by = $validated['paid'];
+        $expense->paid_to = $validated['paidto'];
         $expense->save();
         return redirect()->route('expenses');
     }

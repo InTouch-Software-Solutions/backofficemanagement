@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2023 at 03:41 PM
+-- Generation Time: Sep 19, 2023 at 07:57 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -58,9 +58,17 @@ CREATE TABLE `cash_books` (
   `reason` varchar(255) NOT NULL,
   `amount` int(11) NOT NULL,
   `paid_by` varchar(255) NOT NULL,
+  `paid_to` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cash_books`
+--
+
+INSERT INTO `cash_books` (`id`, `date`, `reason`, `amount`, `paid_by`, `paid_to`, `created_at`, `updated_at`) VALUES
+(1, '2023-09-19', 'Tea and Snacks', 100, 'me', 'you', '2023-09-18 23:54:19', '2023-09-18 23:54:19');
 
 -- --------------------------------------------------------
 
@@ -127,7 +135,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2023_09_15_061513_create_employees_table', 2),
 (7, '2023_09_15_062843_create_attendance_records_table', 3),
 (8, '2023_09_18_120923_create_cash_books_table', 4),
-(9, '2023_09_18_122759_add_column_to_table_cash_books', 5);
+(9, '2023_09_18_122759_add_column_to_table_cash_books', 5),
+(10, '2023_09_19_051552_add_column_to_cash_books_table', 6);
 
 -- --------------------------------------------------------
 
@@ -248,7 +257,7 @@ ALTER TABLE `attendance_records`
 -- AUTO_INCREMENT for table `cash_books`
 --
 ALTER TABLE `cash_books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -266,7 +275,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

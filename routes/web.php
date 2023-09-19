@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $employee_count = count(Employee::all());
+    $total_salary = Employee::sum('salary');
+    
+    return view('index',compact('employee_count','total_salary'));
 })->name('index');
 Route::get('employees',[HomeController::class,'employees'])->name('employees');
 Route::get('addemployee',[HomeController::class,'addemployee'])->name('addemployee');

@@ -47,7 +47,9 @@
                         </div>
                     </div>
                 </div>
+                @if(isset($expenses))
                 <canvas id="myChart" width="100" height="50"></canvas>
+                @endif
                 @if(isset($data))
                 <div class="row clearfix" >
                     <div class="col-12">
@@ -84,7 +86,7 @@
                                                     <tr>
                                                         <td>1</td>
                                                         <td>Total Expenditure</td>
-                                                        <td>{{ $data['total'] }}</td>
+                                                        <td>Rs. {{ $data['total'] }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>2</td>
@@ -128,6 +130,7 @@
         document.body.innerHTML = originalContents;
     });
 </script>
+@if(isset($expenses))
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     var expenses = @json($expenses);
@@ -157,6 +160,7 @@
         }
     });
 </script>
+@endif
 
 
 

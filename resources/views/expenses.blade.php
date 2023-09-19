@@ -16,6 +16,7 @@
                             <th>Reason</th>
                             <th>Amount</th>
                             <th>Paid By</th>
+                            <th>Paid To</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,7 @@
                             <td>{{ $expense->reason }}</td>
                             <td>{{ $expense->amount }}</td>
                             <td>{{ $expense->paid_by }}</td>
+                            <td>{{ $expense->paid_to }}</td>
                         </tr>
                         @endforeach    
                     </tbody>
