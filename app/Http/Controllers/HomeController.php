@@ -297,7 +297,6 @@ class HomeController extends Controller
     public function savecontract(Request $request){
         $validated = $request->validate([
             'date' => 'required',
-            'orderno' => 'required|numeric',
             'purchaser' => 'required',
             'seller' => 'required',
             'commodity' => 'required',
@@ -311,7 +310,6 @@ class HomeController extends Controller
 
         $contract = new ContractNote;
         $contract->date = $validated['date'];
-        $contract->orderno = $validated['orderno'];
         $contract->purchaser = $validated['purchaser'];
         $contract->seller = $validated['seller'];
         $contract->commodity = $validated['commodity'];

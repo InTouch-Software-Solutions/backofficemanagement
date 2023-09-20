@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2023 at 11:44 AM
+-- Generation Time: Sep 20, 2023 at 12:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -81,7 +81,6 @@ INSERT INTO `cash_books` (`id`, `date`, `reason`, `amount`, `paid_by`, `paid_to`
 CREATE TABLE `contract_notes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `date` date NOT NULL,
-  `orderno` bigint(20) NOT NULL,
   `purchaser` varchar(255) NOT NULL,
   `seller` varchar(255) NOT NULL,
   `commodity` varchar(255) NOT NULL,
@@ -94,14 +93,6 @@ CREATE TABLE `contract_notes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `contract_notes`
---
-
-INSERT INTO `contract_notes` (`id`, `date`, `orderno`, `purchaser`, `seller`, `commodity`, `quantity`, `rate`, `time`, `condition`, `charge`, `gst`, `created_at`, `updated_at`) VALUES
-(1, '2023-09-20', 1, '1', '1', 'oil', '7', '100', 'READY', 'paisa pehle', 100, '18', '2023-09-20 02:18:47', '2023-09-20 02:18:47'),
-(2, '2023-09-20', 1, '1', '1', 'oil', '7', '100', 'READY', 'paisa pehle', 100, '18', '2023-09-20 04:11:16', '2023-09-20 04:11:16');
 
 -- --------------------------------------------------------
 
@@ -314,7 +305,7 @@ ALTER TABLE `cash_books`
 -- AUTO_INCREMENT for table `contract_notes`
 --
 ALTER TABLE `contract_notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employees`
