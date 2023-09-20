@@ -8,6 +8,10 @@
 </style>
 @endsection
 @section('content')
+<?php
+$pname = DB::table('users')->where('id',$contract->purchaser)->pluck('name');
+$sname = DB::table('users')->where('id',$contract->seller)->pluck('name');
+?>
 <div class="col-12" style="text-align: center;">
     <h1 class="mt-5">Contract Note</h1>
 </div>
@@ -35,7 +39,7 @@
                         <p>Brokers of Acid Oil, RB Oil, Fatty Acid, Lecithin, Sludge, Spent Earth Oil & Soap Stock. <br>33/3, Jethmal Building, Murai Mohalla, Chhawni, Indore (MP) - 452001. <br>2707390-91/ 4281122/ 4287390/ 9425059975/53242/ 9407328145 <br>bhayajibrokers@gmail.com <br>PAN: ABXPA1180D</p>
                     </div>
                     <div class="row">
-                        <p>Date:dd-mm-yyy<br>Order No: xxx</p>
+                        <p>Date:{{ $contract->date }}<br>Order No: {{ $contract->orderno }}</p>
                     </div>
                     <div class="row" style="text-align: center;">
                         <h6 style="text-decoration: underline;">CONTRACT NOTE</h6>
@@ -46,35 +50,35 @@
                             <tbody>
                                 <tr>
                                     <th>Purchaser</th>
-                                    <td>me</td>
+                                    <td>{{ $pname[0] }}</td>
                                 </tr>
                                 <tr>
                                     <th>Seller</th>
-                                    <td>you</td>
+                                    <td>{{ $sname[0] }}</td>
                                 </tr>
                                 <tr>
                                     <th>Commodity</th>
-                                    <td>MUSTARD ACID OIL (HSN 38231900)</td>
+                                    <td>{{ $contract->commodity }}</td>
                                 </tr>
                                 <tr>
                                     <th>Quantity</th>
-                                    <td>xyz TONNES</td>
+                                    <td>{{ $contract->quantity }}</td>
                                 </tr>
                                 <tr>
                                     <th>Rate(in kgs)</th>
-                                    <td>Rs. X/- + 18% GST</td>
+                                    <td>Rs. {{ $contract->rate }}/-  + {{ $contract->gst }}% GST</td>
                                 </tr>
                                 <tr>
                                     <th>Delivery Time</th>
-                                    <td>READY</td>
+                                    <td>{{ $contract->time }}</td>
                                 </tr>
                                 <tr>
                                     <th>Other Conditions</th>
-                                    <td>Spot Payment, Tanker should be dispatched only after sharing Lab Report and tanker is sealed. TFM : 97.5% Condition.</td>
+                                    <td>{{ $contract->condition }}</td>
                                 </tr>
                                 <tr>
                                     <th>Brokerage</th>
-                                    <td>Rs. 100 PER METRIC TONN.</td>
+                                    <td>Rs. {{ $contract->charge }} PER METRIC TONN.</td>
                                 </tr>
                             </tbody>
                         </table>

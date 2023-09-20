@@ -1,7 +1,7 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Employee Salary</h1>
+    <h1 class="mt-5">Clients List</h1>
 </div>
 <br>
 <div class="row">
@@ -11,27 +11,25 @@
                 <table id="x" class="table table-hover mb-0">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Phone</th>
-                            <th>Basic Salary</th>
-                            <th>Action</th>
+                            <th>Username</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($employees as $employee)
+                        @foreach ($clients as $client)
                         <tr>
-                            <td>{{ $employee->name }}</td>
-                            <td>{{ $employee->phone }}</td>
-                            <td>{{ $employee->salary }} per month</td>
-                            <td><a href="{{ Route('payslip',['id'=>$employee->id]) }}" class="btn btn-primary">Payslip</a></td>
+                            <td>{{ $client->id }}</td>
+                            <td>{{ $client->name }}</td>
+                            <td>{{ $client->email }}</td>
+                            <td>{{ $client->phone }}</td>
+                            <td>{{ $client->username }}</td>
                         </tr>
                         @endforeach    
                     </tbody>
                 </table>
-                {{-- <h2>{{ $employee->name }}</h2>
-                <h6>{{ $employee->phone }}</h6>
-                <h6>Basic Salary: {{ $employee->salary }} per month</h6>
-                <a href="{{ Route('payslip',['id'=>$employee->id]) }}" class="btn btn-primary">Payslip</a> --}}
             </div>
         </div>
     </div>

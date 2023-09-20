@@ -4,30 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\AttendanceRecord;
 use App\Models\CashBook;
+use App\Models\ContractNote;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use DateTime;
+use Illuminate\Support\Facades\Session;
 
 
 class HomeController extends Controller
 {
-    public function employees(Request $request){
-        if($request->ajax())
-        {
-            $data = Employee::all();
-            return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                        $btn =' <a href="'.route('editemployee',$row->id).'"><i class="fa fa-pencil"></i></a>';
-                        $btn = $btn.' &nbsp;&nbsp;<a href="javascript:void(0);"" id="'.$row->id.'" class="delete"><i class="fa fa-trash"></i></a>';
-                        return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        }
+    public function employees(){
+        $employees = Employee::all();
         // if(Session::has('user')){
-            return view('employees');
+            return view('employees',compact('employees'));
         // }else{return redirect()->route('index');}
     }
     public function addemployee(){
@@ -262,8 +253,9 @@ class HomeController extends Controller
         return view('tally',compact('data'));
     }
 
-    public function contractnote(){
-        return view('contractnote');
+    public function contractnote($id){
+        $contract = ContractNote::find($id);
+        return view('contractnote',compact('contract'));
     }
 
     public function addclient(){
@@ -274,12 +266,67 @@ class HomeController extends Controller
         $validated = $request->validate([
             'role' => 'required',
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:users',
             'phone' => 'required|digits:10|numeric',
             'password' => 'required',
-            'cpassword' => 'required',
-            'username' => 'required'
+            'cpassword' => 'required|same:password',
+            'username' => 'required|unique:users'
         ]);
+        $client = new User;
+        $client->name = $validated['name'];
+        $client->email = $validated['email'];
+        $client->phone = $validated['phone'];
+        $client->password = bcrypt($validated['password']);
+        $client->username = $validated['username'];
+        $client->role = $validated['role'];
+        $client->save();
+
+        return redirect()->route('addclient')->with('success','Client added Successfully!!');
+    }
+
+    public function clientlist(){
+        $clients = User::where('role','client')->get();
+        return view('clientlist',compact('clients'));
+    }
+
+    public function addcontract(){
+        $clients = User::where('role','client')->get();
+        return view('addcontract',compact('clients'));
+    }
+
+    public function savecontract(Request $request){
+        $validated = $request->validate([
+            'date' => 'required',
+            'orderno' => 'required|numeric',
+            'purchaser' => 'required',
+            'seller' => 'required',
+            'commodity' => 'required',
+            'quantity' => 'required',
+            'rate' => 'required',
+            'gst' => 'required',
+            'time' => 'required',
+            'condition' => 'required',
+            'charge' => 'required',
+        ]);
+
+        $contract = new ContractNote;
+        $contract->date = $validated['date'];
+        $contract->orderno = $validated['orderno'];
+        $contract->purchaser = $validated['purchaser'];
+        $contract->seller = $validated['seller'];
+        $contract->commodity = $validated['commodity'];
+        $contract->quantity = $validated['quantity'];
+        $contract->rate = $validated['rate'];
+        $contract->gst = $validated['gst'];
+        $contract->time = $validated['time'];
+        $contract->condition = $validated['condition'];
+        $contract->charge = $validated['charge'];
+        $contract->save();
+        return redirect()->route('contractnote',['id'=>$contract->id])->with('success','Contract added Successfully!!');
+    }
+
+    public function contractlist(){
+        return view('contractlist');
     }
 }
 

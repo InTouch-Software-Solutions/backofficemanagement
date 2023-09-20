@@ -18,12 +18,17 @@
 </head>
 
 <body>
+@if(Session::has('success'))
+<script>
+    alert("{{ Session('success') }}")
+</script>
+@endif
 
 <div id="layout" class="theme-cyan">
 
     <!-- Page Loader -->
-    <div class="page-loader-wrapper text-center">
-        <div class="loader">
+    <div class="page-loader-wrapper text-center" style="background-color: black;">
+        <div class="loader" >
             <img style="width: 85px; height:85px; " src="{{ asset('assets/images/logo.png') }}" alt="">
             <div class="h5 fw-light mt-3">Please wait....</div>
         </div>
@@ -211,7 +216,7 @@
                             <li>
                                 <a href="#Projects" class="has-arrow"><i class="fa fa-list-ul"></i><span>Contracts</span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="project-add.html">Add Contract</a></li>
+                                    <li><a href="{{ Route('addcontract') }}">Add Contract</a></li>
                                     <li><a href="project-list.html">Contracts List</a></li>
                                     <li><a href="project-grid.html">Projects Grid</a></li>
                                     <li><a href="project-detail.html">Projects Detail</a></li>
@@ -221,7 +226,7 @@
                                 <a href="#Clients" class="has-arrow"><i class="fa fa-user"></i><span>Clients</span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ Route('addclient') }}">Add Clients</a></li>
-                                    <li><a href="client-list.html">Clients List</a></li>
+                                    <li><a href="{{ Route('clientlist') }}">Clients List</a></li>
                                     <li><a href="client-detail.html">Clients Detail</a></li>
                                 </ul>
                             </li>
@@ -468,6 +473,42 @@
 <!-- page js file -->
 <script src="{{asset('assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{asset('assets/js/pages/index.js') }}"></script>
+<script>
+// Function to set the selected theme in local storage
+function setTheme(theme) {
+    localStorage.setItem('selectedTheme', theme);
+}
+
+// Function to apply the stored theme to the layout
+function applyStoredTheme() {
+    var storedTheme = localStorage.getItem('selectedTheme');
+    if (storedTheme) {
+        $('#layout').removeClass('theme-cyan theme-blue theme-purple theme-green theme-orange theme-blush');
+        $('#layout').addClass('theme-' + storedTheme);
+        // Update the active class for the selected theme in the skin chooser
+        $('.choose-skin li').removeClass('active');
+        $('.choose-skin li[data-theme="' + storedTheme + '"]').addClass('active');
+    }
+}
+
+// Event listener for theme selection
+$('.choose-skin li').on('click', function () {
+    var selectedTheme = $(this).data('theme');
+    setTheme(selectedTheme);
+    $('#layout').removeClass('theme-cyan theme-blue theme-purple theme-green theme-orange theme-blush');
+    $('#layout').addClass('theme-' + selectedTheme);
+    // Update the active class for the selected theme in the skin chooser
+    $('.choose-skin li').removeClass('active');
+    $(this).addClass('active');
+});
+
+// Apply the stored theme when the page loads
+$(document).ready(function () {
+    applyStoredTheme();
+});
+
+
+</script>
 @yield('jscontent')
 </body>
 

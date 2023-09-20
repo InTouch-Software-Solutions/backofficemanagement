@@ -131,10 +131,10 @@
                                     <div class="col-md-6 text-end">
                                         <h5 class="mb-0">Net Salary Rs.{{ $data['salary'] }}</h5>
                                     </div>
-                                    <div class="col-12 text-end">
-                                        <button class="btn btn-outline-secondary" id="printButton"><i class="fa fa-print"></i> Print</button>
-                                    </div>
                                 </div>
+                            </div>
+                            <div class="col-12 text-end">
+                                <button class="btn btn-outline-secondary" id="printButton"><i class="fa fa-print"></i> Print</button>
                             </div>
                         </div>
                     </div>
@@ -159,6 +159,4 @@
         document.body.innerHTML = originalContents;
     });
 </script>
-
-
 @endsection

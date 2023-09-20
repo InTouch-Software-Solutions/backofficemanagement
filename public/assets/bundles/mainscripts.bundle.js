@@ -1,13 +1,13 @@
 $(function () {
-    $('.choose-skin li').on('click', function () {
-        var t = $('#layout'),
-            e = $(this),
-            i = $('.choose-skin li.active').data('theme')
-        $('.choose-skin li').removeClass('active'),
-            t.removeClass('theme-' + i),
-            e.addClass('active'),
-            t.addClass('theme-' + e.data('theme'))
-    }),
+    // $('.choose-skin li').on('click', function () {
+    //     var t = $('#layout'),
+    //         e = $(this),
+    //         i = $('.choose-skin li.active').data('theme')
+    //     $('.choose-skin li').removeClass('active'),
+    //         t.removeClass('theme-' + i),
+    //         e.addClass('active'),
+    //         t.addClass('theme-' + e.data('theme'))
+    // }),
         setTimeout(function () {
             $('.page-loader-wrapper').fadeOut()
         }, 50),

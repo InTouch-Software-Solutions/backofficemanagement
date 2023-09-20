@@ -1,8 +1,4 @@
 @extends('indexnew')
-@section('csscontent')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-@endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
   <h1 class="mt-5">Employees</h1>
@@ -15,7 +11,7 @@
                     <a href="{{ Route('addemployee') }}" class="btn btn-primary float-end">Add Employee</a>
                 </div>    
                 <div class="card-body">
-                    <table class="table table-striped table-bordered yajra_datatable">
+                    <table id="x" class="table table-hover mb-0">
                         <thead>
                             <th>ID</th>
                             <th>Name</th>
@@ -24,6 +20,15 @@
                             <th>Action</th>
                         </thead>
                         <tbody>
+                            @foreach ($employees as $employee)
+                            <tr>
+                                <td>{{ $employee->id }}</td>
+                                <td>{{ $employee->name }}</td>
+                                <td>{{ $employee->phone }}</td>
+                                <td>{{ $employee->joining }}</td>
+                                <td><a href="{{ Route('editemployee',['id'=>$employee->id]) }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;<a href="javascript:void(0);" id="{{ $employee->id }}" class="delete"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                            @endforeach 
                         </tbody>
                     </table>
                 </div>
@@ -34,43 +39,6 @@
 @endsection
 
 @section('jscontent')
-    {{--------------------------------------- yajra datatables and swal -------------------------------------------}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            var table = $('.yajra_datatable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{  route('employees') }}",
-                columns: [{
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'phone',
-                    name: 'phone'
-                },
-                {
-                    data: 'joining',
-                    name: 'joining'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
-            ]
-            });
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
         $(document).on('click', '.delete', function() {

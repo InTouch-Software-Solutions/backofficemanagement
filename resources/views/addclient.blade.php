@@ -32,20 +32,20 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <label>Password:</label>
-                        <input type="text" name="password" class="form-control" placeholder="Enter Password">
+                        <input type="password" name="password" class="form-control" placeholder="Enter Password">
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <label>Confirm Password:</label>
-                        <input type="text" name="cpassword" class="form-control" placeholder="Confirm Password">
+                        <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password">
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <label>Mobile No:</label>
                         <input type="text" name="phone" class="form-control" placeholder="Enter Mobile No">
                     </div>
                 </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Add</button>
             </form>
-            <br>
-            <button type="button" class="btn btn-primary">Add</button>
         </div>
     </div>
 </div>

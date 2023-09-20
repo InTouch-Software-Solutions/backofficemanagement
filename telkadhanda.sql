@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2023 at 02:53 PM
+-- Generation Time: Sep 20, 2023 at 11:44 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -75,6 +75,37 @@ INSERT INTO `cash_books` (`id`, `date`, `reason`, `amount`, `paid_by`, `paid_to`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contract_notes`
+--
+
+CREATE TABLE `contract_notes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `orderno` bigint(20) NOT NULL,
+  `purchaser` varchar(255) NOT NULL,
+  `seller` varchar(255) NOT NULL,
+  `commodity` varchar(255) NOT NULL,
+  `quantity` varchar(255) NOT NULL,
+  `rate` varchar(255) NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `condition` varchar(255) NOT NULL,
+  `charge` int(11) NOT NULL,
+  `gst` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contract_notes`
+--
+
+INSERT INTO `contract_notes` (`id`, `date`, `orderno`, `purchaser`, `seller`, `commodity`, `quantity`, `rate`, `time`, `condition`, `charge`, `gst`, `created_at`, `updated_at`) VALUES
+(1, '2023-09-20', 1, '1', '1', 'oil', '7', '100', 'READY', 'paisa pehle', 100, '18', '2023-09-20 02:18:47', '2023-09-20 02:18:47'),
+(2, '2023-09-20', 1, '1', '1', 'oil', '7', '100', 'READY', 'paisa pehle', 100, '18', '2023-09-20 04:11:16', '2023-09-20 04:11:16');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employees`
 --
 
@@ -139,7 +170,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2023_09_18_120923_create_cash_books_table', 4),
 (9, '2023_09_18_122759_add_column_to_table_cash_books', 5),
 (10, '2023_09_19_051552_add_column_to_cash_books_table', 6),
-(11, '2023_09_19_100011_add_column_to_users_table', 7);
+(11, '2023_09_19_100011_add_column_to_users_table', 7),
+(12, '2023_09_20_070707_create_contract_notes_table', 8);
 
 -- --------------------------------------------------------
 
@@ -193,6 +225,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `username`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Aayush Patidar', 'aayushpatidar04@gmail.com', 'client', 9982414226, 'aayushpatidar04', NULL, '$2y$10$KT32FZADCcTL2whFmhVWCeG90orn3I3CeppAgAkBHzBwEYrEGSWhK', NULL, '2023-09-19 23:06:58', '2023-09-19 23:06:58');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -207,6 +246,12 @@ ALTER TABLE `attendance_records`
 -- Indexes for table `cash_books`
 --
 ALTER TABLE `cash_books`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contract_notes`
+--
+ALTER TABLE `contract_notes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -266,6 +311,12 @@ ALTER TABLE `cash_books`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `contract_notes`
+--
+ALTER TABLE `contract_notes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
@@ -281,7 +332,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -293,7 +344,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
