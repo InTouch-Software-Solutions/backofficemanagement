@@ -50,3 +50,7 @@ Route::get('previousversions/{orderno}',[HomeController::class,'previousversions
 Route::post('updatecontract',[HomeController::class,'updatecontract'])->name('updatecontract');
 Route::get('contractlist',[HomeController::class,'contractlist'])->name('contractlist');
 Route::get('logout',[HomeController::class,'logout'])->name('logout');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
