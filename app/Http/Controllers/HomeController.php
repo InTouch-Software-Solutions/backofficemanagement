@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use DateTime;
 use Illuminate\Support\Facades\Session;
+use PDF;
 
 
 class HomeController extends Controller
@@ -138,7 +139,7 @@ class HomeController extends Controller
     public function payslip($id){
         $employee = Employee::find($id);
         return view('payslip',compact('employee'));
-    }
+    }  
 
     public function filter2(Request $request){
         $validated = $request->validate([
@@ -326,5 +327,7 @@ class HomeController extends Controller
     public function contractlist(){
         return view('contractlist');
     }
+
+    
 }
 

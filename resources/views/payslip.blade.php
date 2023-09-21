@@ -1,4 +1,7 @@
 @extends('indexnew')
+@section('csscontent')
+    
+@endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
     <h1 class="mt-5">Payslip</h1>
@@ -56,7 +59,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex">
                                         <div class="logo me-4">
-                                            <img src="{{ asset('assets/images/logo.jpeg') }}" style="width:70px; height:70px;"alt="user" class="img-fluid">
+                                            <img src="{{ asset('assets/images/logo.png') }}" style="width:70px; height:70px;"alt="user" class="img-fluid">
                                         </div>
                                         <div class="info">
                                             <h6>DALAL RAMESHCHAND MADANLAL BHAYA</h6>
@@ -157,6 +160,7 @@
         window.print();
 
         document.body.innerHTML = originalContents;
+        window.location.reload();
     });
 </script>
 @endsection
