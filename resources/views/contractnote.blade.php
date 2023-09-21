@@ -115,6 +115,8 @@ $sname = DB::table('users')->where('id',$contract->seller)->pluck('name');
         window.print();
 
         document.body.innerHTML = originalContents;
+        window.location.reload();
+
     });
 </script>
 

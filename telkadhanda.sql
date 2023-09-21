@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2023 at 12:00 PM
+-- Generation Time: Sep 21, 2023 at 09:17 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -80,6 +80,7 @@ INSERT INTO `cash_books` (`id`, `date`, `reason`, `amount`, `paid_by`, `paid_to`
 
 CREATE TABLE `contract_notes` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `orderno` bigint(20) UNSIGNED DEFAULT NULL,
   `date` date NOT NULL,
   `purchaser` varchar(255) NOT NULL,
   `seller` varchar(255) NOT NULL,
@@ -87,12 +88,22 @@ CREATE TABLE `contract_notes` (
   `quantity` varchar(255) NOT NULL,
   `rate` varchar(255) NOT NULL,
   `time` varchar(255) NOT NULL,
-  `condition` varchar(255) NOT NULL,
+  `condition` longtext NOT NULL,
   `charge` int(11) NOT NULL,
   `gst` varchar(255) NOT NULL,
+  `version` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contract_notes`
+--
+
+INSERT INTO `contract_notes` (`id`, `orderno`, `date`, `purchaser`, `seller`, `commodity`, `quantity`, `rate`, `time`, `condition`, `charge`, `gst`, `version`, `created_at`, `updated_at`) VALUES
+(1, 1, '2023-09-21', '1', '1', 'oil', '7', '100', 'READY', 'testing', 100, '18', 1, '2023-09-21 00:30:14', '2023-09-21 00:30:14'),
+(2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', 'READY', 'testing 1', 100, '18', 2, '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
+(3, 3, '2023-09-21', '1', '1', 'oil', '456', '100', 'READY', 'testingggg', 50, '18', 1, '2023-09-21 01:39:03', '2023-09-21 01:39:03');
 
 -- --------------------------------------------------------
 
@@ -162,7 +173,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2023_09_18_122759_add_column_to_table_cash_books', 5),
 (10, '2023_09_19_051552_add_column_to_cash_books_table', 6),
 (11, '2023_09_19_100011_add_column_to_users_table', 7),
-(12, '2023_09_20_070707_create_contract_notes_table', 8);
+(12, '2023_09_20_070707_create_contract_notes_table', 8),
+(13, '2023_09_21_051057_add_column_to_contract_notes_table', 9),
+(14, '2023_09_21_053359_add_new_column_to_contract_notes_table', 10);
 
 -- --------------------------------------------------------
 
@@ -305,7 +318,7 @@ ALTER TABLE `cash_books`
 -- AUTO_INCREMENT for table `contract_notes`
 --
 ALTER TABLE `contract_notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -323,7 +336,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

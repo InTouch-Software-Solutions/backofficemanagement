@@ -217,7 +217,7 @@
                                 <a href="#Projects" class="has-arrow"><i class="fa fa-list-ul"></i><span>Contracts</span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ Route('addcontract') }}">Add Contract</a></li>
-                                    <li><a href="project-list.html">Contracts List</a></li>
+                                    <li><a href="{{ Route('contractlist') }}">Contracts List</a></li>
                                     <li><a href="project-grid.html">Projects Grid</a></li>
                                     <li><a href="project-detail.html">Projects Detail</a></li>
                                 </ul>

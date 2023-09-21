@@ -12,6 +12,8 @@ use Yajra\DataTables\DataTables;
 use DateTime;
 use Illuminate\Support\Facades\Session;
 use PDF;
+use Illuminate\Support\Facades\DB;
+
 
 
 class HomeController extends Controller
@@ -321,11 +323,68 @@ class HomeController extends Controller
         $contract->condition = $validated['condition'];
         $contract->charge = $validated['charge'];
         $contract->save();
+        $contract->orderno = $contract->id;
+        $contract->save();
         return redirect()->route('contractnote',['id'=>$contract->id])->with('success','Contract added Successfully!!');
     }
 
+    public function editcontract($id, Request $request){
+        $clients = User::where('role','client')->get();
+        $contract  = ContractNote::find($id);
+        return view('editcontract',compact('contract','clients'));
+    }
+
+    public function updatecontract(Request $request){
+        $validated = $request->validate([
+            'id' => 'required',
+            'date' => 'required',
+            'purchaser' => 'required',
+            'seller' => 'required',
+            'commodity' => 'required',
+            'quantity' => 'required',
+            'rate' => 'required',
+            'gst' => 'required',
+            'time' => 'required',
+            'condition' => 'required',
+            'charge' => 'required',
+        ]);
+        $contract = ContractNote::where('id',$validated['id'])->first();
+        $newcontract = new ContractNote;
+        $newcontract->date = $validated['date'];
+        $newcontract->purchaser = $validated['purchaser'];
+        $newcontract->seller = $validated['seller'];
+        $newcontract->commodity = $validated['commodity'];
+        $newcontract->quantity = $validated['quantity'];
+        $newcontract->rate = $validated['rate'];
+        $newcontract->gst = $validated['gst'];
+        $newcontract->time = $validated['time'];
+        $newcontract->condition = $validated['condition'];
+        $newcontract->charge = $validated['charge'];
+        $newcontract->orderno = $contract->orderno;
+        $newcontract->version = $contract->version + 1;
+        $newcontract->save();
+        return redirect()->route('contractnote',['id'=>$newcontract->id])->with('success','Contract updated Successfully!!');
+
+    }
+
     public function contractlist(){
-        return view('contractlist');
+        $uniqueOrders = ContractNote::select('orderno', \DB::raw('MAX(version) as max_version'))
+        ->groupBy('orderno')
+        ->get();
+
+        $contracts = ContractNote::whereIn(\DB::raw('(orderno, version)'), function ($query) {
+                $query->select(\DB::raw('orderno, MAX(version) as version'))
+                    ->from('contract_notes')
+                    ->groupBy('orderno');
+            })
+            ->get();
+        // $contracts = ContractNote::all();
+        return view('contractlist',compact('contracts'));
+    }
+
+    public function previousversions($orderno){
+        $contracts = ContractNote::where('orderno',$orderno)->get();
+        return view('previousversions',compact('contracts'));
     }
 
     

@@ -1,12 +1,15 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Contracts List</h1>
+    <h1 class="mt-5">Previous Versions</h1>
 </div>
 <br>
 <div class="row">
     <div class="col-12">
         <div class="card">
+            <div class="card-header">
+                <a href="{{ Route('contractlist') }}" class="btn btn-primary">Go Back</a>
+            </div>
             <div class="card-body">
                 <table id="x" class="table table-hover mb-0">
                     <thead>
@@ -42,12 +45,8 @@
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->time }}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->condition }}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;Rs. {{ $contract->charge }} PER TONNE</td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->version }}&nbsp;&nbsp;&nbsp;&nbsp; 
-                                @if ($contract->version > 1)
-                                    <a href="{{ route('previousversions', ['orderno' => $contract->orderno]) }}" class="btn btn-primary">Check Previous Versions</a>
-                                @endif
-                            </td>                            
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('editcontract',['id'=>$contract->id]) }}"><i class="fa fa-pencil"></i>Edit</a>&nbsp;&nbsp;<a href="{{ Route('contractnote',['id'=>$contract->id]) }}" class="btn btn-primary">Contract Note</a></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->version }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('contractnote',['id'=>$contract->id]) }}" class="btn btn-primary">Contract Note</a></td>
                         </tr>
                         @endforeach    
                     </tbody>

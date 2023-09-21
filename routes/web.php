@@ -45,5 +45,8 @@ Route::post('saveclient',[HomeController::class,'saveclient'])->name('saveclient
 Route::get('addcontract',[HomeController::class,'addcontract'])->name('addcontract');
 Route::post('savecontract',[HomeController::class,'savecontract'])->name('savecontract');
 Route::get('contractnote/{id}',[HomeController::class,'contractnote'])->name('contractnote');
+Route::get('edit_contract/{id}',[HomeController::class,'editcontract'])->name('editcontract');
+Route::get('previousversions/{orderno}',[HomeController::class,'previousversions'])->name('previousversions');
+Route::post('updatecontract',[HomeController::class,'updatecontract'])->name('updatecontract');
 Route::get('contractlist',[HomeController::class,'contractlist'])->name('contractlist');
 Route::get('logout',[HomeController::class,'logout'])->name('logout');
