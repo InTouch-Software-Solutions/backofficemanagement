@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function employees(){
         $employees = Employee::all();
         // if(Session::has('user')){
@@ -368,12 +372,12 @@ class HomeController extends Controller
     }
 
     public function contractlist(){
-        $uniqueOrders = ContractNote::select('orderno', \DB::raw('MAX(version) as max_version'))
+        $uniqueOrders = ContractNote::select('orderno', DB::raw('MAX(version) as max_version'))
         ->groupBy('orderno')
         ->get();
 
-        $contracts = ContractNote::whereIn(\DB::raw('(orderno, version)'), function ($query) {
-                $query->select(\DB::raw('orderno, MAX(version) as version'))
+        $contracts = ContractNote::whereIn(DB::raw('(orderno, version)'), function ($query) {
+                $query->select(DB::raw('orderno, MAX(version) as version'))
                     ->from('contract_notes')
                     ->groupBy('orderno');
             })
