@@ -1,4 +1,9 @@
 @extends('indexnew')
+@section('csscontent')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+@endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
     <h1 class="mt-5">Add Contract</h1>
@@ -66,4 +71,14 @@
         </div>
     </div>
 </div>
+@endsection
+@section('jscontent')
+<script>
+    $(document).ready(function() {
+        $('#purchaser').select2();
+    });
+    $(document).ready(function() {
+        $('#seller').select2();
+    });
+</script>
 @endsection

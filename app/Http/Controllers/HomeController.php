@@ -6,6 +6,7 @@ use App\Models\AttendanceRecord;
 use App\Models\CashBook;
 use App\Models\ContractNote;
 use App\Models\Employee;
+use App\Models\ExpensesCategory;
 use App\Models\FamilyMember;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -72,19 +73,39 @@ class HomeController extends Controller
 
     public function delete_employee($id){
         $employee = Employee::find($id);
+        $members = FamilyMember::where('employee_id',$id)->get();
         $attendances = AttendanceRecord::where('employee_id',$id)->get();
         if($attendances){
             foreach($attendances as $attendance){
                 $attendance->delete();
             }
         }
+        if($members){
+            foreach($members as $member){
+                $member->delete();
+            }
+        }
         $employee->delete();
         return redirect()->route('employees');
+    }
+    public function delete_member($id){
+        $member = FamilyMember::find($id);
+        $member->delete();
+        return redirect()->back();
     }
 
     public function editemployee($id){
         $employee = Employee::find($id);
         return view('editemployee',compact('employee'));
+    }
+
+    public function editmember($id){
+        $member = FamilyMember::find($id);
+        return view('editmember',compact('member'));
+    }
+
+    public function addmember($id){
+        return view('addmember',compact('id'));
     }
 
     public function updateemployee(Request $request){
@@ -94,6 +115,9 @@ class HomeController extends Controller
             'age' => 'required|numeric',
             'phone' => 'required|digits:10|numeric',
             'salary' => 'required',
+            'adhaar' => 'required|numeric',
+            'pan' => 'required',
+            'bank' => 'required',
             'joining' => 'required',
         ]);
         $employee = Employee::where('id',$request->id)->first();
@@ -102,8 +126,55 @@ class HomeController extends Controller
         $employee->phone = $validated['phone'];
         $employee->salary = $validated['salary'];
         $employee->joining = $validated['joining'];
+        $employee->adhaar = $validated['adhaar'];
+        $employee->pan = $validated['pan'];
+        $employee->bank = $validated['bank'];
         $employee->save();
         return redirect()->route('employees')->with('success','Employee updated Successfully!!');
+    }
+
+    public function savemember(Request $request){
+        $validated = $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'phone' => 'required|digits:10|numeric',
+            'pan' => 'required',
+            'adhaar' => 'required|numeric',
+            'relation' => 'required',
+        ]);
+        $member = new FamilyMember;
+        $member->employee_id = $validated['id'];
+        $member->name = $validated['name'];
+        $member->phone = $validated['phone'];
+        $member->pan = $validated['pan'];
+        $member->adhaar = $validated['adhaar'];
+        $member->relation = $validated['relation'];
+        $member->save();
+        return redirect()->route('familyrecord',['id' => $member->employee_id])->with('success','Member added Successfully!!');
+    }
+    public function updatemember(Request $request){
+        $validated = $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'phone' => 'required|digits:10|numeric',
+            'pan' => 'required',
+            'adhaar' => 'required|numeric',
+            'relation' => 'required',
+        ]);
+        $member = FamilyMember::where('id',$validated['id'])->first();
+        $member->name = $validated['name'];
+        $member->phone = $validated['phone'];
+        $member->pan = $validated['pan'];
+        $member->adhaar = $validated['adhaar'];
+        $member->relation = $validated['relation'];
+        $member->save();
+
+        return redirect()->route('familyrecord',['id' => $member->employee_id])->with('success','Member updated Successfully!!');
+    }
+
+    public function familyrecord($id){
+        $members = FamilyMember::where('employee_id',$id)->get();
+        return view('familyrecord',compact('members','id'));
     }
 
     public function attendance(){
@@ -223,7 +294,18 @@ class HomeController extends Controller
     }
 
     public function cashbook(){
-        return view('cashbook');
+        $reasons = ExpensesCategory::all();
+        return view('cashbook',compact('reasons'));
+    }
+
+    public function savecategory(Request $request){
+        $validated = $request->validate([
+            'cat' => 'required',
+        ]);
+        $cat = new ExpensesCategory;
+        $cat->name = $validated['cat'];
+        $cat->save();
+        return redirect()->back()->with('success','Category added Successfully!!');
     }
 
     public function saveexpenses(Request $request){
@@ -240,6 +322,7 @@ class HomeController extends Controller
         $expense->amount = $validated['amount'];
         $expense->paid_by = $validated['paid'];
         $expense->paid_to = $validated['paidto'];
+        $expense->note = $request->note;
         $expense->save();
         return redirect()->route('expenses');
     }

@@ -1,16 +1,14 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-  <h1 class="mt-5">Employees</h1>
+  <h1 class="mt-5">Family Members</h1>
 </div>
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ Route('attendance') }}" class="btn btn-primary ">Mark Attendance</a>  &nbsp;&nbsp;
-                    <a href="{{ Route('attendancerecord') }}" class="btn btn-primary ">Attendance Record</a>&nbsp;&nbsp;
-                    <a href="{{ Route('addemployee') }}" class="btn btn-primary ">Add Employee</a>
+                    <a href="{{ Route('addmember',['id'=>$id]) }}" class="btn btn-primary float-end">Add Member</a>
                 </div>    
                 <div class="card-body">
                     <table id="x" class="table table-hover mb-0">
@@ -18,19 +16,21 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Phone</th>
-                            <th>Joining Date</th>
-                            <th>Family Record</th>
+                            <th>PAN Card No.</th>
+                            <th>Adhaar Card No.</th>
+                            <th>Relation</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
-                            @foreach ($employees as $employee)
+                            @foreach ($members as $member)
                             <tr>
-                                <td>{{ $employee->id }}</td>
-                                <td>{{ $employee->name }}</td>
-                                <td>{{ $employee->phone }}</td>
-                                <td>{{ $employee->joining }}</td>
-                                <td><a href="{{ Route('familyrecord',['id'=>$employee->id]) }}">View Family Members</a></td>
-                                <td><a href="{{ Route('editemployee',['id'=>$employee->id]) }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;<a href="javascript:void(0);" id="{{ $employee->id }}" class="delete"><i class="fa fa-trash"></i></a></td>
+                                <td>{{ $member->id }}</td>
+                                <td>{{ $member->name }}</td>
+                                <td>{{ $member->phone }}</td>
+                                <td>{{ $member->pan }}</td>
+                                <td>{{ $member->adhaar }}</td>
+                                <td>{{ $member->relation }}</td>
+                                <td><a href="{{ Route('editmember',['id'=>$member->id]) }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;<a href="javascript:void(0);" id="{{ $member->id }}" class="delete"><i class="fa fa-trash"></i></a></td>
                             </tr>
                             @endforeach 
                         </tbody>
@@ -48,7 +48,7 @@
         $(document).on('click', '.delete', function() {
             var row_id = $(this).attr('id');
             var table_row = $(this).closest('tr');
-            var url = "{{ route('delete_employee',':id') }}";
+            var url = "{{ route('delete_member',':id') }}";
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

@@ -22,8 +22,20 @@
                   <input type="text" class="form-control" id="age" name="age" value="{{ $employee->age }}" placeholder="Enter age">
                 </div>
                 <div class="form-group">
+                  <label for="pan">PAN Card No.</label>
+                  <input type="text" class="form-control" id="pan" name="pan" value="{{ $employee->pan }}" placeholder="Enter pan card no.">
+                </div>
+                <div class="form-group">
+                  <label for="adhaar">Adhaar Card No.</label>
+                  <input type="text" class="form-control" id="adhaar" name="adhaar" value="{{ $employee->adhaar }}" placeholder="Enter adhaar card no.">
+                </div>
+                <div class="form-group">
+                  <label for="bank">Bank Account Details</label>
+                  <textarea name="bank" class="form-control" id="bank" cols="30" rows="5">{{ $employee->bank }}</textarea>
+                </div>
+                <div class="form-group">
                   <label for="salary">Salary</label>
-                  <input type="text" class="form-control" id="salary" name="salary" value="{{ $employee->salary }}" placeholder="Enter salary">
+                  <input type="text" class="form-control" id="salary" name="salary"  value="{{ $employee->salary }}" placeholder="Enter salary">
                 </div>
                 <div class="form-group">
                   <label for="joining">Date of Joining</label>
@@ -35,4 +47,14 @@
         </div>    
     </div>    
 </div>
+@endsection
+@section('jscontent')
+<script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector('#bank')).catch
+    (error => {
+            console.error(error);
+        }
+    );
+</script>
 @endsection

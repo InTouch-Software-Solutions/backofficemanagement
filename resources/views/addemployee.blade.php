@@ -34,16 +34,16 @@
                 </div>
                 <div class="form-group">
                   <label for="bank">Bank Account Details</label>
-                  <input type="text" class="form-control" id="bank" name="bank" placeholder="Enter bank account details">
+                  <textarea name="bank" class="form-control" id="bank" cols="30" rows="5" placeholder="Enter bank account details"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="joining">Date of Joining</label>
                   <input type="date" class="form-control" id="joining" name="joining" placeholder="Enter joining date">
                 </div>
-                <br>
                 <div class="form-group">
                   <label for="members">No. of family Members</label>
                   <input type="text" class="form-control" id="members" name="members" placeholder="Enter no. of family members">
+                  <br>
                   <button type="button" class="btn btn-primary" id="addMember">Add Family Member</button>
                 </div>
                 <div id="memberDetails"></div>
@@ -100,5 +100,13 @@
       }
       submitButton.style.display = "block";
   }
+</script>
+<script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector('#bank')).catch
+    (error => {
+            console.error(error);
+        }
+    );
 </script>
 @endsection

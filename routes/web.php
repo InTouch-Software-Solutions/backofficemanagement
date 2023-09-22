@@ -23,10 +23,16 @@ Route::get('/', function () {
 })->name('index');
 Route::get('employees',[HomeController::class,'employees'])->name('employees');
 Route::get('addemployee',[HomeController::class,'addemployee'])->name('addemployee');
+Route::get('addmember/{id}',[HomeController::class,'addmember'])->name('addmember');
+Route::get('familyrecord/{id}',[HomeController::class,'familyrecord'])->name('familyrecord');
+Route::get('delete_member/{id}',[HomeController::class,'delete_member'])->name('delete_member');
+Route::get('edit_member/{id}',[HomeController::class,'editmember'])->name('editmember');
 Route::post('saveemployee',[HomeController::class,'saveemployee'])->name('saveemployee');
+Route::post('savemember',[HomeController::class,'savemember'])->name('savemember');
 Route::get('delete_employee/{id}',[HomeController::class,'delete_employee'])->name('delete_employee');
 Route::get('edit_employee/{id}',[HomeController::class,'editemployee'])->name('editemployee');
 Route::post('updateemployee',[HomeController::class,'updateemployee'])->name('updateemployee');
+Route::post('updatemember',[HomeController::class,'updatemember'])->name('updatemember');
 Route::get('attendance',[HomeController::class,'attendance'])->name('attendance');
 Route::get('attendancerecord',[HomeController::class,'attendancerecord'])->name('attendancerecord');
 Route::post('filter',[HomeController::class,'filter'])->name('filter');
@@ -36,7 +42,9 @@ Route::post('saveattendance',[HomeController::class,'saveattendance'])->name('sa
 Route::get('employeesalary',[HomeController::class,'employeesalary'])->name('employeesalary');
 Route::get('payslip/{id}',[HomeController::class,'payslip'])->name('payslip');
 Route::get('cashbook',[HomeController::class,'cashbook'])->name('cashbook');
+Route::post('savecategory',[HomeController::class,'savecategory'])->name('savecategory');
 Route::get('expenses',[HomeController::class,'expenses'])->name('expenses');
+Route::get('addcategory',[HomeController::class,'addcategory'])->name('addcategory');
 Route::get('tally',[HomeController::class,'tally'])->name('tally');
 Route::post('saveexpenses',[HomeController::class,'saveexpenses'])->name('saveexpenses');
 Route::get('addclient',[HomeController::class,'addclient'])->name('addclient');
