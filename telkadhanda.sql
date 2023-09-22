@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2023 at 12:55 PM
+-- Generation Time: Sep 22, 2023 at 02:55 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,6 +31,7 @@ CREATE TABLE `attendance_records` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `employee_id` bigint(20) UNSIGNED NOT NULL,
   `status` enum('present','absent','halfday','null') DEFAULT NULL,
+  `fuel` enum('yes','no') DEFAULT NULL,
   `date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -40,13 +41,19 @@ CREATE TABLE `attendance_records` (
 -- Dumping data for table `attendance_records`
 --
 
-INSERT INTO `attendance_records` (`id`, `employee_id`, `status`, `date`, `created_at`, `updated_at`) VALUES
-(1, 2, 'halfday', '2023-09-18', '2023-09-18 01:40:59', '2023-09-18 01:41:31'),
-(2, 3, 'present', '2023-09-18', '2023-09-18 01:40:59', '2023-09-18 01:41:31'),
-(3, 2, 'present', '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36'),
-(4, 3, 'present', '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36'),
-(5, 2, 'present', '2023-09-19', '2023-09-19 02:40:57', '2023-09-19 02:40:57'),
-(6, 3, 'present', '2023-09-19', '2023-09-19 02:40:57', '2023-09-19 02:40:57');
+INSERT INTO `attendance_records` (`id`, `employee_id`, `status`, `fuel`, `date`, `created_at`, `updated_at`) VALUES
+(1, 2, 'halfday', NULL, '2023-09-18', '2023-09-18 01:40:59', '2023-09-18 01:41:31'),
+(2, 3, 'present', NULL, '2023-09-18', '2023-09-18 01:40:59', '2023-09-18 01:41:31'),
+(3, 2, 'present', NULL, '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36'),
+(4, 3, 'present', NULL, '2023-09-17', '2023-09-18 06:09:36', '2023-09-18 06:09:36'),
+(5, 2, 'present', NULL, '2023-09-19', '2023-09-19 02:40:57', '2023-09-19 02:40:57'),
+(6, 3, 'present', NULL, '2023-09-19', '2023-09-19 02:40:57', '2023-09-19 02:40:57'),
+(7, 2, 'present', NULL, '2023-09-21', '2023-09-21 05:40:49', '2023-09-21 05:40:49'),
+(8, 3, 'absent', NULL, '2023-09-21', '2023-09-21 05:40:49', '2023-09-21 05:40:49'),
+(9, 4, 'halfday', NULL, '2023-09-21', '2023-09-21 05:40:49', '2023-09-21 05:40:49'),
+(10, 2, 'present', 'yes', '2023-09-22', '2023-09-22 00:46:08', '2023-09-22 00:46:08'),
+(11, 3, 'halfday', 'yes', '2023-09-22', '2023-09-22 00:46:08', '2023-09-22 00:46:08'),
+(12, 4, 'absent', 'no', '2023-09-22', '2023-09-22 00:46:08', '2023-09-22 00:46:08');
 
 -- --------------------------------------------------------
 
@@ -57,10 +64,11 @@ INSERT INTO `attendance_records` (`id`, `employee_id`, `status`, `date`, `create
 CREATE TABLE `cash_books` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `date` date NOT NULL,
-  `reason` varchar(255) NOT NULL,
+  `reason` bigint(20) UNSIGNED NOT NULL,
   `amount` int(11) NOT NULL,
   `paid_by` varchar(255) NOT NULL,
   `paid_to` varchar(255) NOT NULL,
+  `note` longtext DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -69,8 +77,9 @@ CREATE TABLE `cash_books` (
 -- Dumping data for table `cash_books`
 --
 
-INSERT INTO `cash_books` (`id`, `date`, `reason`, `amount`, `paid_by`, `paid_to`, `created_at`, `updated_at`) VALUES
-(1, '2023-09-19', 'Tea and Snacks', 100, 'me', 'you', '2023-09-18 23:54:19', '2023-09-18 23:54:19');
+INSERT INTO `cash_books` (`id`, `date`, `reason`, `amount`, `paid_by`, `paid_to`, `note`, `created_at`, `updated_at`) VALUES
+(1, '2023-09-22', 1, 100, 'me', 'you', NULL, '2023-09-22 06:44:48', '2023-09-22 06:44:48'),
+(2, '2023-09-22', 1, 50, 'aayush', 'you', 'petrol mehnga h', '2023-09-22 06:47:44', '2023-09-22 06:47:44');
 
 -- --------------------------------------------------------
 
@@ -103,7 +112,9 @@ CREATE TABLE `contract_notes` (
 INSERT INTO `contract_notes` (`id`, `orderno`, `date`, `purchaser`, `seller`, `commodity`, `quantity`, `rate`, `time`, `condition`, `charge`, `gst`, `version`, `created_at`, `updated_at`) VALUES
 (1, 1, '2023-09-21', '1', '1', 'oil', '7', '100', 'READY', 'testing', 100, '18', 1, '2023-09-21 00:30:14', '2023-09-21 00:30:14'),
 (2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', 'READY', 'testing 1', 100, '18', 2, '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
-(3, 3, '2023-09-21', '1', '1', 'oil', '456', '100', 'READY', 'testingggg', 50, '18', 1, '2023-09-21 01:39:03', '2023-09-21 01:39:03');
+(3, 3, '2023-09-21', '1', '1', 'oil', '456', '100', 'READY', 'testingggg', 50, '18', 1, '2023-09-21 01:39:03', '2023-09-21 01:39:03'),
+(4, 4, '2023-09-21', '1', '2', 'oil', '7', '100', 'READY', 'testinggg', 100, '18', 1, '2023-09-21 06:09:22', '2023-09-21 06:09:22'),
+(5, 4, '2023-09-21', '1', '2', 'oil', '7', '100', 'READY', 'testinggg', 100, '18', 2, '2023-09-21 06:17:52', '2023-09-21 06:17:52');
 
 -- --------------------------------------------------------
 
@@ -115,8 +126,12 @@ CREATE TABLE `employees` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `age` int(11) NOT NULL,
+  `adhaar` varchar(255) NOT NULL,
+  `pan` varchar(255) NOT NULL,
   `phone` bigint(20) NOT NULL,
   `salary` bigint(20) NOT NULL,
+  `bank` longtext NOT NULL,
+  `members` int(11) NOT NULL,
   `joining` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -126,9 +141,32 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `name`, `age`, `phone`, `salary`, `joining`, `created_at`, `updated_at`) VALUES
-(2, 'Aayush Patidar', 24, 9982414226, 100000, '2023-06-15', '2023-09-15 02:46:02', '2023-09-15 02:47:20'),
-(3, 'Aman', 26, 741852963, 100000, '2023-09-15', '2023-09-15 09:11:47', '2023-09-15 09:11:47');
+INSERT INTO `employees` (`id`, `name`, `age`, `adhaar`, `pan`, `phone`, `salary`, `bank`, `members`, `joining`, `created_at`, `updated_at`) VALUES
+(2, 'Aayush Patidar', 24, '', '', 9982414226, 100000, '', 0, '2023-06-15', '2023-09-15 02:46:02', '2023-09-15 02:47:20'),
+(3, 'Aman', 26, '', '', 741852963, 100000, '', 0, '2023-09-15', '2023-09-15 09:11:47', '2023-09-15 09:11:47'),
+(4, 'employee 1', 23, '', '', 7418529635, 100000, '', 0, '2023-09-21', '2023-09-21 05:37:20', '2023-09-21 05:37:20'),
+(5, 'employee 2', 25, '963285217412', 'KN665669JID56', 9638527415, 50000, 'SBI8596396IN', 2, '2023-09-22', '2023-09-22 02:34:43', '2023-09-22 02:34:43'),
+(6, 'employee 3', 25, '963285217412', 'KN665669JID56', 9638527415, 50000, 'SBI8596396IN', 2, '2023-09-22', '2023-09-22 02:35:16', '2023-09-22 02:35:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expenses_categories`
+--
+
+CREATE TABLE `expenses_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `expenses_categories`
+--
+
+INSERT INTO `expenses_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Fuel expenses', '2023-09-22 06:37:33', '2023-09-22 06:37:33');
 
 -- --------------------------------------------------------
 
@@ -145,6 +183,35 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `family_members`
+--
+
+CREATE TABLE `family_members` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `employee_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `pan` varchar(255) NOT NULL,
+  `adhaar` varchar(255) NOT NULL,
+  `relation` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `family_members`
+--
+
+INSERT INTO `family_members` (`id`, `employee_id`, `name`, `phone`, `pan`, `adhaar`, `relation`, `created_at`, `updated_at`) VALUES
+(1, 5, 'member 2', '8527419635', 'FGH852741963', '963574129875', 'relation 2', '2023-09-22 02:34:43', '2023-09-22 02:34:43'),
+(2, 6, 'member 1', '7418529635', '985675DFGHJ', '963574159635', 'relation 1', '2023-09-22 02:35:16', '2023-09-22 02:35:16'),
+(3, 6, 'member 2', '8527419635', 'FGH852741963', '963574129875', 'relation 2', '2023-09-22 02:35:16', '2023-09-22 02:35:16'),
+(4, 2, 'member 1', '7418529635', 'FGHJK987956FD', '789596324712', 'relation 1', '2023-09-22 04:45:58', '2023-09-22 04:45:58'),
+(5, 3, 'member 1', '7418529635', 'IJHBV65132GFHJK', '741859638512', 'relation 1', '2023-09-22 04:51:13', '2023-09-22 04:51:37');
 
 -- --------------------------------------------------------
 
@@ -176,7 +243,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2023_09_20_070707_create_contract_notes_table', 8),
 (13, '2023_09_21_051057_add_column_to_contract_notes_table', 9),
 (14, '2023_09_21_053359_add_new_column_to_contract_notes_table', 10),
-(15, '2014_10_12_100000_create_password_resets_table', 11);
+(15, '2014_10_12_100000_create_password_resets_table', 11),
+(16, '2023_09_22_060317_add_column_to_attendance_records_table', 11),
+(17, '2023_09_22_064821_add_column_to_employees_table', 12),
+(18, '2023_09_22_075358_create_family_members_table', 13),
+(20, '2023_09_22_112031_create_expenses_categories_table', 14),
+(21, '2023_09_22_112645_add_column_to_cash_books_table', 15),
+(22, '2023_09_22_113710_add_column_to_cash_books_table', 16);
 
 -- --------------------------------------------------------
 
@@ -246,7 +319,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `username`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Aayush Patidar', 'aayushpatidar04@gmail.com', 'client', 9982414226, 'aayushpatidar04', NULL, '$2y$10$KT32FZADCcTL2whFmhVWCeG90orn3I3CeppAgAkBHzBwEYrEGSWhK', NULL, '2023-09-19 23:06:58', '2023-09-19 23:06:58');
+(1, 'Aayush Patidar', 'aayushpatidar04@gmail.com', 'client', 9982414226, 'aayushpatidar04', NULL, '$2y$10$KT32FZADCcTL2whFmhVWCeG90orn3I3CeppAgAkBHzBwEYrEGSWhK', NULL, '2023-09-19 23:06:58', '2023-09-19 23:06:58'),
+(2, 'Aman', 'aman@gmail.com', 'client', 7418529635, 'aman@04', NULL, '$2y$10$lgTtCDR3NMFZ6le73OC.GOhdTMIuF0OSyWbgQ6jLREHXvuVTGuQ1u', NULL, '2023-09-21 06:02:16', '2023-09-21 06:02:16');
 
 --
 -- Indexes for dumped tables
@@ -263,7 +337,8 @@ ALTER TABLE `attendance_records`
 -- Indexes for table `cash_books`
 --
 ALTER TABLE `cash_books`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cash_books_reason_foreign` (`reason`);
 
 --
 -- Indexes for table `contract_notes`
@@ -278,11 +353,24 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `expenses_categories`
+--
+ALTER TABLE `expenses_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `family_members`
+--
+ALTER TABLE `family_members`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `family_members_employee_id_foreign` (`employee_id`);
 
 --
 -- Indexes for table `migrations`
@@ -325,25 +413,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance_records`
 --
 ALTER TABLE `attendance_records`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `cash_books`
 --
 ALTER TABLE `cash_books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `contract_notes`
 --
 ALTER TABLE `contract_notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `expenses_categories`
+--
+ALTER TABLE `expenses_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -352,10 +446,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `family_members`
+--
+ALTER TABLE `family_members`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -367,7 +467,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -378,6 +478,18 @@ ALTER TABLE `users`
 --
 ALTER TABLE `attendance_records`
   ADD CONSTRAINT `attendance_records_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
+
+--
+-- Constraints for table `cash_books`
+--
+ALTER TABLE `cash_books`
+  ADD CONSTRAINT `cash_books_reason_foreign` FOREIGN KEY (`reason`) REFERENCES `expenses_categories` (`id`);
+
+--
+-- Constraints for table `family_members`
+--
+ALTER TABLE `family_members`
+  ADD CONSTRAINT `family_members_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
