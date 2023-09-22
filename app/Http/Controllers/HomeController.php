@@ -6,6 +6,7 @@ use App\Models\AttendanceRecord;
 use App\Models\CashBook;
 use App\Models\ContractNote;
 use App\Models\Employee;
+use App\Models\FamilyMember;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -38,6 +39,10 @@ class HomeController extends Controller
             'age' => 'required|numeric',
             'phone' => 'required|digits:10|numeric',
             'salary' => 'required',
+            'adhaar' => 'required|numeric',
+            'pan' => 'required',
+            'bank' => 'required',
+            'members' => 'required|numeric',
             'joining' => 'required',
         ]);
         $employee = new Employee;
@@ -46,7 +51,22 @@ class HomeController extends Controller
         $employee->phone = $validated['phone'];
         $employee->salary = $validated['salary'];
         $employee->joining = $validated['joining'];
+        $employee->pan = $validated['pan'];
+        $employee->adhaar = $validated['adhaar'];
+        $employee->bank = $validated['bank'];
+        $employee->members = $validated['members'];
         $employee->save();
+        
+        for($i=0; $i<$validated['members']; $i++){
+            $member = new FamilyMember;
+            $member->employee_id = $employee->id;
+            $member->name = $request->fname[$i];
+            $member->phone = $request->fphone[$i];
+            $member->pan = $request->fpan[$i];
+            $member->adhaar = $request->fadhaar[$i];
+            $member->relation = $request->relationship[$i];
+            $member->save();
+        }
         return redirect()->route('employees')->with('success','Employee added Successfully!!');
     }
 
@@ -125,11 +145,13 @@ class HomeController extends Controller
             $attendance = AttendanceRecord::where('date',$request->date)->where('employee_id',$request->id[$i])->first();
             if($attendance){
                 $attendance->status = $request->status[$i];
+                $attendance->fuel = $request->fuel[$i];
                 $attendance->save();    
             }else{
                 $attendance = new AttendanceRecord;
                 $attendance->employee_id = $request->id[$i];
                 $attendance->status = $request->status[$i];
+                $attendance->fuel = $request->fuel[$i];
                 $attendance->date = $request->date;
                 $attendance->save(); 
             }

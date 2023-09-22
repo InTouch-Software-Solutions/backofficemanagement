@@ -22,25 +22,65 @@
         <input type="date" class="form-control" id="date" name="date" required>
     </div>
     <br><br>
-    @foreach ($employees as $employee)
-    <input type="hidden" value="{{ $employee->id }}" name="id[]" required>
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" name="name[]" value="{{ $employee->name }}" required>
-    </div>
-    <div class="form-group">
-        <label for="status">Status</label>
-        <select class="form-control" name="status[]">
-            <option value="null">Select Status</option>
-            <option value="present">Present</option>
-            <option value="absent">Absent</option>
-            <option value="halfday">Half-Day</option>
-          </select>
-    </div>
-    <br>
-    @endforeach
+    <table id="x" class="table table-hover mb-0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Fuel Allowance</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($employees as $employee)
+            <tr>
+                <td>{{ $employee->name }}</td>
+                <td>
+                    <input class="form-check-input" type="checkbox" name="status[]" id="status1" value="present">
+                    <label class="form-check-label" for="status1">
+                        Present
+                    </label>
+                    <input class="form-check-input" type="checkbox" name="status[]" id="status2" value="absent">
+                    <label class="form-check-label" for="status2">
+                        Absent
+                    </label>
+                    <input class="form-check-input" type="checkbox" name="status[]" id="status3" value="halfday">
+                    <label class="form-check-label" for="status3">
+                        Half-Day
+                    </label>
+                </td>
+                <td>
+                    <input class="form-check-input" type="checkbox" name="fuel[]" id="fuel1" value="yes">
+                    <label class="form-check-label" for="fuel1">
+                        YES
+                    </label>
+                    <input class="form-check-input" type="checkbox" name="fuel[]" id="fuel2" value="no">
+                    <label class="form-check-label" for="fuel2">
+                        NO
+                    </label>
+                </td>
+                <td><input type="hidden" value="{{ $employee->id }}" name="id[]" required>
+                    <input type="hidden" value="{{ $employee->name }}" name="name[]" required>
+                </td>
+            </tr>
+            @endforeach    
+        </tbody>
+    </table>
     <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
+@endsection
+@section('jscontent')
+<script src="assets/bundles/libscripts.bundle.js"></script>
+<script src="assets/bundles/dataTables.bundle.js"></script>
+<script src="assets/bundles/mainscripts.bundle.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#x')
+        .dataTable({
+            responsive: true,
+        });
+    });
+</script>
 @endsection
 

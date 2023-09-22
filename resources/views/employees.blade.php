@@ -8,7 +8,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ Route('addemployee') }}" class="btn btn-primary float-end">Add Employee</a>
+                    <a href="{{ Route('attendance') }}" class="btn btn-primary ">Mark Attendance</a>  &nbsp;&nbsp;
+                    <a href="{{ Route('attendancerecord') }}" class="btn btn-primary ">Attendance Record</a>&nbsp;&nbsp;
+                    <a href="{{ Route('addemployee') }}" class="btn btn-primary ">Add Employee</a>
                 </div>    
                 <div class="card-body">
                     <table id="x" class="table table-hover mb-0">
@@ -33,7 +35,7 @@
                     </table>
                 </div>
             </div>    
-        </div>    
+        </div> 
     </div>    
 </div>
 @endsection

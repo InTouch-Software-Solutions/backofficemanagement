@@ -42,7 +42,7 @@
                                     <option value="11">November</option>
                                     <option value="12">December</option>
                                 </select>
-                                <button type="submit" class="btn btn-success"id='go'>Go</button>        
+                                <button type="submit" class="btn btn-primary"id='go'>Go</button>        
                             </form>
                         </div>
                     </div>

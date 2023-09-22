@@ -177,7 +177,7 @@
                                 <a href="#Employees" class="has-arrow"><i class="fa fa-users"></i><span>Employees</span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ Route('employees') }}">All Employees</a></li>
-                                    <li><a href="emp-leave.html">Leave Requests</a></li>
+                                    {{-- <li><a href="emp-leave.html">Leave Requests</a></li> --}}
                                     <li><a href="{{ Route('attendance') }}">Mark Attendance</a></li>
                                     <li><a href="{{ Route('attendancerecord') }}">Attendance Record</a></li>
                                 </ul>
