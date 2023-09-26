@@ -52,9 +52,9 @@
                         <label>GST (in %):</label>
                         <input type="text" name="gst" class="form-control" placeholder="Enter GST percentage">
                     </div>
-                    <div class="col-md-12 col-sm-12">
+                    <div class="col-md-6 col-sm-12">
                         <label>Delivery Time:</label>
-                        <input type="text" name="time" class="form-control" placeholder="Enter Delivery Time">
+                        <input type="date" name="time" class="form-control">
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <label>Other Conditions:</label>

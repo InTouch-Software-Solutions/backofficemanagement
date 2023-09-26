@@ -394,6 +394,11 @@ class HomeController extends Controller
         return view('addclient');
     }
 
+    public function editclient($id){
+        $client = User::find($id);
+        return view('editclient',compact('client'));
+    }
+
     public function saveclient(Request $request){
         $validated = $request->validate([
             'role' => 'required',
@@ -471,7 +476,8 @@ class HomeController extends Controller
         $contract->condition = $validated['condition'];
         $contract->charge = $validated['charge'];
         $contract->save();
-        $contract->orderno = $contract->id;
+        $max = ContractNote::max('orderno');
+        $contract->orderno = $max + 1;
         $contract->save();
         return redirect()->route('contractnote',['id'=>$contract->id])->with('success','Contract added Successfully!!');
     }
@@ -529,6 +535,20 @@ class HomeController extends Controller
         // $contracts = ContractNote::all();
         return view('contractlist',compact('contracts'));
     }
+    public function deliverybook(){
+        $uniqueOrders = ContractNote::select('orderno', DB::raw('MAX(version) as max_version'))
+        ->groupBy('orderno')
+        ->get();
+
+        $contracts = ContractNote::whereIn(DB::raw('(orderno, version)'), function ($query) {
+                $query->select(DB::raw('orderno, MAX(version) as version'))
+                    ->from('contract_notes')
+                    ->groupBy('orderno');
+            })
+            ->get();
+        // $contracts = ContractNote::all();
+        return view('deliverybook',compact('contracts'));
+    }
 
     public function previousversions($orderno){
         $contracts = ContractNote::where('orderno',$orderno)->get();
@@ -578,7 +598,7 @@ class HomeController extends Controller
         if($request->baddress == 'yes'){
             $data['baddress'] = $client->baddress;
         }else{$data['baddress'] = null;}
-        if($request->cperson == 'yes'){
+        if($request->cperson = 'yes'){
             $data['cperson'] = $client->cperson;
         }else{$data['cperson'] = null;}
         if($request->cnumber == 'yes'){

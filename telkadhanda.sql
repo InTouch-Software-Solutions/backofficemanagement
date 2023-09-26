@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2023 at 08:52 AM
+-- Generation Time: Sep 26, 2023 at 03:35 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -53,7 +53,12 @@ INSERT INTO `attendance_records` (`id`, `employee_id`, `status`, `fuel`, `date`,
 (9, 4, 'halfday', NULL, '2023-09-21', '2023-09-21 05:40:49', '2023-09-21 05:40:49'),
 (10, 2, 'present', 'yes', '2023-09-22', '2023-09-22 00:46:08', '2023-09-22 00:46:08'),
 (11, 3, 'halfday', 'yes', '2023-09-22', '2023-09-22 00:46:08', '2023-09-22 00:46:08'),
-(12, 4, 'absent', 'no', '2023-09-22', '2023-09-22 00:46:08', '2023-09-22 00:46:08');
+(12, 4, 'absent', 'no', '2023-09-22', '2023-09-22 00:46:08', '2023-09-22 00:46:08'),
+(13, 2, 'present', 'yes', '2023-09-26', '2023-09-26 06:44:41', '2023-09-26 06:44:41'),
+(14, 3, 'present', 'yes', '2023-09-26', '2023-09-26 06:44:41', '2023-09-26 06:44:41'),
+(15, 4, 'present', 'yes', '2023-09-26', '2023-09-26 06:44:41', '2023-09-26 06:44:41'),
+(16, 5, 'absent', 'no', '2023-09-26', '2023-09-26 06:44:41', '2023-09-26 06:44:41'),
+(17, 6, 'halfday', 'yes', '2023-09-26', '2023-09-26 06:44:41', '2023-09-26 06:44:41');
 
 -- --------------------------------------------------------
 
@@ -79,7 +84,8 @@ CREATE TABLE `cash_books` (
 
 INSERT INTO `cash_books` (`id`, `date`, `reason`, `amount`, `paid_by`, `paid_to`, `note`, `created_at`, `updated_at`) VALUES
 (1, '2023-09-22', 1, 100, 'me', 'you', NULL, '2023-09-22 06:44:48', '2023-09-22 06:44:48'),
-(2, '2023-09-22', 1, 50, 'aayush', 'you', 'petrol mehnga h', '2023-09-22 06:47:44', '2023-09-22 06:47:44');
+(2, '2023-09-22', 1, 50, 'aayush', 'you', 'petrol mehnga h', '2023-09-22 06:47:44', '2023-09-22 06:47:44'),
+(3, '2023-09-26', 2, 100, 'xyz', 'you', '****', '2023-09-26 06:54:01', '2023-09-26 06:54:01');
 
 -- --------------------------------------------------------
 
@@ -96,7 +102,7 @@ CREATE TABLE `contract_notes` (
   `commodity` varchar(255) NOT NULL,
   `quantity` varchar(255) NOT NULL,
   `rate` varchar(255) NOT NULL,
-  `time` varchar(255) NOT NULL,
+  `time` date NOT NULL,
   `condition` longtext NOT NULL,
   `charge` int(11) NOT NULL,
   `gst` varchar(255) NOT NULL,
@@ -110,13 +116,39 @@ CREATE TABLE `contract_notes` (
 --
 
 INSERT INTO `contract_notes` (`id`, `orderno`, `date`, `purchaser`, `seller`, `commodity`, `quantity`, `rate`, `time`, `condition`, `charge`, `gst`, `version`, `created_at`, `updated_at`) VALUES
-(1, 1, '2023-09-21', '1', '1', 'oil', '7', '100', 'READY', 'testing', 100, '18', 1, '2023-09-21 00:30:14', '2023-09-21 00:30:14'),
-(2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', 'READY', 'testing 1', 100, '18', 2, '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
-(3, 3, '2023-09-21', '1', '1', 'oil', '456', '100', 'READY', 'testingggg', 50, '18', 1, '2023-09-21 01:39:03', '2023-09-21 01:39:03'),
-(4, 4, '2023-09-21', '1', '2', 'oil', '7', '100', 'READY', 'testinggg', 100, '18', 1, '2023-09-21 06:09:22', '2023-09-21 06:09:22'),
-(5, 4, '2023-09-21', '1', '2', 'oil', '7', '100', 'READY', 'testinggg', 100, '18', 2, '2023-09-21 06:17:52', '2023-09-21 06:17:52'),
-(6, 6, '2023-09-25', '3', '3', 'oil', '7', '100', 'READY', 'cv b mn', 50, '4798465498764', 1, '2023-09-25 02:18:33', '2023-09-25 02:18:33'),
-(7, 7, '2023-09-25', '1', '3', 'oil', '456', '100', 'READY', 'frhgsh', 50, '18', 1, '2023-09-25 03:23:51', '2023-09-25 03:23:51');
+(1, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '0000-00-00', 'testing', 100, '18', 1, '2023-09-21 00:30:14', '2023-09-21 00:30:14'),
+(2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '0000-00-00', 'testing 1', 100, '18', 2, '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
+(3, 2, '2023-09-21', '1', '1', 'oil', '456', '100', '0000-00-00', 'testingggg', 50, '18', 1, '2023-09-21 01:39:03', '2023-09-21 01:39:03'),
+(4, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '0000-00-00', 'testinggg', 100, '18', 1, '2023-09-21 06:09:22', '2023-09-21 06:09:22'),
+(5, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '0000-00-00', 'testinggg', 100, '18', 2, '2023-09-21 06:17:52', '2023-09-21 06:17:52'),
+(6, 4, '2023-09-25', '3', '3', 'oil', '7', '100', '0000-00-00', 'cv b mn', 50, '4798465498764', 1, '2023-09-25 02:18:33', '2023-09-25 02:18:33'),
+(7, 5, '2023-09-25', '1', '3', 'oil', '456', '100', '0000-00-00', 'frhgsh', 50, '18', 1, '2023-09-25 03:23:51', '2023-09-25 03:23:51'),
+(8, 5, '2023-09-25', '5', '6', 'oil', '456', '100', '2023-09-30', 'frhgsh', 50, '18', 2, '2023-09-26 05:02:02', '2023-09-26 05:02:02'),
+(9, 6, '2023-09-26', '3', '5', 'oil', '45', '100', '2023-09-29', 'testing', 49, '18', 1, '2023-09-26 05:03:13', '2023-09-26 05:03:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_books`
+--
+
+CREATE TABLE `delivery_books` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `orderno` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `purchaser` varchar(255) NOT NULL,
+  `seller` varchar(255) NOT NULL,
+  `commodity` varchar(255) NOT NULL,
+  `quantity` varchar(255) NOT NULL,
+  `rate` varchar(255) NOT NULL,
+  `deliverydate` date NOT NULL,
+  `charge` varchar(255) NOT NULL,
+  `gst` varchar(255) NOT NULL,
+  `version` int(11) NOT NULL DEFAULT 1,
+  `deliver_quantity` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -168,7 +200,8 @@ CREATE TABLE `expenses_categories` (
 --
 
 INSERT INTO `expenses_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Fuel expenses', '2023-09-22 06:37:33', '2023-09-22 06:37:33');
+(1, 'Fuel expenses', '2023-09-22 06:37:33', '2023-09-22 06:37:33'),
+(2, 'Ent', '2023-09-26 06:53:24', '2023-09-26 06:53:24');
 
 -- --------------------------------------------------------
 
@@ -252,7 +285,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2023_09_22_112031_create_expenses_categories_table', 14),
 (21, '2023_09_22_112645_add_column_to_cash_books_table', 15),
 (22, '2023_09_22_113710_add_column_to_cash_books_table', 16),
-(23, '2023_09_25_041829_add_column_to_users_table', 17);
+(23, '2023_09_25_041829_add_column_to_users_table', 17),
+(24, '2023_09_26_091809_create_delivery_books_table', 18);
 
 -- --------------------------------------------------------
 
@@ -364,6 +398,13 @@ ALTER TABLE `contract_notes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `delivery_books`
+--
+ALTER TABLE `delivery_books`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `delivery_books_orderno_foreign` (`orderno`);
+
+--
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -430,19 +471,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance_records`
 --
 ALTER TABLE `attendance_records`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `cash_books`
 --
 ALTER TABLE `cash_books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `contract_notes`
 --
 ALTER TABLE `contract_notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `delivery_books`
+--
+ALTER TABLE `delivery_books`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -454,7 +501,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `expenses_categories`
 --
 ALTER TABLE `expenses_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -472,7 +519,7 @@ ALTER TABLE `family_members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -501,6 +548,12 @@ ALTER TABLE `attendance_records`
 --
 ALTER TABLE `cash_books`
   ADD CONSTRAINT `cash_books_reason_foreign` FOREIGN KEY (`reason`) REFERENCES `expenses_categories` (`id`);
+
+--
+-- Constraints for table `delivery_books`
+--
+ALTER TABLE `delivery_books`
+  ADD CONSTRAINT `delivery_books_orderno_foreign` FOREIGN KEY (`orderno`) REFERENCES `contract_notes` (`id`);
 
 --
 -- Constraints for table `family_members`

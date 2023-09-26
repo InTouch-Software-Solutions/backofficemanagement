@@ -39,7 +39,6 @@
                     </div> --}}
                     <div class="row" style="text-align: center;">
                         <h6 style="text-decoration: underline;">CLIENT DETAILS</h6>
-                        <p>As per your instructions the following client has been logged into our books,<br>the specifics of which have been conveyed to you via a telephonic conversation.</p>
                     </div>
                     <hr>
                     @if($data['name'])

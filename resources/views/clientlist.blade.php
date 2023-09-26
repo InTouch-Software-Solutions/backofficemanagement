@@ -26,6 +26,7 @@
                             <th>Contact Person:</th>
                             <th>Contact Person Number:</th>
                             <th><strong>Bank Details:</strong></th>
+                            <th>Action:</th>
                             <th>Share Details:</th>
                         </tr>
                     </thead>
@@ -48,6 +49,7 @@
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->cnumber }}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{!! $client->bank !!}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('share',['id'=>$client->id]) }}" class="btn btn-primary">Share</a></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('editclient',['id'=>$client->id]) }}" class="btn btn-primary">Edit</a></td>
                         </tr>
                         @endforeach    
                     </tbody>
