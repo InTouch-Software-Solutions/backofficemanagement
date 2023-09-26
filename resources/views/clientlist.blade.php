@@ -15,7 +15,18 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Username</th>
+                            <th>PAN No</th>
+                            <th>GST No</th>
+                            <th>FSSAI No</th>
+                            <th>TAN No</th>
+                            <th>Address:</th>
+                            <th>IEC No:</th>
+                            <th>Factory Address:</th>
+                            <th>Billing Address:</th>
+                            <th>Contact Person:</th>
+                            <th>Contact Person Number:</th>
+                            <th><strong>Bank Details:</strong></th>
+                            <th>Share Details:</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,7 +36,18 @@
                             <td>{{ $client->name }}</td>
                             <td>{{ $client->email }}</td>
                             <td>{{ $client->phone }}</td>
-                            <td>{{ $client->username }}</td>
+                            <td>{{ $client->pan }}</td>
+                            <td>{{ $client->gst }}</td>
+                            <td>{{ $client->fassi }}</td>
+                            <td>{{ $client->tanno }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->address }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->iec }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->faddress }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->baddress }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->cperson }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->cnumber }}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{!! $client->bank !!}</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('share',['id'=>$client->id]) }}" class="btn btn-primary">Share</a></td>
                         </tr>
                         @endforeach    
                     </tbody>

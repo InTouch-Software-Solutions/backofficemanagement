@@ -8,12 +8,8 @@
 </style>
 @endsection
 @section('content')
-<?php
-$p = DB::table('users')->where('id',$contract->purchaser)->first();
-$s = DB::table('users')->where('id',$contract->seller)->first();
-?>
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Contract Note</h1>
+    <h1 class="mt-5">Client Details</h1>
 </div>
 <br>
 <div class="container-fluid">
@@ -38,80 +34,144 @@ $s = DB::table('users')->where('id',$contract->seller)->first();
                         <h3 style="text-decoration: underline;">DALAL RAMESHCHAND MADANLAL BHAYA</h3>
                         <p>Brokers of Acid Oil, RB Oil, Fatty Acid, Lecithin, Sludge, Spent Earth Oil & Soap Stock. <br>33/3, Jethmal Building, Murai Mohalla, Chhawni, Indore (MP) - 452001. <br>2707390-91/ 4281122/ 4287390/ 9425059975/53243/ 9407328145 <br>bhayajibrokers@gmail.com <br>PAN: ABXPA1180D</p>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <p>Date:{{ $contract->date }}<br>Order No: {{ $contract->id }}</p>
-                    </div>
+                    </div> --}}
                     <div class="row" style="text-align: center;">
-                        <h6 style="text-decoration: underline;">CONTRACT NOTE</h6>
-                        <p>Today, as per your instructions the following contract has been logged into our books,<br>the specifics of which have been conveyed to you via a telephonic conversation.</p>
+                        <h6 style="text-decoration: underline;">CLIENT DETAILS</h6>
+                        <p>As per your instructions the following client has been logged into our books,<br>the specifics of which have been conveyed to you via a telephonic conversation.</p>
                     </div>
                     <hr>
+                    @if($data['name'])
                     <div class="row">
                         <div class="col-4">
-                            <h5>Purchaser:</h5>
+                            <h5>Name:</h5>
                         </div>
                         <div class="col-8">
-                            <h6 style="text-decoration: underline">{{ $p->name }}</h6>
-                            <p><strong>GST No: </strong>{{ $p->gst }}<br><strong>Billing Address:</strong>{{ $p->baddress }}<br><strong>Shipping Address: </strong>{{ $p->address }}</p>
+                            <p>{{ $data['name'] }}</p>
                         </div>
                     </div>
+                    @endif
+                    @if($data['cnumber'])
                     <div class="row">
                         <div class="col-4">
-                            <h5>Seller:</h5>
+                            <h5>Email:</h5>
                         </div>
                         <div class="col-8">
-                            <h6 style="text-decoration: underline">{{ $s->name }}</h6>
-                            <p><strong>GST No: </strong>{{ $s->gst }}<br><strong>Delivery Address: </strong>{{ $s->faddress }}</p>
+                            <p>{{ $data['email'] }}</p>
                         </div>
                     </div>
+                    @endif
+                    @if($data['phone'])
                     <div class="row">
                         <div class="col-4">
-                            <h5>Commodity:</h5>
+                            <h5>Phone:</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{ $contract->commodity }}</p>
+                            <p>{{ $data['phone'] }}</p>
                         </div>
                     </div>
+                    @endif
+                    @if($data['pan'])
                     <div class="row">
                         <div class="col-4">
-                            <h5>Quantity:</h5>
+                            <h5>PAN NO:</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{ $contract->quantity }}</p>
+                            <p>{{ $data['pan'] }}</p>
                         </div>
                     </div>
+                    @endif
+                    @if($data['gst'])
                     <div class="row">
                         <div class="col-4">
-                            <h5>Rate (in Kgs):</h5>
+                            <h5>GST NO:</h5>
                         </div>
                         <div class="col-8">
-                            <p>Rs. {{ $contract->rate }}/-  + {{ $contract->gst }}% GST</p>
+                            <p>{{ $data['gst'] }}</p>
                         </div>
                     </div>
+                    @endif
+                    @if($data['fassi'])
                     <div class="row">
                         <div class="col-4">
-                            <h5>Delivery Time:</h5>
+                            <h5>FSSAI NO:</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{ $contract->time }}</p>
+                            <p>{{ $data['fassi'] }}</p>
                         </div>
                     </div>
+                    @endif
+                    @if($data['iec'])
                     <div class="row">
                         <div class="col-4">
-                            <h5>Other Condition:</h5>
+                            <h5>IEC NO:</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{ $contract->condition }}</p>
+                            <p>{{ $data['iec'] }}</p>
                         </div>
                     </div>
+                    @endif
+                    @if($data['tanno'])
                     <div class="row">
                         <div class="col-4">
-                            <h5>Brokerage:</h5>
+                            <h5>TAN NO:</h5>
                         </div>
                         <div class="col-8">
-                            <p>Rs. {{ $contract->charge }} PER METRIC TONN.</p>
+                            <p>{{ $data['tanno'] }}</p>
                         </div>
                     </div>
+                    @endif
+                    @if($data['bank'])
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>Bank Details:</h5>
+                        </div>
+                        <div class="col-8">
+                            <p>{!! $data['bank'] !!}</p>
+                        </div>
+                    </div>
+                    @endif
+                    @if($data['address'])
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>Shipping Address:</h5>
+                        </div>
+                        <div class="col-8">
+                            <p>{{ $data['address'] }}</p>
+                        </div>
+                    </div>
+                    @endif
+                    @if($data['baddress'])
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>Billing Address:</h5>
+                        </div>
+                        <div class="col-8">
+                            <p>{{ $data['baddress'] }}</p>
+                        </div>
+                    </div>
+                    @endif
+                    @if($data['cperson'])
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>Contact Person:</h5>
+                        </div>
+                        <div class="col-8">
+                            <p>{{ $data['cperson'] }}</p>
+                        </div>
+                    </div>
+                    @endif
+                    @if($data['cnumber'])
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>Contact Person Number:</h5>
+                        </div>
+                        <div class="col-8">
+                            <p>{{ $data['cnumber'] }}</p>
+                        </div>
+                    </div>
+                    @endif
                     <hr>
                     <br>
                     <br>

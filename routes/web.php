@@ -49,6 +49,8 @@ Route::get('tally',[HomeController::class,'tally'])->name('tally');
 Route::post('saveexpenses',[HomeController::class,'saveexpenses'])->name('saveexpenses');
 Route::get('addclient',[HomeController::class,'addclient'])->name('addclient');
 Route::get('clientlist',[HomeController::class,'clientlist'])->name('clientlist');
+Route::get('share/{id}',[HomeController::class,'share'])->name('share');
+Route::post('sharable',[HomeController::class,'sharable'])->name('sharable');
 Route::post('saveclient',[HomeController::class,'saveclient'])->name('saveclient');
 Route::get('addcontract',[HomeController::class,'addcontract'])->name('addcontract');
 Route::post('savecontract',[HomeController::class,'savecontract'])->name('savecontract');
@@ -57,8 +59,7 @@ Route::get('edit_contract/{id}',[HomeController::class,'editcontract'])->name('e
 Route::get('previousversions/{orderno}',[HomeController::class,'previousversions'])->name('previousversions');
 Route::post('updatecontract',[HomeController::class,'updatecontract'])->name('updatecontract');
 Route::get('contractlist',[HomeController::class,'contractlist'])->name('contractlist');
-Route::get('logout',[HomeController::class,'logout'])->name('logout');
+// Route::get('logout',[HomeController::class,'logout'])->name('logout');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');

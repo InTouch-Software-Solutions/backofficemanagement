@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2023 at 02:55 PM
+-- Generation Time: Sep 26, 2023 at 08:52 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -114,7 +114,9 @@ INSERT INTO `contract_notes` (`id`, `orderno`, `date`, `purchaser`, `seller`, `c
 (2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', 'READY', 'testing 1', 100, '18', 2, '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
 (3, 3, '2023-09-21', '1', '1', 'oil', '456', '100', 'READY', 'testingggg', 50, '18', 1, '2023-09-21 01:39:03', '2023-09-21 01:39:03'),
 (4, 4, '2023-09-21', '1', '2', 'oil', '7', '100', 'READY', 'testinggg', 100, '18', 1, '2023-09-21 06:09:22', '2023-09-21 06:09:22'),
-(5, 4, '2023-09-21', '1', '2', 'oil', '7', '100', 'READY', 'testinggg', 100, '18', 2, '2023-09-21 06:17:52', '2023-09-21 06:17:52');
+(5, 4, '2023-09-21', '1', '2', 'oil', '7', '100', 'READY', 'testinggg', 100, '18', 2, '2023-09-21 06:17:52', '2023-09-21 06:17:52'),
+(6, 6, '2023-09-25', '3', '3', 'oil', '7', '100', 'READY', 'cv b mn', 50, '4798465498764', 1, '2023-09-25 02:18:33', '2023-09-25 02:18:33'),
+(7, 7, '2023-09-25', '1', '3', 'oil', '456', '100', 'READY', 'frhgsh', 50, '18', 1, '2023-09-25 03:23:51', '2023-09-25 03:23:51');
 
 -- --------------------------------------------------------
 
@@ -249,7 +251,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2023_09_22_075358_create_family_members_table', 13),
 (20, '2023_09_22_112031_create_expenses_categories_table', 14),
 (21, '2023_09_22_112645_add_column_to_cash_books_table', 15),
-(22, '2023_09_22_113710_add_column_to_cash_books_table', 16);
+(22, '2023_09_22_113710_add_column_to_cash_books_table', 16),
+(23, '2023_09_25_041829_add_column_to_users_table', 17);
 
 -- --------------------------------------------------------
 
@@ -306,9 +309,19 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `role` enum('admin','client') NOT NULL,
   `phone` bigint(20) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `address` longtext NOT NULL,
+  `pan` varchar(255) NOT NULL,
+  `gst` varchar(255) NOT NULL,
+  `fassi` varchar(255) NOT NULL,
+  `iec` varchar(255) DEFAULT NULL,
+  `faddress` longtext NOT NULL,
+  `baddress` longtext NOT NULL,
+  `bank` longtext NOT NULL,
+  `cperson` varchar(255) NOT NULL,
+  `cnumber` bigint(20) NOT NULL,
+  `tanno` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -318,9 +331,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `username`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Aayush Patidar', 'aayushpatidar04@gmail.com', 'client', 9982414226, 'aayushpatidar04', NULL, '$2y$10$KT32FZADCcTL2whFmhVWCeG90orn3I3CeppAgAkBHzBwEYrEGSWhK', NULL, '2023-09-19 23:06:58', '2023-09-19 23:06:58'),
-(2, 'Aman', 'aman@gmail.com', 'client', 7418529635, 'aman@04', NULL, '$2y$10$lgTtCDR3NMFZ6le73OC.GOhdTMIuF0OSyWbgQ6jLREHXvuVTGuQ1u', NULL, '2023-09-21 06:02:16', '2023-09-21 06:02:16');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `password`, `address`, `pan`, `gst`, `fassi`, `iec`, `faddress`, `baddress`, `bank`, `cperson`, `cnumber`, `tanno`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Aayush Patidar', 'aayushpatidar04@gmail.com', 'client', 9982414226, '$2y$10$KT32FZADCcTL2whFmhVWCeG90orn3I3CeppAgAkBHzBwEYrEGSWhK', 'address 1', '', '', '', NULL, '', '', '', '', 0, '', NULL, NULL, '2023-09-19 23:06:58', '2023-09-19 23:06:58'),
+(2, 'Aman', 'aman@gmail.com', 'client', 7418529635, '$2y$10$lgTtCDR3NMFZ6le73OC.GOhdTMIuF0OSyWbgQ6jLREHXvuVTGuQ1u', 'address 2', '', '', '', NULL, '', '', '', '', 0, '', NULL, NULL, '2023-09-21 06:02:16', '2023-09-21 06:02:16'),
+(3, 'client 1', 'client1@gmail.com', 'client', 9875432165, '$2y$10$kgafSczbOOU01M.QbCbbBekMc9GV5aLRv/tCIoVmFKCb/yftA6e5y', 'address 3', 'FTYHUJ8456H', '4798465498764', '4694984641658794', NULL, 'NRK Business Park, Vijay Nagar', 'kjj-pioh,sdfkghofksd\r\nsgjisdog[f .psfd[ghfsd', 'FHJIOhl iojkLPO jmpsofkl[gh,m,fsd[', 'contact1', 6456479891, '654932696898', NULL, NULL, '2023-09-24 23:36:02', '2023-09-24 23:36:02'),
+(4, 'Admin', 'admin@gmail.com', 'admin', 0, '$2y$10$1gtqCasP1y8wjd09h6O1oOLvyVaLMb8.uaQ.8tNz70wH.Q86gpSi.', '0', '0', '0', '0', NULL, '0', '0', '0', '0', 0, '0', NULL, NULL, '2023-09-25 01:19:10', '2023-09-25 01:19:10'),
+(5, 'client 2', 'client2@gmail.com', 'client', 7418529636, '$2y$10$i2qquN/42BcmwZ2mFLCeUee9yRpUE9ofg6Fghu4TstUANK8aFZwlW', 'Indore', 'G47579JKJHJK', '5855655555585', '55845545545558', '55845655', 'Bhopal', 'Dubai', '<p>Account Name: xyx<br>Account No: 123<br>IFSC Code: SBI65695<br>Bank Name: SBI<br>Branch Name: Indore<br>Any Other Remarks: None</p>', 'Client a', 7894612634, '478546632699', NULL, NULL, '2023-09-26 00:37:54', '2023-09-26 00:37:54'),
+(6, 'client 3', 'client3@gmail.com', 'client', 7418529635, '$2y$10$tAIGmg16T1WC4xFQ8c7Tu.B7yrSMFTRt4iXHaXyB8QPipjZO/pV2q', 'NRK Business Park, Vijay Nagar', 'KN665669JID56', '4798465498764', '55845545545558', '55845655', 'intouch', 'zfsdg', '<p>Account Name:<br>Account No:<br>IFSC Code:<br>Bank Name:<br>Branch Name:<br>Any Other Remarks:</p><h2>.dfsgb.</h2>', 'dfg', 7845123265, '478546632699', NULL, NULL, '2023-09-26 01:01:25', '2023-09-26 01:01:25');
 
 --
 -- Indexes for dumped tables
@@ -425,7 +442,7 @@ ALTER TABLE `cash_books`
 -- AUTO_INCREMENT for table `contract_notes`
 --
 ALTER TABLE `contract_notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -455,7 +472,7 @@ ALTER TABLE `family_members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -467,7 +484,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

@@ -15,6 +15,7 @@ use DateTime;
 use Illuminate\Support\Facades\Session;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 
@@ -23,6 +24,13 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function index(){
+        $employee_count = count(Employee::all());
+        $total_salary = Employee::sum('salary');
+    
+        return view('index',compact('employee_count','total_salary'));
     }
     public function employees(){
         $employees = Employee::all();
@@ -243,7 +251,8 @@ class HomeController extends Controller
     public function filter2(Request $request){
         $validated = $request->validate([
             'year' => 'required',
-            'month' => 'required'
+            'month' => 'required',
+            'paid' => 'required|numeric'
         ]);
         $employee = Employee::find($request->id);
         $attendance = AttendanceRecord::where('employee_id',$request->id)->whereYear('date',$request->year)->whereMonth('date',$request->month)->get();
@@ -260,13 +269,23 @@ class HomeController extends Controller
         $presents = 0;
         $absents = 0;
         $halfdays = 0;
+        $fuel = 0;
         foreach($attendance as $a){
             if($a->status == 'present'){
                 $presents++;
+                if($a->fuel == 'yes'){
+                    $fuel++;
+                }
             }elseif($a->status == 'absent'){
                 $absents++;
+                if($a->fuel == 'yes'){
+                    $fuel++;
+                }
             }elseif($a->status == 'halfday'){
                 $halfdays++;
+                if($a->fuel == 'yes'){
+                    $fuel++;
+                }
             }else{
                 $absents++;
             }
@@ -274,8 +293,8 @@ class HomeController extends Controller
         if($presents + $halfdays/2 == 0){
             $total_days = 0;
         }
-        elseif(($working_days - $presents - $halfdays/2) > 2){
-            $total_days = $presents + $halfdays/2 + 2;
+        elseif(($working_days - $presents - $halfdays/2) > $request->paid){
+            $total_days = $presents + $halfdays/2 + $request->paid;
         }else{
             $total_days = $working_days;
         }
@@ -285,12 +304,13 @@ class HomeController extends Controller
             'present' => $presents,
             'absent' => $absents,
             'halfday' => $halfdays,
+            'fuel' => $fuel,
             'salary' => $final_salary,
             'year' => $request->year,
             'month' => $request->month,
+            'paid' => $request->paid
         ];
         return view('payslip',compact('employee','data'));
-
     }
 
     public function cashbook(){
@@ -380,20 +400,39 @@ class HomeController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'phone' => 'required|digits:10|numeric',
-            'password' => 'required',
-            'cpassword' => 'required|same:password',
-            'username' => 'required|unique:users'
+            'address' => 'required',
+            'pan' => 'required',
+            'gst' => 'required',
+            'fassi' => 'required',
+            'faddress' => 'required',
+            'baddress' => 'required',
+            'bank' => 'required',
+            'cnumber' => 'required',
+            'cperson' => 'required',
+            'tanno' => 'required',
         ]);
         $client = new User;
         $client->name = $validated['name'];
         $client->email = $validated['email'];
         $client->phone = $validated['phone'];
-        $client->password = bcrypt($validated['password']);
-        $client->username = $validated['username'];
+        $client->password = bcrypt(Str::random(10));
         $client->role = $validated['role'];
+        $client->address = $validated['address'];
+        $client->pan = $validated['pan'];
+        $client->gst = $validated['gst'];
+        $client->fassi = $validated['fassi'];
+        $client->faddress = $validated['faddress'];
+        $client->baddress = $validated['baddress'];
+        $client->bank = $validated['bank'];
+        $client->cnumber = $validated['cnumber'];
+        $client->cperson = $validated['cperson'];
+        $client->tanno = $validated['tanno'];
+        if($request->iec){
+            $client->iec = $request->iec;
+        }
         $client->save();
 
-        return redirect()->route('addclient')->with('success','Client added Successfully!!');
+        return redirect()->route('clientlist')->with('success','Client added Successfully!!');
     }
 
     public function clientlist(){
@@ -495,7 +534,58 @@ class HomeController extends Controller
         $contracts = ContractNote::where('orderno',$orderno)->get();
         return view('previousversions',compact('contracts'));
     }
-
+    
+    public function share($id){
+        return view('share',compact('id'));
+    }
+    
+    public function sharable(Request $request){
+        $client = User::find($request->id);
+        $data = [];
+        if($request->name == 'yes'){
+            $data['name'] = $client->name;
+        }else{$data['name'] = null;}
+        if($request->email == 'yes'){
+            $data['email'] = $client->email;
+        }else{$data['email'] = null;}
+        if($request->pan == 'yes'){
+            $data['pan'] = $client->pan;
+        }else{$data['pan'] = null;}
+        if($request->fassi == 'yes'){
+            $data['fassi'] = $client->fassi;
+        }else{$data['fassi'] = null;}
+        if($request->iec == 'yes'){
+            $data['iec'] = $client->iec;
+        }else{$data['iec'] = null;}
+        if($request->tanno == 'yes'){
+            $data['tanno'] = $client->tanno;
+        }else{$data['tanno'] = null;}
+        if($request->gst == 'yes'){
+            $data['gst'] = $client->gst;
+        }else{$data['gst'] = null;}
+        if($request->phone == 'yes'){
+            $data['phone'] = $client->phone;
+        }else{$data['phone'] = null;}
+        if($request->bank == 'yes'){
+            $data['bank'] = $client->bank;
+        }else{$data['bank'] = null;}
+        if($request->address == 'yes'){
+            $data['address'] = $client->address;
+        }else{$data['address'] = null;}
+        if($request->faddress == 'yes'){
+            $data['faddress'] = $client->faddress;
+        }else{$data['faddress'] = null;}
+        if($request->baddress == 'yes'){
+            $data['baddress'] = $client->baddress;
+        }else{$data['baddress'] = null;}
+        if($request->cperson == 'yes'){
+            $data['cperson'] = $client->cperson;
+        }else{$data['cperson'] = null;}
+        if($request->cnumber == 'yes'){
+            $data['cnumber'] = $client->cnumber;
+        }else{$data['cnumber'] = null;}
+        return view('clientsheet',compact('data'));
+    }
     
 }
 

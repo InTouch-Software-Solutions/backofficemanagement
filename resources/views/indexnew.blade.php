@@ -140,7 +140,9 @@
                             <li><a href="app-inbox.html"><i class="fa fa-envelope-open me-2"></i>Messages</a></li>
                             <li><a href="javascript:void(0);"><i class="fa fa-cog me-2"></i>Settings</a></li>
                             <li class="divider"></li>
-                            <li><a href="page-login.html"><i class="fa fa-power-off me-2"></i>Logout</a></li>
+                            <li><a href="{{ Route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off me-2"></i>Logout</a><form id="logout-form" action="{{ route('logout') }}" method="get" class="d-none">
+                                @csrf
+                            </form></li>
                         </ul>
                     </div>
                 </div>

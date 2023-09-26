@@ -11,11 +11,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                        </div>
-                        <div class="col-6">
                             <form action="{{ Route('filter3') }}" method="post">
                                 @csrf
-                                <select name="year" id="year">
+                                <select class="form-select" name="year" id="year">
                                     <option value="" selected>Select Year</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
@@ -27,7 +25,7 @@
                                     <option value="2030">2030</option>
                                     <option value="2031">2031</option>
                                 </select>
-                                <select name="month" id="month">
+                                <select class="form-select" name="month" id="month">
                                     <option value="" selected>Select Month</option>
                                     <option value="01">January</option>
                                     <option value="02">February</option>
@@ -42,6 +40,8 @@
                                     <option value="11">November</option>
                                     <option value="12">December</option>
                                 </select>
+                        </div>
+                        <div class="col-6">
                                 <button type="submit" class="btn btn-primary"id='go'>Go</button>        
                             </form>
                         </div>

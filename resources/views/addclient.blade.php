@@ -27,21 +27,53 @@
                         <input type="text" name="email" class="form-control" placeholder="Enter Email ID ">
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <label>Username:</label>
-                        <input type="text" name="username" class="form-control" placeholder="Enter Username ">
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label>Password:</label>
-                        <input type="password" name="password" class="form-control" placeholder="Enter Password">
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label>Confirm Password:</label>
-                        <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password">
-                    </div>
-                    <div class="col-md-3 col-sm-12">
                         <label>Mobile No:</label>
                         <input type="text" name="phone" class="form-control" placeholder="Enter Mobile No">
                     </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>PAN No:</label>
+                        <input type="text" name="pan" class="form-control" placeholder="Enter Pan No ">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>Contact Person Name:</label>
+                        <input type="text" name="cperson" class="form-control" placeholder="Enter Contact Person Name">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>Contact Person Number:</label>
+                        <input type="text" name="cnumber" class="form-control" placeholder="Enter Contact Person Number">
+                    </div>             
+                    <div class="col-md-6 col-sm-12">
+                        <label>TAN No:</label>
+                        <input type="text" name="tanno" class="form-control" placeholder="Enter TAN No">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>GST No:</label>
+                        <input type="text" name="gst" class="form-control" placeholder="Enter GST No">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>FSSAI No:</label>
+                        <input type="text" name="fassi" class="form-control" placeholder="Enter Fssai No">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>IEC No (optional):</label>
+                        <input type="text" name="iec" class="form-control" placeholder="Enter IEC No">
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <label>Shipping Address:</label>
+                        <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="Enter Address "></textarea>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <label>Factory/Delivery Address:</label>
+                        <textarea name="faddress" id="faddress" cols="30" rows="5" class="form-control" placeholder="Enter Factory Address "></textarea>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <label>Billing Address:</label>
+                        <textarea name="baddress" id="baddress" cols="30" rows="5" class="form-control" placeholder="Enter Billing Address "></textarea>
+                    </div>              
+                    <div class="col-md-12 col-sm-12">
+                        <label>Bank Details:</label>
+                        <textarea name="bank" id="bank" cols="30" rows="5" class="form-control">Account Name:<br>Account No:<br>IFSC Code:<br>Bank Name:<br>Branch Name:<br>Any Other Remarks:<br></textarea>
+                    </div>                     
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Add</button>
@@ -50,4 +82,14 @@
     </div>
 </div>
 
+@endsection
+@section('jscontent')
+<script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector('#bank')).catch
+    (error => {
+            console.error(error);
+        }
+    );
+</script>
 @endsection

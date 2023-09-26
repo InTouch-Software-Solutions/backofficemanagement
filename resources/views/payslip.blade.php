@@ -14,12 +14,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                        </div>
-                        <div class="col-6">
                             <form action="{{ Route('filter2') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $employee->id }}">
-                                <select name="year" id="year">
+                                <select class="form-select mt-1" name="year" id="year">
                                     <option value="" selected>Select Year</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
@@ -31,7 +29,7 @@
                                     <option value="2030">2030</option>
                                     <option value="2031">2031</option>
                                 </select>
-                                <select name="month" id="month">
+                                <select class="form-select mt-1" name="month" id="month">
                                     <option value="" selected>Select Month</option>
                                     <option value="01">January</option>
                                     <option value="02">February</option>
@@ -46,7 +44,11 @@
                                     <option value="11">November</option>
                                     <option value="12">December</option>
                                 </select>
-                                <button type="submit" class="btn btn-primary"id='go'>Go</button>        
+                        </div>
+                        <div class="col-6">
+                                <label>Paid leaves</label>
+                                <input type="text" class="form-control" name="paid" placeholder="No. of Paid Leaves">
+                                <button type="submit" class="btn btn-primary mt-1"id='go'>Go</button>        
                             </form>
                         </div>
                     </div>
@@ -127,7 +129,29 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12">
-                                        
+                                        <div class="table-responsive">
+                                            <table class="table table-hover mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Parameter</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Fuel Allowance<br>(no. of days)</td>
+                                                        <td>{{ $data['fuel'] }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>No. of Paid leaves</td>
+                                                        <td>{{ $data['paid'] }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                     </div>
