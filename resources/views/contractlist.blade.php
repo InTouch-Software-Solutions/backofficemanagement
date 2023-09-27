@@ -21,6 +21,7 @@
                             <th>Delivery Time:</th>
                             <th>Condition: </th>
                             <th>Charge: </th>
+                            <th>Status: </th>
                             <th>Version: </th>
                             <th>Action: </th>
                         </tr>
@@ -42,6 +43,7 @@
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->time }}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->condition }}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;Rs. {{ $contract->charge }} PER TONNE</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->status }}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->version }}&nbsp;&nbsp;&nbsp;&nbsp; 
                                 @if ($contract->version > 1)
                                     <a href="{{ route('previousversions', ['orderno' => $contract->orderno]) }}" class="btn btn-primary">Check Previous Versions</a>

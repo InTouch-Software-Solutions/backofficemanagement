@@ -57,10 +57,13 @@ Route::post('savecontract',[HomeController::class,'savecontract'])->name('saveco
 Route::get('contractnote/{id}',[HomeController::class,'contractnote'])->name('contractnote');
 Route::get('edit_contract/{id}',[HomeController::class,'editcontract'])->name('editcontract');
 Route::get('editclient/{id}',[HomeController::class,'editclient'])->name('editclient');
+Route::post('updateclient',[HomeController::class,'updateclient'])->name('updateclient');
 Route::get('previousversions/{orderno}',[HomeController::class,'previousversions'])->name('previousversions');
 Route::post('updatecontract',[HomeController::class,'updatecontract'])->name('updatecontract');
 Route::get('contractlist',[HomeController::class,'contractlist'])->name('contractlist');
 Route::get('deliverybook',[HomeController::class,'deliverybook'])->name('deliverybook');
+Route::get('markstatus/{id}',[HomeController::class,'markstatus'])->name('markstatus');
+Route::post('createbrokeragebill',[HomeController::class,'createbrokeragebill'])->name('createbrokeragebill');
 // Route::get('logout',[HomeController::class,'logout'])->name('logout');
 
 Auth::routes();

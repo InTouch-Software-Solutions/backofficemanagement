@@ -12,6 +12,170 @@
     <meta name="author" content="WrapTheme, design by: ThemeMakker.com">
     <link rel="icon" href="{{ asset('assets/images/logo.jpeg') }}" type="image/x-icon">
     @yield('csscontent')
+    <style type="text/css">
+        :root {
+            --theme-color: #2EACB3; 
+        }
+    
+        .context 
+        {
+            width: 100%;
+        }
+        
+        .context h1
+        {
+            text-align: center;
+            color: #000000;
+            font-size: 5vw;
+            margin-top: 5%;
+            margin-bottom: 5%;
+           
+        }
+        
+        /------------------------------------------------/
+        .area51
+        {
+            background: #4e54c8;  
+            width: 100%;
+            height:100%;   
+        }
+        
+        .circles
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20vh;
+            overflow: hidden;
+            /background-color: red;/
+        }
+        
+        .circles li
+        {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: var(--theme-color);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+        
+        }
+        
+        .circles li:nth-child(1)
+        {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+        
+        
+        .circles li:nth-child(2)
+        {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+        
+        .circles li:nth-child(3){
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+        
+        .circles li:nth-child(4){
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+        
+        .circles li:nth-child(5){
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+        
+        .circles li:nth-child(6){
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+        
+        .circles li:nth-child(7){
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+        
+        .circles li:nth-child(8){
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+        
+        .circles li:nth-child(9){
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+        
+        .circles li:nth-child(10){
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+        
+        
+        
+        @keyframes animate 
+        {
+        
+            0%
+            {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+                border-radius: 0;
+            }
+        
+            100%
+            {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0.5;
+                border-radius: 50%;
+            }
+        
+        }
+    </style>
+    <style>
+        * {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+        }
+        .page-link.active, .active > .page-link {
+            color: var(--theme-color) !important;
+        }
+        .page-item.disabled .page-link{
+            background-color: var(--theme-color) !important;
+            color: white !important;
+        }
+    </style>
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/main.css') }}">
@@ -136,9 +300,9 @@
                         <span>Welcome,</span>
                         <a href="#" class="dropdown-toggle user-name" data-bs-toggle="dropdown"><br><strong>Admin</strong></a>
                         <ul class="dropdown-menu p-2 shadow-sm">
-                            <li><a href="page-profile2.html"><i class="fa fa-user me-2"></i>My Profile</a></li>
-                            <li><a href="app-inbox.html"><i class="fa fa-envelope-open me-2"></i>Messages</a></li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-cog me-2"></i>Settings</a></li>
+                            <li><a href="#"><i class="fa fa-user me-2"></i>My Profile</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-open me-2"></i>Messages</a></li>
+                            <li><a href="#"><i class="fa fa-cog me-2"></i>Settings</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ Route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off me-2"></i>Logout</a><form id="logout-form" action="{{ route('logout') }}" method="get" class="d-none">
                                 @csrf
@@ -146,20 +310,6 @@
                         </ul>
                     </div>
                 </div>
-                {{-- <div class="row g-3">
-                    <div class="col">
-                        <h6 class="mb-0">5+</h6>
-                        <small class="text-muted">Experience</small>
-                    </div>
-                    <div class="col">
-                        <h6 class="mb-0">400+</h6>
-                        <small class="text-muted">Employees</small>
-                    </div>
-                    <div class="col">
-                        <h6 class="mb-0">80+</h6>
-                        <small class="text-muted">Clients</small>
-                    </div>
-                </div> --}}
             </div>
             <!-- nav tab: menu list -->
             <ul class="nav nav-tabs text-center mb-2" role="tablist">
@@ -213,8 +363,6 @@
                     <nav class="sidebar-nav">
                         <ul class="metismenu list-unstyled">
                             <li><a href="{{ Route('index') }}"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-                            {{-- <li><a href="app-inbox.html"><i class="fa fa-envelope-o"></i><span>Inbox App</span></a></li>
-                            <li><a href="app-chat.html"><i class="fa fa-comments"></i><span>Chat App</span></a></li> --}}
                             <li>
                                 <a href="#Projects" class="has-arrow"><i class="fa fa-list-ul"></i><span>Contracts</span></a>
                                 <ul class="list-unstyled">
@@ -235,129 +383,16 @@
                         </ul>
                     </nav>
                 </div>
-                {{-- <div class="tab-pane fade" id="sub_menu" role="tabpanel" >
-                    <nav class="sidebar-nav">
-                        <ul class="metismenu list-unstyled">
-                            <li>
-                                <a href="#Blog" class="has-arrow"><i class="fa fa-globe"></i><span>Blog</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="blog-dashboard.html">Dashboard</a></li>
-                                    <li><a href="blog-post.html">New Post</a></li>
-                                    <li><a href="blog-list.html">Blog List</a></li>
-                                    <li><a href="blog-details.html">Blog Detail</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#FileManager" class="has-arrow"><i class="fa fa-folder"></i><span>File Manager</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="file-dashboard.html">Dashboard</a></li>
-                                    <li><a href="file-documents.html">Documents</a></li>
-                                    <li><a href="file-media.html">Media</a></li>
-                                    <li><a href="file-images.html">Images</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#Widgets" class="has-arrow"><i class="fa fa-puzzle-piece"></i><span>Widgets</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="widgets-statistics.html">Statistics Widgets</a></li>
-                                    <li><a href="widgets-data.html">Data Widgets</a></li>
-                                    <li><a href="widgets-chart.html">Chart Widgets</a></li>
-                                    <li><a href="widgets-weather.html">Weather Widgets</a></li>
-                                    <li><a href="widgets-social.html">Social Widgets</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#Pages" class="has-arrow"><i class="fa fa-files-o"></i><span>Extra Pages</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="page-blank.html">Blank Page</a></li>
-                                    <li><a href="page-profile2.html">Profile</a></li>
-                                    <li><a href="page-gallery.html">Image Gallery <span class="badge bg-secondary float-end">v1</span></a></li>
-                                    <li><a href="page-timeline.html">Timeline</a></li>
-                                    <li><a href="page-timeline-h.html">Horizontal Timeline</a></li>
-                                    <li><a href="page-pricing.html">Pricing</a></li>
-                                    <li><a href="page-invoices.html">Invoices</a></li>
-                                    <li><a href="page-invoices2.html">Invoices <span class="badge bg-warning float-end">v2</span></a></li>
-                                    <li><a href="page-search-results.html">Search Results</a></li>
-                                    <li><a href="page-helper-class.html">Helper Classes</a></li>
-                                    <li><a href="page-maintenance.html">Maintenance</a></li>
-                                    <li><a href="page-testimonials.html">Testimonials</a></li>
-                                    <li><a href="page-faq.html">FAQs</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#uiElements" class="has-arrow"><i class="fa fa-diamond"></i><span>UI Elements</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="ui-typography.html">Typography</a></li>
-                                    <li><a href="ui-tabs.html">Tabs</a></li>
-                                    <li><a href="ui-buttons.html">Buttons</a></li>
-                                    <li><a href="ui-bootstrap.html">Bootstrap UI</a></li>
-                                    <li><a href="ui-icons.html">Icons</a></li>
-                                    <li><a href="ui-notifications.html">Notifications</a></li>
-                                    <li><a href="ui-colors.html">Colors</a></li>
-                                    <li><a href="ui-dialogs.html">Dialogs</a></li>
-                                    <li><a href="ui-list-group.html">List Group</a></li>
-                                    <li><a href="ui-media-object.html">Media Object</a></li>
-                                    <li><a href="ui-modals.html">Modals</a></li>
-                                    <li><a href="ui-nestable.html">Nestable</a></li>
-                                    <li><a href="ui-progressbars.html">Progress Bars</a></li>
-                                    <li><a href="ui-range-sliders.html">Range Sliders</a></li>
-                                    <li><a href="ui-treeview.html">Treeview</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#forms" class="has-arrow"><i class="fa fa-pencil"></i><span>Forms</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="forms-validation.html">Form Validation</a></li>
-                                    <li><a href="forms-advanced.html">Advanced Elements</a></li>
-                                    <li><a href="forms-basic.html">Basic Elements</a></li>
-                                    <li><a href="forms-wizard.html">Form Wizard</a></li>
-                                    <li><a href="forms-dragdropupload.html">Drag &amp; Drop Upload</a></li>
-                                    <li><a href="forms-cropping.html">Image Cropping</a></li>
-                                    <li><a href="forms-summernote.html">Summernote</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#Tables" class="has-arrow"><i class="fa fa-tag"></i><span>Tables</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="table-basic.html">Tables Example<span class="badge bg-info float-end">New</span></a></li>
-                                    <li><a href="table-normal.html">Normal Tables</a></li>
-                                    <li><a href="table-jquery-datatable.html">Jquery Datatables</a></li>
-                                    <li><a href="table-editable.html">Editable Tables</a></li>
-                                    <li><a href="table-color.html">Tables Color</a></li>
-                                    <li><a href="table-filter.html">Table Filter <span class="badge bg-info float-end">New</span></a></li>
-                                    <li><a href="table-dragger.html">Table dragger <span class="badge bg-info float-end">New</span></a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#charts" class="has-arrow"><i class="fa fa-bar-chart"></i><span>Charts</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="chart-morris.html">Morris</a></li>
-                                    <li><a href="chart-flot.html">Flot</a></li>
-                                    <li><a href="chart-jquery-knob.html">Jquery Knob</a></li>
-                                    <li><a href="chart-sparkline.html">Sparkline Chart</a></li>
-                                    <li><a href="chart-peity.html">Peity</a></li>
-                                    <li><a href="chart-apex.html">Apex Charts</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#Maps" class="has-arrow"><i class="fa fa-map-o"></i><span>Maps</span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="map-yandex.html">Yandex Map</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div> --}}
                 <div class="tab-pane fade" id="setting_menu" role="tabpanel" >
                     <div class="px-3">
                         <h6>Choose Skin</h6>
                         <ul class="choose-skin list-unstyled">
-                            <li data-theme="purple" class="mb-2"><div class="purple"></div><span>Purple</span></li>
-                            <li data-theme="blue" class="mb-2"><div class="blue"></div><span>Blue</span></li>
-                            <li data-theme="cyan" class=" mb-2"><div class="cyan"></div><span>Cyan</span></li>
-                            <li data-theme="green" class="mb-2"><div class="green"></div><span>Green</span></li>
-                            <li data-theme="orange" class="mb-2"><div class="orange"></div><span>Orange</span></li>
-                            <li data-theme="blush" class="mb-2"><div class="blush"></div><span>Blush</span></li>
+                            <li data-theme="purple" id="#3B185F" class="mb-2"><div class="purple"></div><span>Purple</span></li>
+                            <li data-theme="blue" id="#0061A8" class="mb-2"><div class="blue"></div><span>Blue</span></li>
+                            <li data-theme="cyan" id="#2EACB3" class=" mb-2"><div class="cyan"></div><span>Cyan</span></li>
+                            <li data-theme="green" id="#28A745" class="mb-2"><div class="green"></div><span>Green</span></li>
+                            <li data-theme="orange" id="#F68C1F" class="mb-2"><div class="orange"></div><span>Orange</span></li>
+                            <li data-theme="blush" id="#FF5C58" class="mb-2"><div class="blush"></div><span>Blush</span></li>
                         </ul>
                         <hr>
                         <h6>Theme Option</h6>
@@ -428,36 +463,27 @@
 
         <div id="main-content">
             <div class="container-fluid">
-
                 <div class="block-header py-lg-4 py-3">
                     <div class="row g-3">
                         <div class="col-md-6 col-sm-12">
                             <h2 class="m-0 fs-5"><a href="javascript:void(0);" class="btn btn-sm btn-link ps-0 btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Dashboard</h2>
-                            
                         </div>
-                        {{-- <div class="col-md-6 col-sm-12 text-md-end">
-                            <div class="d-inline-flex text-start">
-                                <div class="me-2">
-                                    <h6 class="mb-0"><i class="fa fa-user"></i> 1,784</h6>
-                                    <small>Visitors</small>
-                                </div>
-                                <span id="bh_visitors"></span>
-                            </div>
-                            <div class="d-inline-flex text-start ms-lg-3 me-lg-3 ms-1 me-1">
-                                <div class="me-2">
-                                    <h6 class="mb-0"><i class="fa fa-globe"></i> 325</h6>
-                                    <small>Visits</small>
-                                </div>
-                                <span id="bh_visits"></span>
-                            </div>
-                            <div class="d-inline-flex text-start">
-                                <div class="me-2">
-                                    <h6 class="mb-0"><i class="fa fa-comments"></i> 13</h6>
-                                    <small>Chats</small>
-                                </div>
-                                <span id="bh_chats"></span>
-                            </div>
-                        </div> --}}
+                    </div>
+                </div>
+                <div class="context"  >
+                    <div class="area51" >
+                      <ul class="circles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                      </ul> 
                     </div>
                 </div>
                 @yield('content')
@@ -511,6 +537,34 @@ $(document).ready(function () {
 
 
 </script>
+<script>
+    function setThemeColor(color) {
+        document.documentElement.style.setProperty('--theme-color', color);
+        localStorage.setItem('themeColor', color);
+    }
+
+    // Check if the theme color is already saved in localStorage
+    const savedThemeColor = localStorage.getItem('themeColor');
+
+    // Set the theme color based on localStorage or a default color
+    if (savedThemeColor) {
+        setThemeColor(savedThemeColor);
+    } else {
+        setThemeColor('#2EACB3'); // Default theme color
+    }
+
+    const themeList = document.querySelectorAll('.choose-skin li');
+
+    themeList.forEach((themeItem) => {
+        themeItem.addEventListener('click', function () {
+            const selectedTheme = this.getAttribute('id');
+            setThemeColor(selectedTheme);
+            localStorage.setItem('themeColor', selectedTheme); // Save the selected theme color
+        });
+    });
+</script>
+
+
 @yield('jscontent')
 </body>
 

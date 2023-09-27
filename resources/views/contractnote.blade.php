@@ -39,7 +39,7 @@ $s = DB::table('users')->where('id',$contract->seller)->first();
                         <p>Brokers of Acid Oil, RB Oil, Fatty Acid, Lecithin, Sludge, Spent Earth Oil & Soap Stock. <br>33/3, Jethmal Building, Murai Mohalla, Chhawni, Indore (MP) - 452001. <br>2707390-91/ 4281122/ 4287390/ 9425059975/53243/ 9407328145 <br>bhayajibrokers@gmail.com <br>PAN: ABXPA1180D</p>
                     </div>
                     <div class="row">
-                        <p>Date:{{ $contract->date }}<br>Order No: {{ $contract->id }}</p>
+                        <p>Date:{{ $contract->date }}<br>Order No: {{ $contract->orderno }}</p>
                     </div>
                     <div class="row" style="text-align: center;">
                         <h6 style="text-decoration: underline;">CONTRACT NOTE</h6>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2023 at 03:35 PM
+-- Generation Time: Sep 27, 2023 at 03:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -63,6 +63,34 @@ INSERT INTO `attendance_records` (`id`, `employee_id`, `status`, `fuel`, `date`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `brokerage_bills`
+--
+
+CREATE TABLE `brokerage_bills` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `contractno` bigint(20) UNSIGNED NOT NULL,
+  `weight` varchar(255) NOT NULL,
+  `tanker` varchar(255) NOT NULL,
+  `transporter` varchar(255) NOT NULL,
+  `agent` varchar(255) NOT NULL,
+  `invoice` varchar(255) NOT NULL,
+  `pono` varchar(255) NOT NULL,
+  `comm` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `brokerage_bills`
+--
+
+INSERT INTO `brokerage_bills` (`id`, `contractno`, `weight`, `tanker`, `transporter`, `agent`, `invoice`, `pono`, `comm`, `created_at`, `updated_at`) VALUES
+(1, 10, '7', 'MP1245N', 'Transporter 1', 'Agent 1', '1', '1234569877', '101', '2023-09-27 07:12:10', '2023-09-27 07:12:10'),
+(2, 10, '7', 'MP1245N', 'Transporter 1', 'Agent 1', '1', '1234569877', '101', '2023-09-27 07:14:52', '2023-09-27 07:14:52');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cash_books`
 --
 
@@ -107,6 +135,9 @@ CREATE TABLE `contract_notes` (
   `charge` int(11) NOT NULL,
   `gst` varchar(255) NOT NULL,
   `version` int(11) NOT NULL DEFAULT 1,
+  `status` enum('cancelled','pending','delivered') NOT NULL DEFAULT 'pending',
+  `remaining` varchar(255) DEFAULT '0',
+  `delivered` varchar(255) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -115,16 +146,17 @@ CREATE TABLE `contract_notes` (
 -- Dumping data for table `contract_notes`
 --
 
-INSERT INTO `contract_notes` (`id`, `orderno`, `date`, `purchaser`, `seller`, `commodity`, `quantity`, `rate`, `time`, `condition`, `charge`, `gst`, `version`, `created_at`, `updated_at`) VALUES
-(1, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '0000-00-00', 'testing', 100, '18', 1, '2023-09-21 00:30:14', '2023-09-21 00:30:14'),
-(2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '0000-00-00', 'testing 1', 100, '18', 2, '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
-(3, 2, '2023-09-21', '1', '1', 'oil', '456', '100', '0000-00-00', 'testingggg', 50, '18', 1, '2023-09-21 01:39:03', '2023-09-21 01:39:03'),
-(4, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '0000-00-00', 'testinggg', 100, '18', 1, '2023-09-21 06:09:22', '2023-09-21 06:09:22'),
-(5, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '0000-00-00', 'testinggg', 100, '18', 2, '2023-09-21 06:17:52', '2023-09-21 06:17:52'),
-(6, 4, '2023-09-25', '3', '3', 'oil', '7', '100', '0000-00-00', 'cv b mn', 50, '4798465498764', 1, '2023-09-25 02:18:33', '2023-09-25 02:18:33'),
-(7, 5, '2023-09-25', '1', '3', 'oil', '456', '100', '0000-00-00', 'frhgsh', 50, '18', 1, '2023-09-25 03:23:51', '2023-09-25 03:23:51'),
-(8, 5, '2023-09-25', '5', '6', 'oil', '456', '100', '2023-09-30', 'frhgsh', 50, '18', 2, '2023-09-26 05:02:02', '2023-09-26 05:02:02'),
-(9, 6, '2023-09-26', '3', '5', 'oil', '45', '100', '2023-09-29', 'testing', 49, '18', 1, '2023-09-26 05:03:13', '2023-09-26 05:03:13');
+INSERT INTO `contract_notes` (`id`, `orderno`, `date`, `purchaser`, `seller`, `commodity`, `quantity`, `rate`, `time`, `condition`, `charge`, `gst`, `version`, `status`, `remaining`, `delivered`, `created_at`, `updated_at`) VALUES
+(1, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '0000-00-00', 'testing', 100, '18', 1, 'pending', NULL, '', '2023-09-21 00:30:14', '2023-09-21 00:30:14'),
+(2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '0000-00-00', 'testing 1', 100, '18', 2, 'pending', NULL, '', '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
+(3, 2, '2023-09-21', '1', '1', 'oil', '456', '100', '2023-10-17', 'testingggg', 50, '18', 1, 'pending', NULL, '', '2023-09-21 01:39:03', '2023-09-21 01:39:03'),
+(4, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '0000-00-00', 'testinggg', 100, '18', 1, 'pending', NULL, '', '2023-09-21 06:09:22', '2023-09-21 06:09:22'),
+(5, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '2023-09-20', 'testinggg', 100, '18', 2, 'pending', NULL, '', '2023-09-21 06:17:52', '2023-09-21 06:17:52'),
+(6, 4, '2023-09-27', '3', '3', 'oil', '7', '100', '2023-09-27', 'cv b mn', 50, '4798465498764', 1, 'pending', NULL, '', '2023-09-25 02:18:33', '2023-09-25 02:18:33'),
+(7, 5, '2023-09-25', '1', '3', 'oil', '456', '100', '0000-00-00', 'frhgsh', 50, '18', 1, 'pending', NULL, '', '2023-09-25 03:23:51', '2023-09-25 03:23:51'),
+(8, 5, '2023-09-25', '5', '6', 'oil', '456', '100', '2023-09-30', 'frhgsh', 50, '18', 2, 'pending', NULL, '', '2023-09-26 05:02:02', '2023-09-26 05:02:02'),
+(9, 6, '2023-09-26', '3', '5', 'oil', '45', '100', '2023-09-29', 'testing', 49, '18', 1, 'pending', NULL, '', '2023-09-26 05:03:13', '2023-09-26 05:03:13'),
+(10, 1, '2023-09-21', '1', '3', 'oil', '7', '100', '2023-09-24', 'testing 1', 100, '18', 3, 'delivered', NULL, '7', '2023-09-26 23:53:18', '2023-09-27 07:14:52');
 
 -- --------------------------------------------------------
 
@@ -286,7 +318,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (21, '2023_09_22_112645_add_column_to_cash_books_table', 15),
 (22, '2023_09_22_113710_add_column_to_cash_books_table', 16),
 (23, '2023_09_25_041829_add_column_to_users_table', 17),
-(24, '2023_09_26_091809_create_delivery_books_table', 18);
+(24, '2023_09_26_091809_create_delivery_books_table', 18),
+(25, '2023_09_27_034958_add_column_to_contract_notes_table', 19),
+(26, '2023_09_27_070349_add_column_to_table_contract_notes', 20),
+(27, '2023_09_27_111510_create_brokerage_bills_table', 21);
 
 -- --------------------------------------------------------
 
@@ -345,16 +380,16 @@ CREATE TABLE `users` (
   `phone` bigint(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `address` longtext NOT NULL,
-  `pan` varchar(255) NOT NULL,
-  `gst` varchar(255) NOT NULL,
-  `fassi` varchar(255) NOT NULL,
+  `pan` varchar(255) DEFAULT NULL,
+  `gst` varchar(255) DEFAULT NULL,
+  `fassi` varchar(255) DEFAULT NULL,
   `iec` varchar(255) DEFAULT NULL,
   `faddress` longtext NOT NULL,
   `baddress` longtext NOT NULL,
   `bank` longtext NOT NULL,
-  `cperson` varchar(255) NOT NULL,
-  `cnumber` bigint(20) NOT NULL,
-  `tanno` varchar(255) NOT NULL,
+  `cperson` varchar(255) DEFAULT NULL,
+  `cnumber` bigint(20) DEFAULT NULL,
+  `tanno` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -383,6 +418,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `password`, `addres
 ALTER TABLE `attendance_records`
   ADD PRIMARY KEY (`id`),
   ADD KEY `attendance_records_employee_id_foreign` (`employee_id`);
+
+--
+-- Indexes for table `brokerage_bills`
+--
+ALTER TABLE `brokerage_bills`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `brokerage_bills_contractno_foreign` (`contractno`);
 
 --
 -- Indexes for table `cash_books`
@@ -474,6 +516,12 @@ ALTER TABLE `attendance_records`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT for table `brokerage_bills`
+--
+ALTER TABLE `brokerage_bills`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `cash_books`
 --
 ALTER TABLE `cash_books`
@@ -483,7 +531,7 @@ ALTER TABLE `cash_books`
 -- AUTO_INCREMENT for table `contract_notes`
 --
 ALTER TABLE `contract_notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `delivery_books`
@@ -519,7 +567,7 @@ ALTER TABLE `family_members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -542,6 +590,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `attendance_records`
   ADD CONSTRAINT `attendance_records_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
+
+--
+-- Constraints for table `brokerage_bills`
+--
+ALTER TABLE `brokerage_bills`
+  ADD CONSTRAINT `brokerage_bills_contractno_foreign` FOREIGN KEY (`contractno`) REFERENCES `contract_notes` (`id`);
 
 --
 -- Constraints for table `cash_books`

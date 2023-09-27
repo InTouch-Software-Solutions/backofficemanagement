@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AttendanceRecord;
+use App\Models\BrokerageBill;
 use App\Models\CashBook;
 use App\Models\ContractNote;
 use App\Models\Employee;
@@ -406,15 +407,9 @@ class HomeController extends Controller
             'email' => 'required|email|unique:users',
             'phone' => 'required|digits:10|numeric',
             'address' => 'required',
-            'pan' => 'required',
-            'gst' => 'required',
-            'fassi' => 'required',
             'faddress' => 'required',
             'baddress' => 'required',
             'bank' => 'required',
-            'cnumber' => 'required',
-            'cperson' => 'required',
-            'tanno' => 'required',
         ]);
         $client = new User;
         $client->name = $validated['name'];
@@ -423,15 +418,27 @@ class HomeController extends Controller
         $client->password = bcrypt(Str::random(10));
         $client->role = $validated['role'];
         $client->address = $validated['address'];
-        $client->pan = $validated['pan'];
-        $client->gst = $validated['gst'];
-        $client->fassi = $validated['fassi'];
         $client->faddress = $validated['faddress'];
         $client->baddress = $validated['baddress'];
         $client->bank = $validated['bank'];
-        $client->cnumber = $validated['cnumber'];
-        $client->cperson = $validated['cperson'];
-        $client->tanno = $validated['tanno'];
+        if($request->pan){
+            $client->pan = $request->pan;
+        }
+        if($request->gst){
+            $client->gst = $request->gst;
+        }
+        if($request->fassi){
+            $client->fassi = $request->fassi;
+        }
+        if($request->cnumber){
+            $client->cnumber = $request->cnumber;
+        }
+        if($request->cperson){
+            $client->cperson = $request->cperson;
+        }
+        if($request->tanno){
+            $client->tanno = $request->tanno;
+        }
         if($request->iec){
             $client->iec = $request->iec;
         }
@@ -536,6 +543,7 @@ class HomeController extends Controller
         return view('contractlist',compact('contracts'));
     }
     public function deliverybook(){
+        $today = date('y-m-d');
         $uniqueOrders = ContractNote::select('orderno', DB::raw('MAX(version) as max_version'))
         ->groupBy('orderno')
         ->get();
@@ -544,10 +552,21 @@ class HomeController extends Controller
                 $query->select(DB::raw('orderno, MAX(version) as version'))
                     ->from('contract_notes')
                     ->groupBy('orderno');
-            })
+            })->whereDate('time', '>', $today)->where('status','pending')
             ->get();
-        // $contracts = ContractNote::all();
-        return view('deliverybook',compact('contracts'));
+        $tcontracts = ContractNote::whereIn(DB::raw('(orderno, version)'), function ($query) {
+                $query->select(DB::raw('orderno, MAX(version) as version'))
+                    ->from('contract_notes')
+                    ->groupBy('orderno');
+            })->whereDate('time',$today)->where('status','pending')
+            ->get();
+        $pcontracts = ContractNote::whereIn(DB::raw('(orderno, version)'), function ($query) {
+            $query->select(DB::raw('orderno, MAX(version) as version'))
+                ->from('contract_notes')
+                ->groupBy('orderno');
+        })->whereDate('time', '<', $today)->where('status','pending')
+        ->get();
+        return view('deliverybook',compact('contracts','pcontracts','tcontracts'));
     }
 
     public function previousversions($orderno){
@@ -605,6 +624,51 @@ class HomeController extends Controller
             $data['cnumber'] = $client->cnumber;
         }else{$data['cnumber'] = null;}
         return view('clientsheet',compact('data'));
+    }
+
+    public function markstatus($id){
+        return view('markstatus',compact('id'));
+    }
+
+    public function createbrokeragebill(Request $request){
+        $validated = $request->validate([
+            'weight' => "required",
+            'tanker' => "required",
+            'pono' => "required",
+            'comm' => "required",
+            'agent' => "required",
+            'transporter' => "required",
+            'invoice' => "required",
+            'status' => "required",
+            'id' => "required",
+        ]);
+        $bbill = new BrokerageBill;
+        $bbill->contractno = $validated['id'];
+        $bbill->weight = $validated['weight'];
+        $bbill->tanker = $validated['tanker'];
+        $bbill->pono = $validated['pono'];
+        $bbill->comm = $validated['comm'];
+        $bbill->agent = $validated['agent'];
+        $bbill->transporter = $validated['transporter'];
+        $bbill->invoice = $validated['invoice'];
+        $bbill->save();
+        if($validated['status'] == 'delivered'){
+            $o = ContractNote::where('id', $validated['id'])->pluck('orderno');
+            $contract = ContractNote::where('orderno', $o)->latest()->first();
+            $contract->status = $validated['status'];
+            $contract->delivered = (float)$contract->delivered + (float)$validated['weight'];
+            $contract->save();    
+        }
+        if($validated['status'] == 'pending'){
+            $o = ContractNote::where('id', $validated['id'])->pluck('orderno');
+            $contract = ContractNote::where('orderno', $o)->latest()->first();
+            $contract->delivered = (float)$contract->delivered + (float)$validated['weight'];
+            $contract->remaining = (float)$contract->quantity - (float)$validated['weight'];
+            $contract->save();
+        }
+
+        return redirect()->route('deliverybook')->with('success','Brokerage Bill generated!!');
+
     }
     
 }
