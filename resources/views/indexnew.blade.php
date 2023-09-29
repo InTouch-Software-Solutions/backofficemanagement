@@ -369,7 +369,7 @@
                                     <li><a href="{{ Route('addcontract') }}">Add Contract</a></li>
                                     <li><a href="{{ Route('contractlist') }}">Contracts List</a></li>
                                     <li><a href="{{ Route('deliverybook') }}">Delivery Book</a></li>
-                                    <li><a href="project-detail.html">Projects Detail</a></li>
+                                    <li><a href="{{ Route('brokeragebill') }}">Brokerage Bill</a></li>
                                 </ul>
                             </li>
                             <li>

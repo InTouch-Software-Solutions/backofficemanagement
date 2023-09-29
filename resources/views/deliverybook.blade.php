@@ -14,7 +14,7 @@
 @endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Delivery Book</h1>
+    <h1 class="mt-3 mb-3">Delivery Book</h1>
 </div>
 <br>
 <div class="row">
@@ -44,14 +44,14 @@
                         ?>
                         <tr>
                             <td>{{ $pcontract->orderno }}</td>
-                            <td><h5>{{ $pcontract->time }}</h5></td>
+                            <td><h5>{{ $pcontract->fdate }}</h5></td>
                             <td>{{ $pcontract->date }}</td>
                             <td>{{ $pname[0] }}</td>
                             <td>{{ $sname[0] }}</td>
                             <td>{{ $pcontract->commodity }}</td>
                             <td>{{ $pcontract->quantity }} TONNES</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $pcontract->status }}</td>                            
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$pcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id' => $pcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach     
                     </tbody>
@@ -82,14 +82,14 @@
                         ?>
                         <tr>
                             <td>{{ $tcontract->orderno }}</td>
-                            <td><h5>{{ $tcontract->time }}</h5></td>
+                            <td><h5>{{ $tcontract->fdate }}</h5></td>
                             <td>{{ $tcontract->date }}</td>
                             <td>{{ $pname[0] }}</td>
                             <td>{{ $sname[0] }}</td>
                             <td>{{ $tcontract->commodity }}</td>
                             <td>{{ $tcontract->quantity }} TONNES</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $tcontract->status }}</td>                            
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$pcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$tcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach    
                     </tbody>
@@ -120,14 +120,14 @@
                         ?>
                         <tr>
                             <td>{{ $contract->orderno }}</td>
-                            <td><h5>{{ $contract->time }}</h5></td>
+                            <td><h5>{{ $contract->fdate }}</h5></td>
                             <td>{{ $contract->date }}</td>
                             <td>{{ $pname[0] }}</td>
                             <td>{{ $sname[0] }}</td>
                             <td>{{ $contract->commodity }}</td>
                             <td>{{ $contract->quantity }} TONNES</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->status }}</td>                            
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$pcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$contract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach    
                     </tbody>

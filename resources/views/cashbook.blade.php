@@ -6,8 +6,9 @@
 @endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
-  <h1 class="mt-5">Add Expenses</h1>
+  <h1 class="mt-3 mb-3">Add Expenses</h1>
 </div>
+<br>
 <div class="col-12">
 <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Expense Category</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

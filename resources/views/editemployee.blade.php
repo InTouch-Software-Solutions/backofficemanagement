@@ -1,8 +1,9 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-  <h1 class="mt-5">Edit Employee</h1>
+  <h1 class="mt-3 mb-3">Edit Employee</h1>
 </div>
+<br>
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">

@@ -9,8 +9,9 @@
 @endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Add Client</h1>
+    <h1 class="mt-3 mb-3">Add Client</h1>
 </div>
+<br>
 <div class="col-12">
     <div class="card">
         <div class="card-body">

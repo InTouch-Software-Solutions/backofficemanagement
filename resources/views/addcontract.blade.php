@@ -6,12 +6,14 @@
 @endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Add Contract</h1>
+    <h1 class="mt-3 mb-3">Add Contract</h1>
 </div>
-<div class="col-12">
-    <div class="card">
-        <div class="card-body">
-            <form action="{{ Route('savecontract') }}" method="post">
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ Route('savecontract') }}" method="post">
                 @csrf
                 <div class="row g-3">
                     <div class="col-md-6 col-sm-12">
@@ -67,7 +69,8 @@
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Add</button>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>

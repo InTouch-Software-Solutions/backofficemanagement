@@ -480,6 +480,7 @@ class HomeController extends Controller
         $contract->rate = $validated['rate'];
         $contract->gst = $validated['gst'];
         $contract->time = $validated['time'];
+        $contract->fdate = $validated['time'];
         $contract->condition = $validated['condition'];
         $contract->charge = $validated['charge'];
         $contract->save();
@@ -552,19 +553,19 @@ class HomeController extends Controller
                 $query->select(DB::raw('orderno, MAX(version) as version'))
                     ->from('contract_notes')
                     ->groupBy('orderno');
-            })->whereDate('time', '>', $today)->where('status','pending')
+            })->whereDate('fdate', '>', $today)->where('status','pending')
             ->get();
         $tcontracts = ContractNote::whereIn(DB::raw('(orderno, version)'), function ($query) {
                 $query->select(DB::raw('orderno, MAX(version) as version'))
                     ->from('contract_notes')
                     ->groupBy('orderno');
-            })->whereDate('time',$today)->where('status','pending')
+            })->whereDate('fdate',$today)->where('status','pending')
             ->get();
         $pcontracts = ContractNote::whereIn(DB::raw('(orderno, version)'), function ($query) {
             $query->select(DB::raw('orderno, MAX(version) as version'))
                 ->from('contract_notes')
                 ->groupBy('orderno');
-        })->whereDate('time', '<', $today)->where('status','pending')
+        })->whereDate('fdate', '<', $today)->where('status','pending')
         ->get();
         return view('deliverybook',compact('contracts','pcontracts','tcontracts'));
     }
@@ -641,9 +642,15 @@ class HomeController extends Controller
             'invoice' => "required",
             'status' => "required",
             'id' => "required",
+            'contractdate' => "required",
+            'purchaser' => "required",
+            'seller' => "required",
         ]);
         $bbill = new BrokerageBill;
         $bbill->contractno = $validated['id'];
+        $bbill->contractdate = $validated['contractdate'];
+        $bbill->purchaser = $validated['purchaser'];
+        $bbill->seller = $validated['seller'];
         $bbill->weight = $validated['weight'];
         $bbill->tanker = $validated['tanker'];
         $bbill->pono = $validated['pono'];
@@ -664,12 +671,71 @@ class HomeController extends Controller
             $contract = ContractNote::where('orderno', $o)->latest()->first();
             $contract->delivered = (float)$contract->delivered + (float)$validated['weight'];
             $contract->remaining = (float)$contract->quantity - (float)$validated['weight'];
+            if($request->fdate){
+                $contract->time = $contract->fdate;
+                $contract->fdate = $request->fdate;
+            }
             $contract->save();
         }
-
         return redirect()->route('deliverybook')->with('success','Brokerage Bill generated!!');
+    }
+
+    public function brokeragebill(){
+        return view('brokeragebill');
+    }
+    public function excel(){
+        return view('excel');
+    }
+
+    public function bfilter(Request $request){
+        $validated = $request->validate([
+            'year' => 'required',
+            'month' => 'required'
+        ]);
+        $sdate = $validated['year'] . "-" . $validated['month'] . "-01";
+        $edate = $validated['year'] . "-" . $validated['month'] . "-31";
+        $bills = BrokerageBill::whereDate('contractdate', '>=', $sdate)->whereDate('contractdate', '<=', $edate)->get();
+        $data1 = [
+            'month' => $request->month,
+            'year' => $request->year
+        ];
+        return view('brokeragebill',compact('bills','data1'));
 
     }
-    
+
+    public function bfilter2(Request $request){
+        $validated = $request->validate([
+            'sdate' => 'required',
+            'edate' => 'required'
+        ]);
+        $bills = BrokerageBill::whereDate('contractdate', '>=', $validated['sdate'])->whereDate('contractdate', '<=', $validated['edate'])->get();
+        $data2 = [
+            'sdate' => $request->sdate,
+            'edate' => $request->edate
+        ];
+        return view('brokeragebill',compact('bills','data2'));
+
+    }
+
+    public function ledger($id){
+        return view('ledger',compact('id'));
+    }
+
+    public function cbfilter(Request $request){
+        $validated = $request->validate([
+            'sdate' => 'required',
+            'edate' => 'required',
+            'id' => 'required'
+        ]);
+        $sbills = BrokerageBill::whereDate('contractdate', '>=', $validated['sdate'])->whereDate('contractdate', '<=', $validated['edate'])->where('seller', $validated['id'])->get();
+        $bbills = BrokerageBill::whereDate('contractdate', '>=', $validated['sdate'])->whereDate('contractdate', '<=', $validated['edate'])->where('purchaser', $validated['id'])->get();
+        $data = [
+            'sdate' => $validated['sdate'],
+            'edate' => $validated['edate'],
+        ];
+        $id = $validated['id'];
+         return view('ledger',compact('sbills', 'bbills', 'data', 'id'));
+
+    }    
 }
 

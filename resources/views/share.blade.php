@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
-  <h1 class="mt-5">Share Client Details</h1>
+  <h1 class="mt-3 mb-3">Share Client Details</h1>
 </div>
 @if(Session::has('errors'))
     <div class="alert alert-danger">

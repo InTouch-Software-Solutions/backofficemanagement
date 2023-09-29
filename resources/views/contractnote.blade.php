@@ -13,7 +13,7 @@ $p = DB::table('users')->where('id',$contract->purchaser)->first();
 $s = DB::table('users')->where('id',$contract->seller)->first();
 ?>
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Contract Note</h1>
+    <h1 class="mt-3 mb-3">Contract Note</h1>
 </div>
 <br>
 <div class="container-fluid">

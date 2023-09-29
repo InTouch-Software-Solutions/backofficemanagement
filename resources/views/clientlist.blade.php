@@ -1,7 +1,7 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Clients List</h1>
+    <h1 class="mt-3 mb-3">Clients List</h1>
 </div>
 <br>
 <div class="row">
@@ -28,6 +28,7 @@
                             <th><strong>Bank Details:</strong></th>
                             <th>Action:</th>
                             <th>Share Details:</th>
+                            <th>Ledger:</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{!! $client->bank !!}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('share',['id'=>$client->id]) }}" class="btn btn-primary">Share</a></td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('editclient',['id'=>$client->id]) }}" class="btn btn-primary">Edit</a></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('ledger',['id'=>$client->id]) }}" class="btn btn-primary">View Ledger</a></td>
                         </tr>
                         @endforeach    
                     </tbody>

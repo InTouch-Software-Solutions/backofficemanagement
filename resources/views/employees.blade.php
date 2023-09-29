@@ -1,10 +1,10 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-  <h1 class="mt-5">Employees</h1>
+  <h1 class="mt-3 mb-3">Employees</h1>
 </div>
-<div class="container mt-5">
-    <div class="row">
+<br>
+<div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -38,8 +38,7 @@
                 </div>
             </div>    
         </div> 
-    </div>    
-</div>
+</div>    
 @endsection
 
 @section('jscontent')

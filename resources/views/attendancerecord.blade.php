@@ -1,7 +1,7 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Attendance Record</h1>
+    <h1 class="mt-3 mb-3">Attendance Record</h1>
 </div>
 <br>
 <div class="container-fluid">
@@ -11,11 +11,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                        </div>
-                        <div class="col-6">
                             <form action="{{ Route('filter') }}" method="post">
                                 @csrf
-                                <select name="year" id="year">
+                                <select name="year" class="form-select mt-1" id="year">
                                     <option value="" selected>Select Year</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
@@ -27,7 +25,7 @@
                                     <option value="2030">2030</option>
                                     <option value="2031">2031</option>
                                 </select>
-                                <select name="month" id="month">
+                                <select name="month" class="form-select mt-1" id="month">
                                     <option value="" selected>Select Month</option>
                                     <option value="01">January</option>
                                     <option value="02">February</option>
@@ -42,7 +40,7 @@
                                     <option value="11">November</option>
                                     <option value="12">December</option>
                                 </select>
-                                <button type="submit" class="btn btn-primary"id='go'>Go</button>        
+                                <button type="submit" class="btn btn-primary mt-1"id='go'>Go</button>        
                             </form>
                         </div>
                     </div>

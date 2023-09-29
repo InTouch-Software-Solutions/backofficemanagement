@@ -1,7 +1,7 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-5">Previous Versions</h1>
+    <h1 class="mt-3 mb-3">Previous Versions</h1>
 </div>
 <br>
 <div class="row">
