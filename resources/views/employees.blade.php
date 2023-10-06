@@ -5,7 +5,7 @@
 </div>
 <br>
 <div class="row">
-        <div class="col-12">
+    <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <a href="{{ Route('attendance') }}" class="btn btn-primary ">Mark Attendance</a>  &nbsp;&nbsp;
@@ -30,14 +30,14 @@
                                 <td>{{ $employee->phone }}</td>
                                 <td>{{ $employee->joining }}</td>
                                 <td><a href="{{ Route('familyrecord',['id'=>$employee->id]) }}">View Family Members</a></td>
-                                <td><a href="{{ Route('editemployee',['id'=>$employee->id]) }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;<a href="javascript:void(0);" id="{{ $employee->id }}" class="delete"><i class="fa fa-trash"></i></a></td>
+                                <td><a href="{{ Route('viewemployee',['id'=>$employee->id]) }}"><i class="fa fa-eye"></i></a> &nbsp;&nbsp;<a href="{{ Route('editemployee',['id'=>$employee->id]) }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;<a href="javascript:void(0);" id="{{ $employee->id }}" class="delete"><i class="fa fa-trash"></i></a></td>
                             </tr>
                             @endforeach 
                         </tbody>
                     </table>
                 </div>
             </div>    
-        </div> 
+    </div> 
 </div>    
 @endsection
 

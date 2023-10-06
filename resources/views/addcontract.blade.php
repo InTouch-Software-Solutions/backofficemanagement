@@ -20,6 +20,10 @@
                         <label>Date:</label>
                         <input type="date" name="date" class="form-control" placeholder="Enter Date">
                     </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>Cancel Previous Contract:</label>
+                        <input type="number" name="cancel" class="form-control" placeholder="Enter Order No.">
+                    </div>
                     <div class="col-md-12 col-sm-12">
                         <label>Purchaser:</label>
                         <select name="purchaser" id="purchaser" class="form-control">

@@ -72,7 +72,7 @@
                                     $pname = DB::table('users')->where('id', $id)->pluck('name');
                                     $address = DB::table('users')->where('id', $id)->pluck('address');
                                 ?>
-                                <td rowspan="2" colspan="5">{{ $pname[0] }}<br>{{ $address[0] }}</td>  
+                                <td rowspan="2" colspan="5"><strong>{{ $pname[0] }}</strong><br>{{ $address[0] }}</td>  
                                 <td>From:</td>
                                 <td>{{ $data['sdate'] }}</td>
                                 <td>To:</td>
@@ -166,7 +166,7 @@
                                     $sname = DB::table('users')->where('id', $id)->pluck('name');
                                     $address = DB::table('users')->where('id', $id)->pluck('address');
                                 ?>
-                                <td rowspan="2" colspan="5">{{ $sname[0] }}<br>{{ $address[0] }}</td>  
+                                <td rowspan="2" colspan="5"><strong>{{ $sname[0] }}</strong><br>{{ $address[0] }}</td>  
                                 <td>From:</td>
                                 <td>{{ $data['sdate'] }}</td>
                                 <td>To:</td>
@@ -196,7 +196,7 @@
                             @foreach($sbills as $bill)
                             <?php
                                 $p = $bill->purchaser;
-                                $pname = DB::table('users')->where('id', $s)->pluck('name');
+                                $pname = DB::table('users')->where('id', $p)->pluck('name');
                                 $commodity = DB::table('contract_notes')->where('id', $bill->contractno)->pluck('commodity');
                                 $rate = DB::table('contract_notes')->where('id', $bill->contractno)->pluck('rate');
                                 $amount = (float)$bill->comm * (float)$bill->weight;

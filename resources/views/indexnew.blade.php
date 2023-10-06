@@ -176,6 +176,7 @@
             color: white !important;
         }
     </style>
+ 
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/main.css') }}">
@@ -193,8 +194,11 @@
     <!-- Page Loader -->
     <div class="page-loader-wrapper text-center" style="background-color: black;">
         <div class="loader" >
-            <img style="width: 85px; height:85px; " src="{{ asset('assets/images/logo.png') }}" alt="">
-            <div class="h5 fw-light mt-3">Please wait....</div>
+            <div>
+                <h1>DALAL RAMESHCHAND MADANLAL BHAYA</h1>
+            </div>
+            <img style="width: 200px; height:200px; " src="{{ asset('assets/images/logo.png') }}" alt="">
+            <div class="h1 fw-light mt-3">Please wait....</div>
         </div>
     </div>
     <!-- Overlay For Sidebars -->

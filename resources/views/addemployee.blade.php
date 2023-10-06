@@ -34,6 +34,10 @@
                   <input type="text" class="form-control" id="salary" name="salary" placeholder="Enter salary">
                 </div>
                 <div class="form-group">
+                  <label for="address">Address</label>
+                  <textarea name="address" class="form-control" id="address" cols="30" rows="5" placeholder="Enter address"></textarea>
+                </div>
+                <div class="form-group">
                   <label for="bank">Bank Account Details</label>
                   <textarea name="bank" class="form-control" id="bank" cols="30" rows="5" placeholder="Enter bank account details"></textarea>
                 </div>

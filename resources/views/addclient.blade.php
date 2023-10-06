@@ -74,7 +74,17 @@
                     <div class="col-md-12 col-sm-12">
                         <label>Bank Details:</label>
                         <textarea name="bank" id="bank" cols="30" rows="5" class="form-control">Account Name:<br>Account No:<br>IFSC Code:<br>Bank Name:<br>Branch Name:<br>Any Other Remarks:<br></textarea>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>Firm:</label>
+                        <select name="firm" class="form-select">
+                            <option value="">Select Firm</option> 
+                        </select>
                     </div>                     
+                    <div class="col-md-6 col-sm-12">
+                        <label>Comm. Rate:</label>
+                        <input type="text" name="comm" class="form-control" placeholder="Enter Comm. Rate">
+                    </div>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Add</button>

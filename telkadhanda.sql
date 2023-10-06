@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 09:02 AM
+-- Generation Time: Oct 06, 2023 at 03:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -73,12 +73,12 @@ CREATE TABLE `brokerage_bills` (
   `purchaser` bigint(20) UNSIGNED NOT NULL,
   `seller` bigint(20) UNSIGNED NOT NULL,
   `weight` varchar(255) NOT NULL,
-  `tanker` varchar(255) NOT NULL,
-  `transporter` varchar(255) NOT NULL,
-  `agent` varchar(255) NOT NULL,
-  `invoice` varchar(255) NOT NULL,
-  `pono` varchar(255) NOT NULL,
-  `comm` varchar(255) NOT NULL,
+  `tanker` varchar(255) DEFAULT NULL,
+  `transporter` varchar(255) DEFAULT NULL,
+  `agent` varchar(255) DEFAULT NULL,
+  `invoice` varchar(255) DEFAULT NULL,
+  `pono` varchar(255) DEFAULT NULL,
+  `comm` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -88,10 +88,11 @@ CREATE TABLE `brokerage_bills` (
 --
 
 INSERT INTO `brokerage_bills` (`id`, `contractno`, `contractdate`, `purchaser`, `seller`, `weight`, `tanker`, `transporter`, `agent`, `invoice`, `pono`, `comm`, `created_at`, `updated_at`) VALUES
-(2, 10, '2023-09-21', 1, 3, '7', 'MP4654976', 'transporter1', 'agent1', '1', '4845656532', '100', '2023-09-28 22:23:49', '2023-09-28 22:23:49'),
-(3, 6, '2023-09-27', 3, 3, '25', 'MP86496656', 'transporter2', 'agent2', '2', '45451264951', '100', '2023-09-28 23:54:20', '2023-09-28 23:54:20'),
-(4, 9, '2023-09-26', 3, 5, '25', 'MP7865245', 'transporter3', 'agent3', '3', '45026532655', '100', '2023-09-29 00:56:03', '2023-09-29 00:56:03'),
-(5, 9, '2023-09-26', 3, 5, '25', 'MP7865245', 'transporter3', 'agent3', '3', '45026532655', '100', '2023-09-29 00:56:29', '2023-09-29 00:56:29');
+(1, 10, '2023-09-21', 1, 3, '7', 'MP745468655', 'transporter1', 'agent1', '1', '65614681355', '100', '2023-10-06 01:42:32', '2023-10-06 01:42:32'),
+(2, 9, '2023-09-26', 3, 5, '25', 'MP4548165', 'transporter2', 'agent2', '2', '46813213243', '100', '2023-10-06 01:43:27', '2023-10-06 01:43:27'),
+(3, 9, '2023-09-26', 3, 5, '20', 'MP4816546', 'transporter3', 'agent3', '3', '4654981569', '100', '2023-10-06 01:48:54', '2023-10-06 01:48:54'),
+(4, 8, '2023-09-25', 5, 6, '30', 'MP945455', 'transporter 5', 'agent 5', '5', '465465468465', '100', '2023-10-06 04:15:30', '2023-10-06 04:15:30'),
+(5, 12, '2023-10-05', 7, 8, '29.5', 'MP45468132', 't5', 'a5', '6', '465132465', '100', '2023-10-06 04:36:47', '2023-10-06 04:36:47');
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,7 @@ CREATE TABLE `contract_notes` (
   `quantity` varchar(255) NOT NULL,
   `rate` varchar(255) NOT NULL,
   `time` date NOT NULL,
-  `condition` longtext NOT NULL,
+  `condition` longtext DEFAULT NULL,
   `charge` int(11) NOT NULL,
   `gst` varchar(255) NOT NULL,
   `version` int(11) NOT NULL DEFAULT 1,
@@ -153,16 +154,18 @@ CREATE TABLE `contract_notes` (
 --
 
 INSERT INTO `contract_notes` (`id`, `orderno`, `date`, `purchaser`, `seller`, `commodity`, `quantity`, `rate`, `time`, `condition`, `charge`, `gst`, `version`, `status`, `remaining`, `delivered`, `fdate`, `created_at`, `updated_at`) VALUES
-(1, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '2023-09-07', 'testing', 100, '18', 1, 'pending', NULL, '', '2023-09-07', '2023-09-21 00:30:14', '2023-09-21 00:30:14'),
-(2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '2023-09-05', 'testing 1', 100, '18', 2, 'pending', NULL, '', '2023-09-05', '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
-(3, 2, '2023-09-21', '1', '1', 'oil', '456', '100', '2023-10-17', 'testingggg', 50, '18', 1, 'pending', NULL, '', '2023-10-17', '2023-09-21 01:39:03', '2023-09-21 01:39:03'),
-(4, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '2023-09-30', 'testinggg', 100, '18', 1, 'pending', NULL, '', '2023-09-30', '2023-09-21 06:09:22', '2023-09-21 06:09:22'),
-(5, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '2023-09-30', 'testinggg', 100, '18', 2, 'pending', NULL, '', '2023-09-30', '2023-09-21 06:17:52', '2023-09-21 06:17:52'),
-(6, 4, '2023-09-27', '3', '3', 'oil', '7', '100', '2023-10-05', 'cv b mn', 50, '4798465498764', 1, 'pending', '0', '7', '2023-10-05', '2023-09-25 02:18:33', '2023-09-28 23:54:20'),
-(7, 5, '2023-09-25', '1', '3', 'oil', '456', '100', '2023-09-30', 'frhgsh', 50, '18', 1, 'pending', NULL, '', '2023-09-30', '2023-09-25 03:23:51', '2023-09-25 03:23:51'),
-(8, 5, '2023-09-25', '5', '6', 'oil', '456', '100', '2023-09-30', 'frhgsh', 50, '18', 2, 'pending', NULL, '', '2023-09-30', '2023-09-26 05:02:02', '2023-09-26 05:02:02'),
-(9, 6, '2023-09-26', '3', '5', 'oil', '45', '100', '2023-09-29', 'testing', 49, '18', 1, 'pending', '20', '25', '2023-09-30', '2023-09-26 05:03:13', '2023-09-29 00:56:29'),
-(10, 1, '2023-09-21', '1', '3', 'oil', '7', '100', '2023-09-24', 'testing 1', 100, '18', 3, 'delivered', NULL, '14', '2023-09-24', '2023-09-26 23:53:18', '2023-09-28 22:23:49');
+(1, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '2023-09-07', 'testing', 100, '18', 1, 'pending', '7', '', '2023-09-07', '2023-09-21 00:30:14', '2023-09-21 00:30:14'),
+(2, 1, '2023-09-21', '1', '1', 'oil', '7', '100', '2023-09-05', 'testing 1', 100, '18', 2, 'pending', '7', '', '2023-09-05', '2023-09-21 00:53:12', '2023-09-21 00:53:12'),
+(3, 2, '2023-09-21', '1', '1', 'oil', '456', '100', '2023-10-17', 'testingggg', 50, '18', 1, 'pending', '456', '', '2023-10-17', '2023-09-21 01:39:03', '2023-09-21 01:39:03'),
+(4, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '2023-09-30', 'testinggg', 100, '18', 1, 'pending', '7', '', '2023-09-30', '2023-09-21 06:09:22', '2023-09-21 06:09:22'),
+(5, 3, '2023-09-21', '1', '2', 'oil', '7', '100', '2023-09-30', 'testinggg', 100, '18', 2, 'pending', '7', '0', '2023-09-30', '2023-09-21 06:17:52', '2023-10-05 22:32:39'),
+(6, 4, '2023-09-27', '3', '3', 'oil', '7', '100', '2023-10-05', 'cv b mn', 50, '4798465498764', 1, 'pending', '7', '0', '2023-10-05', '2023-09-25 02:18:33', '2023-10-05 22:28:23'),
+(7, 5, '2023-09-25', '1', '3', 'oil', '456', '100', '2023-09-30', 'frhgsh', 50, '18', 1, 'pending', '456', '', '2023-09-30', '2023-09-25 03:23:51', '2023-09-25 03:23:51'),
+(8, 5, '2023-09-25', '5', '6', 'oil', '456', '100', '2023-09-30', 'frhgsh', 50, '18', 2, 'pending', '426', '30', '2023-10-06', '2023-09-26 05:02:02', '2023-10-06 04:15:30'),
+(9, 6, '2023-09-26', '3', '5', 'oil', '45', '100', '2023-09-30', 'testing', 49, '18', 1, 'delivered', '20', '45', '2023-10-13', '2023-09-26 05:03:13', '2023-10-06 01:48:54'),
+(10, 1, '2023-09-21', '1', '3', 'oil', '7', '100', '2023-09-24', 'testing 1', 100, '18', 3, 'delivered', '0', '7', '2023-09-24', '2023-09-26 23:53:18', '2023-10-06 01:42:32'),
+(11, 7, '2023-10-06', '3', '5', 'oil', '14', '75', '2023-10-08', 'Testingggg', 100, '18', 1, 'pending', '0', '0', '2023-10-08', '2023-10-05 22:28:23', '2023-10-05 22:28:23'),
+(12, 8, '2023-10-05', '7', '8', 'Soya Acid Oil', '30', '55.7', '2023-10-16', 'xyz', 100, '18', 1, 'delivered', '30', '29.5', '2023-10-16', '2023-10-06 04:35:11', '2023-10-06 04:36:47');
 
 -- --------------------------------------------------------
 
@@ -197,14 +200,15 @@ CREATE TABLE `delivery_books` (
 CREATE TABLE `employees` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `age` int(11) NOT NULL,
-  `adhaar` varchar(255) NOT NULL,
-  `pan` varchar(255) NOT NULL,
-  `phone` bigint(20) NOT NULL,
-  `salary` bigint(20) NOT NULL,
-  `bank` longtext NOT NULL,
-  `members` int(11) NOT NULL,
-  `joining` date NOT NULL,
+  `age` int(11) DEFAULT NULL,
+  `address` longtext DEFAULT NULL,
+  `adhaar` varchar(255) DEFAULT NULL,
+  `pan` varchar(255) DEFAULT NULL,
+  `phone` bigint(20) DEFAULT NULL,
+  `salary` bigint(20) DEFAULT NULL,
+  `bank` longtext DEFAULT NULL,
+  `members` int(11) DEFAULT NULL,
+  `joining` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -213,12 +217,12 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `name`, `age`, `adhaar`, `pan`, `phone`, `salary`, `bank`, `members`, `joining`, `created_at`, `updated_at`) VALUES
-(2, 'Aayush Patidar', 24, '', '', 9982414226, 100000, '', 0, '2023-06-15', '2023-09-15 02:46:02', '2023-09-15 02:47:20'),
-(3, 'Aman', 26, '', '', 741852963, 100000, '', 0, '2023-09-15', '2023-09-15 09:11:47', '2023-09-15 09:11:47'),
-(4, 'employee 1', 23, '', '', 7418529635, 100000, '', 0, '2023-09-21', '2023-09-21 05:37:20', '2023-09-21 05:37:20'),
-(5, 'employee 2', 25, '963285217412', 'KN665669JID56', 9638527415, 50000, 'SBI8596396IN', 2, '2023-09-22', '2023-09-22 02:34:43', '2023-09-22 02:34:43'),
-(6, 'employee 3', 25, '963285217412', 'KN665669JID56', 9638527415, 50000, 'SBI8596396IN', 2, '2023-09-22', '2023-09-22 02:35:16', '2023-09-22 02:35:34');
+INSERT INTO `employees` (`id`, `name`, `age`, `address`, `adhaar`, `pan`, `phone`, `salary`, `bank`, `members`, `joining`, `created_at`, `updated_at`) VALUES
+(2, 'Aayush Patidar', 24, '', '', '', 9982414226, 100000, '', 0, '2023-06-15', '2023-09-15 02:46:02', '2023-09-15 02:47:20'),
+(3, 'Aman', 26, '', '', '', 741852963, 100000, '', 0, '2023-09-15', '2023-09-15 09:11:47', '2023-09-15 09:11:47'),
+(4, 'employee 1', 23, '', '', '', 7418529635, 100000, '', 0, '2023-09-21', '2023-09-21 05:37:20', '2023-09-21 05:37:20'),
+(5, 'employee 2', 25, '', '963285217412', 'KN665669JID56', 9638527415, 50000, 'SBI8596396IN', 2, '2023-09-22', '2023-09-22 02:34:43', '2023-09-22 02:34:43'),
+(6, 'employee 3', 26, '', '963285217412', 'KN665669JID56', 9638527415, 50000, '<p>SBI8596396IN</p>', 2, '2023-09-22', '2023-09-22 02:35:16', '2023-10-05 23:32:25');
 
 -- --------------------------------------------------------
 
@@ -240,6 +244,30 @@ CREATE TABLE `expenses_categories` (
 INSERT INTO `expenses_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Fuel expenses', '2023-09-22 06:37:33', '2023-09-22 06:37:33'),
 (2, 'Ent', '2023-09-26 06:53:24', '2023-09-26 06:53:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `extra_fields`
+--
+
+CREATE TABLE `extra_fields` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `fid` bigint(20) NOT NULL,
+  `sign` enum('employee','client') NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `details` longtext NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `extra_fields`
+--
+
+INSERT INTO `extra_fields` (`id`, `fid`, `sign`, `title`, `details`, `created_at`, `updated_at`) VALUES
+(1, 6, 'employee', 'Bank Details', 'Account Name: xyz,\nAccount No: 123,\nIFSC Code: SBI65695,\nBank Name: SBI,\nBranch Name: Indore,\nAny Other Remarks: None', '2023-10-05 23:32:25', '2023-10-05 23:32:25'),
+(2, 2, 'client', 'Tag', 'Cool', '2023-10-06 03:24:51', '2023-10-06 03:24:51');
 
 -- --------------------------------------------------------
 
@@ -267,10 +295,10 @@ CREATE TABLE `family_members` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `employee_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `pan` varchar(255) NOT NULL,
-  `adhaar` varchar(255) NOT NULL,
-  `relation` varchar(255) NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `pan` varchar(255) DEFAULT NULL,
+  `adhaar` varchar(255) DEFAULT NULL,
+  `relation` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -330,7 +358,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (28, '2023_09_27_111510_create_brokerage_bills_table', 21),
 (29, '2023_09_28_045926_add_column_to_contract_notes_table', 22),
 (30, '2023_09_28_091501_add_column_to_brokerage_bills_table', 23),
-(31, '2023_09_29_033137_add_column_to_brokerage_bills_table', 24);
+(31, '2023_09_29_033137_add_column_to_brokerage_bills_table', 24),
+(32, '2023_10_06_044554_create_extra_fields_table', 25),
+(33, '2023_10_06_064001_add_column_to_employees_table', 26),
+(34, '2023_10_06_125105_add_column_to_users_table', 27);
 
 -- --------------------------------------------------------
 
@@ -384,21 +415,23 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `role` enum('admin','client') NOT NULL,
-  `phone` bigint(20) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `address` longtext NOT NULL,
+  `phone` bigint(20) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `address` longtext DEFAULT NULL,
   `pan` varchar(255) DEFAULT NULL,
   `gst` varchar(255) DEFAULT NULL,
   `fassi` varchar(255) DEFAULT NULL,
   `iec` varchar(255) DEFAULT NULL,
-  `faddress` longtext NOT NULL,
-  `baddress` longtext NOT NULL,
-  `bank` longtext NOT NULL,
+  `faddress` longtext DEFAULT NULL,
+  `baddress` longtext DEFAULT NULL,
+  `bank` longtext DEFAULT NULL,
   `cperson` varchar(255) DEFAULT NULL,
   `cnumber` bigint(20) DEFAULT NULL,
   `tanno` varchar(255) DEFAULT NULL,
+  `firm` varchar(255) DEFAULT NULL,
+  `comm` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -409,13 +442,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `password`, `address`, `pan`, `gst`, `fassi`, `iec`, `faddress`, `baddress`, `bank`, `cperson`, `cnumber`, `tanno`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Aayush Patidar', 'aayushpatidar04@gmail.com', 'client', 9982414226, '$2y$10$KT32FZADCcTL2whFmhVWCeG90orn3I3CeppAgAkBHzBwEYrEGSWhK', 'address 1', '', '', '', NULL, '', '', '', '', 0, '', NULL, NULL, '2023-09-19 23:06:58', '2023-09-19 23:06:58'),
-(2, 'Aman', 'aman@gmail.com', 'client', 7418529635, '$2y$10$lgTtCDR3NMFZ6le73OC.GOhdTMIuF0OSyWbgQ6jLREHXvuVTGuQ1u', 'address 2', '', '', '', NULL, '', '', '', '', 0, '', NULL, NULL, '2023-09-21 06:02:16', '2023-09-21 06:02:16'),
-(3, 'client 1', 'client1@gmail.com', 'client', 9875432165, '$2y$10$kgafSczbOOU01M.QbCbbBekMc9GV5aLRv/tCIoVmFKCb/yftA6e5y', 'address 3', 'FTYHUJ8456H', '4798465498764', '4694984641658794', NULL, 'NRK Business Park, Vijay Nagar', 'kjj-pioh,sdfkghofksd\r\nsgjisdog[f .psfd[ghfsd', 'FHJIOhl iojkLPO jmpsofkl[gh,m,fsd[', 'contact1', 6456479891, '654932696898', NULL, NULL, '2023-09-24 23:36:02', '2023-09-24 23:36:02'),
-(4, 'Admin', 'admin@gmail.com', 'admin', 0, '$2y$10$1gtqCasP1y8wjd09h6O1oOLvyVaLMb8.uaQ.8tNz70wH.Q86gpSi.', '0', '0', '0', '0', NULL, '0', '0', '0', '0', 0, '0', NULL, NULL, '2023-09-25 01:19:10', '2023-09-25 01:19:10'),
-(5, 'client 2', 'client2@gmail.com', 'client', 7418529636, '$2y$10$i2qquN/42BcmwZ2mFLCeUee9yRpUE9ofg6Fghu4TstUANK8aFZwlW', 'Indore', 'G47579JKJHJK', '5855655555585', '55845545545558', '55845655', 'Bhopal', 'Dubai', '<p>Account Name: xyx<br>Account No: 123<br>IFSC Code: SBI65695<br>Bank Name: SBI<br>Branch Name: Indore<br>Any Other Remarks: None</p>', 'Client a', 7894612634, '478546632699', NULL, NULL, '2023-09-26 00:37:54', '2023-09-26 00:37:54'),
-(6, 'client 3', 'client3@gmail.com', 'client', 7418529635, '$2y$10$tAIGmg16T1WC4xFQ8c7Tu.B7yrSMFTRt4iXHaXyB8QPipjZO/pV2q', 'NRK Business Park, Vijay Nagar', 'KN665669JID56', '4798465498764', '55845545545558', '55845655', 'intouch', 'zfsdg', '<p>Account Name:<br>Account No:<br>IFSC Code:<br>Bank Name:<br>Branch Name:<br>Any Other Remarks:</p><h2>.dfsgb.</h2>', 'dfg', 7845123265, '478546632699', NULL, NULL, '2023-09-26 01:01:25', '2023-09-26 01:01:25');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `password`, `address`, `pan`, `gst`, `fassi`, `iec`, `faddress`, `baddress`, `bank`, `cperson`, `cnumber`, `tanno`, `firm`, `comm`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Aayush Patidar', 'aayushpatidar04@gmail.com', 'client', 9982414226, '$2y$10$KT32FZADCcTL2whFmhVWCeG90orn3I3CeppAgAkBHzBwEYrEGSWhK', 'address 1', '', '', '', NULL, '', '', '', '', 0, '', '', '', NULL, NULL, '2023-09-19 23:06:58', '2023-09-19 23:06:58'),
+(2, 'Aman', 'aman@gmail.com', 'client', 7418529635, '$2y$10$lgTtCDR3NMFZ6le73OC.GOhdTMIuF0OSyWbgQ6jLREHXvuVTGuQ1u', 'address 2', '48165165', '165165165165', '4175454557', '7458456448', 'address 1', 'address 3', '<p>zarghsfdhgh</p>', 'c1', 7418528524, '165165165', '', '', NULL, NULL, '2023-09-21 06:02:16', '2023-10-06 03:24:51'),
+(3, 'client 1', 'client1@gmail.com', 'client', 9875432165, '$2y$10$kgafSczbOOU01M.QbCbbBekMc9GV5aLRv/tCIoVmFKCb/yftA6e5y', 'address 3', 'FTYHUJ8456H', '4798465498764', '4694984641658794', NULL, 'NRK Business Park, Vijay Nagar', 'kjj-pioh,sdfkghofksd\r\nsgjisdog[f .psfd[ghfsd', 'FHJIOhl iojkLPO jmpsofkl[gh,m,fsd[', 'contact1', 6456479891, '654932696898', '', '', NULL, NULL, '2023-09-24 23:36:02', '2023-09-24 23:36:02'),
+(4, 'Admin', 'admin@gmail.com', 'admin', 0, '$2y$10$1gtqCasP1y8wjd09h6O1oOLvyVaLMb8.uaQ.8tNz70wH.Q86gpSi.', '0', '0', '0', '0', NULL, '0', '0', '0', '0', 0, '0', '', '', NULL, NULL, '2023-09-25 01:19:10', '2023-09-25 01:19:10'),
+(5, 'client 2', 'client2@gmail.com', 'client', 7418529636, '$2y$10$i2qquN/42BcmwZ2mFLCeUee9yRpUE9ofg6Fghu4TstUANK8aFZwlW', 'Indore', 'G47579JKJHJK', '5855655555585', '55845545545558', '55845655', 'Bhopal', 'Dubai', '<p>Account Name: xyx<br>Account No: 123<br>IFSC Code: SBI65695<br>Bank Name: SBI<br>Branch Name: Indore<br>Any Other Remarks: None</p>', 'Client a', 7894612634, '478546632699', '', '', NULL, NULL, '2023-09-26 00:37:54', '2023-09-26 00:37:54'),
+(6, 'client 3', 'client3@gmail.com', 'client', 7418529635, '$2y$10$tAIGmg16T1WC4xFQ8c7Tu.B7yrSMFTRt4iXHaXyB8QPipjZO/pV2q', 'NRK Business Park, Vijay Nagar', 'KN665669JID56', '4798465498764', '55845545545558', '55845655', 'intouch', 'zfsdg', '<p>Account Name:<br>Account No:<br>IFSC Code:<br>Bank Name:<br>Branch Name:<br>Any Other Remarks:</p><h2>.dfsgb.</h2>', 'dfg', 7845123265, '478546632699', '', '', NULL, NULL, '2023-09-26 01:01:25', '2023-09-26 01:01:25'),
+(7, 'Nutri Vita Solutions, Indore', 'a@g.c', 'client', 7894561235, '$2y$10$hkYR/e1z6mRNYtW44dkcXuHPJZkgpRW90TK0wVt4vNY3jfZ7fUyVS', 'address 1', '465465132132', '1212465465', '465132', '132465465', 'address 1', 'address 1', '<p>Account Name: xyz<br>Account No: 125<br>IFSC Code: 4556<br>Bank Name: sdfg<br>Branch Name: indore<br>Any Other Remarks: asrg<br>&nbsp;</p>', 'c1', 1234567895, '123246546', '', '', NULL, NULL, '2023-10-06 04:32:47', '2023-10-06 04:32:47'),
+(8, 'Mahesh Edible Oil, Kota', 'a@g.sd', 'client', 4654651324, '$2y$10$hMFNQXb8K2zSsgiuK2kB/u0mB1k2p.zv4x6Gkv3OlZm2cUGsO4pZW', 'dfhj', '546', '6546464', '4546', '45', 'dfhj', 'dfgh', '<p>Account Name:<br>Account No:<br>IFSC Code:<br>Bank Name:<br>Branch Name:<br>Any Other Remarks:<br>&nbsp;</p>', 'fgj', 4564651325, '6454', '', '', NULL, NULL, '2023-10-06 04:34:06', '2023-10-06 04:34:06');
 
 --
 -- Indexes for dumped tables
@@ -467,6 +502,12 @@ ALTER TABLE `employees`
 -- Indexes for table `expenses_categories`
 --
 ALTER TABLE `expenses_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `extra_fields`
+--
+ALTER TABLE `extra_fields`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -542,7 +583,7 @@ ALTER TABLE `cash_books`
 -- AUTO_INCREMENT for table `contract_notes`
 --
 ALTER TABLE `contract_notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `delivery_books`
@@ -563,6 +604,12 @@ ALTER TABLE `expenses_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `extra_fields`
+--
+ALTER TABLE `extra_fields`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -578,7 +625,7 @@ ALTER TABLE `family_members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -590,7 +637,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

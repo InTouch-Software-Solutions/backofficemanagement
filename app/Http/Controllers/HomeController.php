@@ -8,6 +8,7 @@ use App\Models\CashBook;
 use App\Models\ContractNote;
 use App\Models\Employee;
 use App\Models\ExpensesCategory;
+use App\Models\ExtraField;
 use App\Models\FamilyMember;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -46,27 +47,37 @@ class HomeController extends Controller
     public function saveemployee(Request $request){
         $validated = $request->validate([
             'name' => 'required',
-            'age' => 'required|numeric',
-            'phone' => 'required|digits:10|numeric',
-            'salary' => 'required',
-            'adhaar' => 'required|numeric',
-            'pan' => 'required',
-            'bank' => 'required',
-            'members' => 'required|numeric',
-            'joining' => 'required',
         ]);
         $employee = new Employee;
         $employee->name = $validated['name'];
-        $employee->age = $validated['age'];
-        $employee->phone = $validated['phone'];
-        $employee->salary = $validated['salary'];
-        $employee->joining = $validated['joining'];
-        $employee->pan = $validated['pan'];
-        $employee->adhaar = $validated['adhaar'];
-        $employee->bank = $validated['bank'];
-        $employee->members = $validated['members'];
+        if($request->age){
+            $employee->age = $request->age;
+        }
+        if($request->phone){
+            $employee->phone = $request->phone;
+        }
+        if($request->salary){
+            $employee->salary = $request->salary;
+        }
+        if($request->joining){
+            $employee->joining = $request->joining;
+        }
+        if($request->pan){
+            $employee->pan = $request->pan;
+        }
+        if($request->adhaar){
+            $employee->adhaar = $request->adhaar;
+        }
+        if($request->bank){
+            $employee->bank = $request->bank;
+        }
+        if($request->members){
+            $employee->members = $request->members;
+        }
+        if($request->address){
+            $employee->address = $request->address;
+        }
         $employee->save();
-        
         for($i=0; $i<$validated['members']; $i++){
             $member = new FamilyMember;
             $member->employee_id = $employee->id;
@@ -103,6 +114,12 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function viewemployee($id){
+        $employee = Employee::find($id);
+        $members = FamilyMember::where('employee_id', $id)->get();
+        return view('viewemployee', compact('employee', 'members'));
+    }
+
     public function editemployee($id){
         $employee = Employee::find($id);
         return view('editemployee',compact('employee'));
@@ -121,24 +138,44 @@ class HomeController extends Controller
         $validated = $request->validate([
             'id' => 'required',
             'name' => 'required',
-            'age' => 'required|numeric',
-            'phone' => 'required|digits:10|numeric',
-            'salary' => 'required',
-            'adhaar' => 'required|numeric',
-            'pan' => 'required',
-            'bank' => 'required',
-            'joining' => 'required',
         ]);
         $employee = Employee::where('id',$request->id)->first();
         $employee->name = $validated['name'];
-        $employee->age = $validated['age'];
-        $employee->phone = $validated['phone'];
-        $employee->salary = $validated['salary'];
-        $employee->joining = $validated['joining'];
-        $employee->adhaar = $validated['adhaar'];
-        $employee->pan = $validated['pan'];
-        $employee->bank = $validated['bank'];
+        if($request->age){
+            $employee->age = $request->age;
+        }
+        if($request->phone){
+            $employee->phone = $request->phone;
+        }
+        if($request->salary){
+            $employee->salary = $request->salary;
+        }
+        if($request->joining){
+            $employee->joining = $request->joining;
+        }
+        if($request->adhaar){
+            $employee->adhaar = $request->adhaar;
+        }
+        if($request->pan){
+            $employee->pan = $request->pan;
+        }
+        if($request->bank){
+            $employee->bank = $request->bank;
+        }
+        if($request->address){
+            $employee->address = $request->address;
+        }
         $employee->save();
+        if($request->extrafield){
+            for($i=0; $i < $request->extrafield; $i++){
+                $field = new ExtraField;
+                $field->fid = $validated['id'];
+                $field->sign = $request->sign;
+                $field->title = $request->title[$i];
+                $field->details = $request->details[$i];
+                $field->save();
+            }
+        }
         return redirect()->route('employees')->with('success','Employee updated Successfully!!');
     }
 
@@ -146,18 +183,22 @@ class HomeController extends Controller
         $validated = $request->validate([
             'id' => 'required',
             'name' => 'required',
-            'phone' => 'required|digits:10|numeric',
-            'pan' => 'required',
-            'adhaar' => 'required|numeric',
-            'relation' => 'required',
         ]);
         $member = new FamilyMember;
         $member->employee_id = $validated['id'];
         $member->name = $validated['name'];
-        $member->phone = $validated['phone'];
-        $member->pan = $validated['pan'];
-        $member->adhaar = $validated['adhaar'];
-        $member->relation = $validated['relation'];
+        if($request->phone){
+            $member->phone = $request->phone;
+        }
+        if($request->pan){
+            $member->pan = $request->pan;
+        }
+        if($request->adhaar){
+            $member->adhaar = $request->adhaar;
+        }
+        if($request->relation){
+            $member->relation = $request->relation;
+        }
         $member->save();
         return redirect()->route('familyrecord',['id' => $member->employee_id])->with('success','Member added Successfully!!');
     }
@@ -165,17 +206,21 @@ class HomeController extends Controller
         $validated = $request->validate([
             'id' => 'required',
             'name' => 'required',
-            'phone' => 'required|digits:10|numeric',
-            'pan' => 'required',
-            'adhaar' => 'required|numeric',
-            'relation' => 'required',
         ]);
         $member = FamilyMember::where('id',$validated['id'])->first();
         $member->name = $validated['name'];
-        $member->phone = $validated['phone'];
-        $member->pan = $validated['pan'];
-        $member->adhaar = $validated['adhaar'];
-        $member->relation = $validated['relation'];
+        if($request->phone){
+            $member->phone = $request->phone;
+        }
+        if($request->pan){
+            $member->pan = $request->pan;
+        }
+        if($request->adhaar){
+            $member->adhaar = $request->adhaar;
+        }
+        if($request->relation){
+            $member->relation = $request->relation;
+        }
         $member->save();
 
         return redirect()->route('familyrecord',['id' => $member->employee_id])->with('success','Member updated Successfully!!');
@@ -404,19 +449,76 @@ class HomeController extends Controller
         $validated = $request->validate([
             'role' => 'required',
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+        ]);
+        $client = new User;
+        $client->name = $validated['name'];
+        if($request->email){
+            $client->email = $request->email;
+        }
+        if($request->phone){
+            $client->phone = $request->phone;
+        }
+        $client->password = bcrypt(Str::random(10));
+        $client->role = $validated['role'];
+        if($request->address){
+            $client->address = $request->address;
+        }
+        if($request->faddress){
+            $client->faddress = $request->faddress;
+        }
+        if($request->baddress){
+            $client->baddress = $request->baddress;
+        }
+        if($request->bank){
+            $client->bank = $request->bank;
+        }
+        if($request->pan){
+            $client->pan = $request->pan;
+        }
+        if($request->gst){
+            $client->gst = $request->gst;
+        }
+        if($request->fassi){
+            $client->fassi = $request->fassi;
+        }
+        if($request->cnumber){
+            $client->cnumber = $request->cnumber;
+        }
+        if($request->cperson){
+            $client->cperson = $request->cperson;
+        }
+        if($request->tanno){
+            $client->tanno = $request->tanno;
+        }
+        if($request->firm){
+            $client->firm = $request->firm;
+        }
+        if($request->iec){
+            $client->iec = $request->iec;
+        }
+        if($request->comm){
+            $client->comm = $request->comm;
+        }
+        $client->save();
+
+        return redirect()->route('clientlist')->with('success','Client added Successfully!!');
+    }
+
+    public function updateclient(Request $request){
+        $validated = $request->validate([
+            'id' => 'required',
+            'role' => 'required',
+            'name' => 'required',
             'phone' => 'required|digits:10|numeric',
             'address' => 'required',
             'faddress' => 'required',
             'baddress' => 'required',
             'bank' => 'required',
         ]);
-        $client = new User;
+        $client = User::find($validated['id']);
         $client->name = $validated['name'];
-        $client->email = $validated['email'];
+        $client->email = $request->email;
         $client->phone = $validated['phone'];
-        $client->password = bcrypt(Str::random(10));
-        $client->role = $validated['role'];
         $client->address = $validated['address'];
         $client->faddress = $validated['faddress'];
         $client->baddress = $validated['baddress'];
@@ -443,8 +545,17 @@ class HomeController extends Controller
             $client->iec = $request->iec;
         }
         $client->save();
-
-        return redirect()->route('clientlist')->with('success','Client added Successfully!!');
+        if($request->extrafield){
+            for($i=0; $i < $request->extrafield; $i++){
+                $field = new ExtraField;
+                $field->fid = $validated['id'];
+                $field->sign = $validated['role'];
+                $field->title = $request->title[$i];
+                $field->details = $request->details[$i];
+                $field->save();
+            }
+        }
+        return redirect()->route('clientlist')->with('success', 'Client Updated Successfully!!');
     }
 
     public function clientlist(){
@@ -467,7 +578,6 @@ class HomeController extends Controller
             'rate' => 'required',
             'gst' => 'required',
             'time' => 'required',
-            'condition' => 'required',
             'charge' => 'required',
         ]);
 
@@ -477,16 +587,28 @@ class HomeController extends Controller
         $contract->seller = $validated['seller'];
         $contract->commodity = $validated['commodity'];
         $contract->quantity = $validated['quantity'];
+        $contract->remaining = $validated['quantity'];
         $contract->rate = $validated['rate'];
         $contract->gst = $validated['gst'];
         $contract->time = $validated['time'];
         $contract->fdate = $validated['time'];
-        $contract->condition = $validated['condition'];
+        if($request->condition){
+            $contract->condition = $request->condition;
+        }
         $contract->charge = $validated['charge'];
         $contract->save();
         $max = ContractNote::max('orderno');
         $contract->orderno = $max + 1;
         $contract->save();
+        if($request->cancel){
+            $cs = ContractNote::where('orderno', $request->cancel)->get();
+            if($cs){
+                foreach($cs as $c){
+                    $c->status = 'cancelled';
+                    $c->save();
+                }
+            }
+        }
         return redirect()->route('contractnote',['id'=>$contract->id])->with('success','Contract added Successfully!!');
     }
 
@@ -507,7 +629,6 @@ class HomeController extends Controller
             'rate' => 'required',
             'gst' => 'required',
             'time' => 'required',
-            'condition' => 'required',
             'charge' => 'required',
         ]);
         $contract = ContractNote::where('id',$validated['id'])->first();
@@ -520,7 +641,9 @@ class HomeController extends Controller
         $newcontract->rate = $validated['rate'];
         $newcontract->gst = $validated['gst'];
         $newcontract->time = $validated['time'];
-        $newcontract->condition = $validated['condition'];
+        if($request->condition){
+            $newcontract->condition = $request->condition;
+        }
         $newcontract->charge = $validated['charge'];
         $newcontract->orderno = $contract->orderno;
         $newcontract->version = $contract->version + 1;
@@ -540,7 +663,6 @@ class HomeController extends Controller
                     ->groupBy('orderno');
             })
             ->get();
-        // $contracts = ContractNote::all();
         return view('contractlist',compact('contracts'));
     }
     public function deliverybook(){
@@ -634,12 +756,6 @@ class HomeController extends Controller
     public function createbrokeragebill(Request $request){
         $validated = $request->validate([
             'weight' => "required",
-            'tanker' => "required",
-            'pono' => "required",
-            'comm' => "required",
-            'agent' => "required",
-            'transporter' => "required",
-            'invoice' => "required",
             'status' => "required",
             'id' => "required",
             'contractdate' => "required",
@@ -652,12 +768,24 @@ class HomeController extends Controller
         $bbill->purchaser = $validated['purchaser'];
         $bbill->seller = $validated['seller'];
         $bbill->weight = $validated['weight'];
-        $bbill->tanker = $validated['tanker'];
-        $bbill->pono = $validated['pono'];
-        $bbill->comm = $validated['comm'];
-        $bbill->agent = $validated['agent'];
-        $bbill->transporter = $validated['transporter'];
-        $bbill->invoice = $validated['invoice'];
+        if($request->tanker){
+            $bbill->tanker = $request->tanker;
+        }
+        if($request->pono){
+            $bbill->pono = $request->pono;
+        }
+        if($request->comm){
+            $bbill->comm = $request->comm;
+        }
+        if($request->agent){
+            $bbill->agent = $request->agent;
+        }
+        if($request->transporter){
+            $bbill->transporter = $request->transporter;
+        }
+        if($request->invoice){
+            $bbill->invoice = $request->invoice;
+        }
         $bbill->save();
         if($validated['status'] == 'delivered'){
             $o = ContractNote::where('id', $validated['id'])->pluck('orderno');

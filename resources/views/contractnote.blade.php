@@ -5,6 +5,10 @@
         border-collapse: separate;
         border-spacing: 0px;
       }
+
+      #printableArea {
+        background-color: #ddd;
+      }
 </style>
 @endsection
 @section('content')
@@ -126,8 +130,9 @@ $s = DB::table('users')->where('id',$contract->seller)->first();
                         </div>
                     </div>
                 </div>
+                <br>
                 <div class="col-12 text-end">
-                    <button class="btn btn-outline-secondary" id="printButton"><i class="fa fa-print"></i> Print</button>
+                    <button class="btn btn-outline-primary" id="printButton"><i class="fa fa-print"></i> Print</button>
                 </div>
                 
             </div>

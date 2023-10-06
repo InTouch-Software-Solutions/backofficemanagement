@@ -17,7 +17,7 @@
             <div class="card-body">
                 <?php
                     $d = DB::table('contract_notes')->where('id',$id)->pluck('date');    
-                    $q = DB::table('contract_notes')->where('id',$id)->pluck('quantity');    
+                    $q = DB::table('contract_notes')->where('id',$id)->pluck('remaining');    
                     $p = DB::table('contract_notes')->where('id',$id)->pluck('purchaser');    
                     $s = DB::table('contract_notes')->where('id',$id)->pluck('seller');    
                     $date = $d[0];

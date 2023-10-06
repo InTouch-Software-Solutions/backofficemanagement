@@ -15,9 +15,10 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <form action="{{ Route('updateclient') }}" method="post">
+            <form id="extra" action="{{ Route('updateclient') }}" method="post">
                 @csrf
                 <input type="hidden" name="role" value="client">
+                <input type="hidden" name="id" value="{{ $client->id }}">
                 <div class="row g-3">
                     <div class="col-md-6 col-sm-12">
                         <label>Name:</label>
@@ -74,10 +75,17 @@
                     <div class="col-md-12 col-sm-12">
                         <label>Bank Details:</label>
                         <textarea name="bank" id="bank" cols="30" rows="5" class="form-control">{{ $client->bank }}</textarea>
-                    </div>                     
+                    </div>   
+                    <div class="form-group">
+                        <label for="extrafield">No. of extra field</label>
+                        <input type="text" class="form-control" id="extrafield" name="extrafield" placeholder="Enter no. of extra fields">
+                        <br>
+                        <button type="button" class="btn btn-primary" id="addMember">Add Extra field</button>
+                    </div>
+                    <div id="details"></div>                  
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" style="display: none;" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>
@@ -92,5 +100,39 @@
             console.error(error);
         }
     );
+</script>
+<script>
+
+    document.getElementById("addMember").addEventListener("click", function() {
+        numMembers = parseInt(document.getElementById("extrafield").value);
+        generateMemberFormFields(numMembers);
+    });
+  
+    function generateMemberFormFields(numMembers) {
+        const memberDetailsContainer = document.getElementById("details");
+        const submitButton = document.querySelector("form#extra button[type=submit]");
+        if(numMembers > 0){
+          memberDetailsContainer.innerHTML = "<h2>Extra Details</h2>";
+        }
+  
+        for (let i = 1; i <= numMembers; i++) {
+            const memberDiv = document.createElement("div");
+            memberDiv.innerHTML = `
+            <div class="row">
+              <h3>${i}</h3>
+              <div class="col-6">
+                <label for="title[]">Title:</label>
+                <input type="text" class="form-control"  name="title[]" required>
+              </div>
+              <div class="col-6">
+                <label for="details[]">Details:</label>
+                <textarea cols="30" rows="5" class="form-control" id="xyz" name="details[]" required></textarea>
+              </div>
+            </div>
+            `;
+            memberDetailsContainer.appendChild(memberDiv);
+        }
+        submitButton.style.display = "block";
+    }
 </script>
 @endsection

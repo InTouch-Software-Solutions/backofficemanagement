@@ -152,6 +152,17 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <br>
+                                        <div>
+                                            <h6 style="text-decoration: underline;">Bank Details:</h6>
+                                            {!! $employee->bank !!}
+                                            <?php
+                                                $details = DB::table('extra_fields')->where('sign', 'employee')->where('fid', $employee->id)->where('title', 'Bank Details')->get();
+                                            ?>
+                                            @foreach($details as $detail)
+                                                {{ $detail->details }}
+                                            @endforeach
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                     </div>

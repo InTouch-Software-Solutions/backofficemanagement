@@ -245,8 +245,9 @@
                     </table>
                 </div>
                 @endif
+                <br>
                 <div class="col-12 text-end">
-                    <button class="btn btn-outline-secondary" id="printButton"><i class="fa fa-print"></i> Print</button>
+                    <button class="btn btn-outline-primary" id="printButton"><i class="fa fa-print"></i> Print</button>
                 </div>
             </div>
         </div>

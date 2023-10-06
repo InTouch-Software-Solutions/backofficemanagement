@@ -33,6 +33,7 @@
                             <th>Commodity</th>
                             <th>Quantity</th>
                             <th>Status</th>
+                            <th>Remaining: </th>
                             <th>Action: </th>
                         </tr>
                     </thead>
@@ -50,7 +51,8 @@
                             <td>{{ $sname[0] }}</td>
                             <td>{{ $pcontract->commodity }}</td>
                             <td>{{ $pcontract->quantity }} TONNES</td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $pcontract->status }}</td>                            
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $pcontract->status }}</td>       
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $pcontract->remaining }} Tonnes</td>                            
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id' => $pcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach     
@@ -71,6 +73,7 @@
                             <th>Commodity</th>
                             <th>Quantity</th>
                             <th>Status</th>
+                            <th>Remaining: </th>
                             <th>Action: </th>
                         </tr>
                     </thead>
@@ -88,7 +91,8 @@
                             <td>{{ $sname[0] }}</td>
                             <td>{{ $tcontract->commodity }}</td>
                             <td>{{ $tcontract->quantity }} TONNES</td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $tcontract->status }}</td>                            
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $tcontract->status }}</td> 
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $tcontract->remaining }} Tonnes</td>                            
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$tcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach    
@@ -109,6 +113,7 @@
                             <th>Commodity</th>
                             <th>Quantity</th>
                             <th>Status</th>
+                            <th>Remaining: </th>
                             <th>Action: </th>
                         </tr>
                     </thead>
@@ -127,6 +132,7 @@
                             <td>{{ $contract->commodity }}</td>
                             <td>{{ $contract->quantity }} TONNES</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->status }}</td>                            
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->remaining }} Tonnes</td>                            
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$contract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach    

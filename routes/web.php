@@ -28,6 +28,7 @@ Route::get('employees',[HomeController::class,'employees'])->name('employees');
 Route::get('addemployee',[HomeController::class,'addemployee'])->name('addemployee');
 Route::post('saveemployee',[HomeController::class,'saveemployee'])->name('saveemployee');
 Route::get('edit_employee/{id}',[HomeController::class,'editemployee'])->name('editemployee');
+Route::get('view_employee/{id}',[HomeController::class,'viewemployee'])->name('viewemployee');
 Route::post('updateemployee',[HomeController::class,'updateemployee'])->name('updateemployee');
 Route::get('delete_employee/{id}',[HomeController::class,'delete_employee'])->name('delete_employee');
 
