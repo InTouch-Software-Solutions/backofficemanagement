@@ -384,6 +384,8 @@
                                     <li><a href="client-detail.html">Clients Detail</a></li>
                                 </ul>
                             </li>
+                            <li><a href="{{ Route('firm') }}"><i class="fa fa-tachometer"></i><span>Firms</span></a></li>
+                            <li><a href="{{ Route('inventory') }}"><i class="fa fa-hourglass-start"></i><span>Inventory Control</span></a></li>
                         </ul>
                     </nav>
                 </div>

@@ -10,6 +10,7 @@ use App\Models\Employee;
 use App\Models\ExpensesCategory;
 use App\Models\ExtraField;
 use App\Models\FamilyMember;
+use App\Models\Firm;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -437,12 +438,19 @@ class HomeController extends Controller
     }
 
     public function addclient(){
-        return view('addclient');
+        $firms = Firm::all();
+        return view('addclient', compact('firms'));
     }
 
     public function editclient($id){
         $client = User::find($id);
-        return view('editclient',compact('client'));
+        $firms = Firm::all();
+        return view('editclient',compact('client', 'firms'));
+    }
+
+    public function viewclient($id){
+        $client = User::find($id);
+        return view('viewclient', compact('client'));
     }
 
     public function saveclient(Request $request){
@@ -509,20 +517,25 @@ class HomeController extends Controller
             'id' => 'required',
             'role' => 'required',
             'name' => 'required',
-            'phone' => 'required|digits:10|numeric',
-            'address' => 'required',
-            'faddress' => 'required',
-            'baddress' => 'required',
-            'bank' => 'required',
         ]);
         $client = User::find($validated['id']);
         $client->name = $validated['name'];
         $client->email = $request->email;
-        $client->phone = $validated['phone'];
-        $client->address = $validated['address'];
-        $client->faddress = $validated['faddress'];
-        $client->baddress = $validated['baddress'];
-        $client->bank = $validated['bank'];
+        if($request->phone){
+            $client->phone = $request->phone;
+        }
+        if($request->address){
+            $client->address = $request->address;
+        }
+        if($request->faddress){
+            $client->faddress = $request->faddress;
+        }
+        if($request->baddress){
+            $client->baddress = $request->baddress;
+        }
+        if($request->bank){
+            $client->bank = $request->bank;
+        }
         if($request->pan){
             $client->pan = $request->pan;
         }
@@ -543,6 +556,9 @@ class HomeController extends Controller
         }
         if($request->iec){
             $client->iec = $request->iec;
+        }
+        if($request->firm){
+            $client->firm = $request->firm;
         }
         $client->save();
         if($request->extrafield){
@@ -865,5 +881,112 @@ class HomeController extends Controller
          return view('ledger',compact('sbills', 'bbills', 'data', 'id'));
 
     }    
+
+    public function firm(){
+        $firms = Firm::all();
+        return view('firm', compact('firms'));
+    }
+
+    public function addfirm(){
+        return view('addfirm');
+    }
+
+    public function savefirm(Request $request){
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+        $firm = new Firm;
+        $firm->name = $validated['name'];
+        if($request->email){
+            $firm->email = $request->email;
+        }
+        if($request->pan){
+            $firm->pan = $request->pan;
+        }
+        if($request->tanno){
+            $firm->tanno = $request->tanno;
+        }
+        if($request->fssai){
+            $firm->fssai = $request->fssai;
+        }
+        if($request->phone){
+            $firm->phone = $request->phone;
+        }
+        if($request->gst){
+            $firm->gst = $request->gst;
+        }
+        if($request->iec){
+            $firm->iec = $request->iec;
+        }
+        if($request->address){
+            $firm->address = $request->address;
+        }
+        if($request->bank){
+            $firm->bank = $request->bank;
+        }
+        if($request->comm){
+            $firm->comm = $request->comm;
+        }
+        $firm->save();
+        return redirect()->route('firm')->with('success','Firm added Successfully!!');
+    }
+
+    public function editfirm($id){
+        $firm = Firm::find($id);
+        return view('editfirm', compact('firm'));
+    }
+
+    public function updatefirm(Request $request){
+        $validated = $request->validate([
+            'id' => 'required',
+            'name' => 'required'
+        ]);
+        $firm = Firm::where('id', $validated['id'])->first();
+        $firm->name = $validated['name'];
+        if($request->email){
+            $firm->email = $request->email;
+        }
+        if($request->phone){
+            $firm->phone = $request->phone;
+        }
+        if($request->pan){
+            $firm->pan = $request->pan;
+        }
+        if($request->tanno){
+            $firm->tanno = $request->tanno;
+        }
+        if($request->iec){
+            $firm->iec = $request->iec;
+        }
+        if($request->fssai){
+            $firm->fssai = $request->fssai;
+        }
+        if($request->gst){
+            $firm->gst = $request->gst;
+        }
+        if($request->address){
+            $firm->address = $request->address;
+        }
+        if($request->bank){
+            $firm->bank = $request->bank;
+        }
+        if($request->comm){
+            $firm->comm = $request->comm;
+        }
+        $firm->save();
+        return redirect()->route('firm')->with('success', 'Firm Updated Successfully!!!');
+    }
+
+    public function inventory(){
+        $firms = Firm::all();
+        return view('inventory', compact('firms'));
+    }
+
+    public function ifilter(Request $request){
+        $validated = $request->validate([
+            'firm' => 'required',
+        ]);
+        
+    }
 }
 

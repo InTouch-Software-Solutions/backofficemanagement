@@ -34,6 +34,7 @@
                             <th>Quantity</th>
                             <th>Status</th>
                             <th>Remaining: </th>
+                            <th>Delivered: </th>
                             <th>Action: </th>
                         </tr>
                     </thead>
@@ -53,6 +54,7 @@
                             <td>{{ $pcontract->quantity }} TONNES</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $pcontract->status }}</td>       
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $pcontract->remaining }} Tonnes</td>                            
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $pcontract->delivered }} Tonnes</td>                            
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id' => $pcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach     
@@ -74,6 +76,7 @@
                             <th>Quantity</th>
                             <th>Status</th>
                             <th>Remaining: </th>
+                            <th>Delivered: </th>
                             <th>Action: </th>
                         </tr>
                     </thead>
@@ -93,6 +96,7 @@
                             <td>{{ $tcontract->quantity }} TONNES</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $tcontract->status }}</td> 
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $tcontract->remaining }} Tonnes</td>                            
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $tcontract->delivered }} Tonnes</td>                            
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$tcontract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach    
@@ -114,6 +118,7 @@
                             <th>Quantity</th>
                             <th>Status</th>
                             <th>Remaining: </th>
+                            <th>Delivered: </th>
                             <th>Action: </th>
                         </tr>
                     </thead>
@@ -133,6 +138,7 @@
                             <td>{{ $contract->quantity }} TONNES</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->status }}</td>                            
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->remaining }} Tonnes</td>                            
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $contract->delivered }} Tonnes</td>                            
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{{ Route('markstatus',['id'=>$contract->id]) }}"><i class="fa fa-check"></i>Mark Status</a></td>
                         </tr>
                         @endforeach    

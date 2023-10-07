@@ -49,13 +49,6 @@
   <div class="col-xl-3 col-lg-6 col-md-6">
       <div class="card top_counter">
           <div class="list-group list-group-custom list-group-flush">
-              {{-- <div class="list-group-item d-flex align-items-center py-3">
-                  <div class="icon text-center me-3"><i class="fa fa-user"></i> </div>
-                  <div class="content">
-                      <div>New Employee</div>
-                      <h5 class="mb-0">22</h5>
-                  </div>
-              </div> --}}
               <div class="list-group-item d-flex align-items-center py-3">
                   <div class="icon text-center me-3"><i class="fa fa-users"></i> </div>
                   <div class="content">
@@ -74,7 +67,11 @@
                   <div class="icon text-center me-3"><i class="fa fa-university"></i> </div>
                   <div class="content">
                       <div>Avg. Salary</div>
-                      <h5 class="mb-0">Rs. {{ $total_salary/$employee_count }}</h5>
+                      @if( $employee_count  == 0)
+                          <h5 class="mb-0">Rs. 0</h5>
+                      @else
+                        <h5 class="mb-0">Rs. {{ $total_salary/$employee_count }}</h5>
+                      @endif
                   </div>
               </div>
           </div>

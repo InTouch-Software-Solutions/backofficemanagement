@@ -9,15 +9,14 @@
 @endsection
 @section('content')
 <div class="col-12" style="text-align: center;">
-    <h1 class="mt-3 mb-3">Add Client</h1>
+    <h1 class="mt-3 mb-3">Add Firm</h1>
 </div>
 <br>
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <form action="{{ Route('saveclient') }}" method="post">
+            <form action="{{ Route('savefirm') }}" method="post">
                 @csrf
-                <input type="hidden" name="role" value="client">
                 <div class="row g-3">
                     <div class="col-md-6 col-sm-12">
                         <label>Name:</label>
@@ -34,15 +33,7 @@
                     <div class="col-md-6 col-sm-12">
                         <label>PAN No:</label>
                         <input type="text" name="pan" class="form-control" placeholder="Enter Pan No ">
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label>Contact Person Name:</label>
-                        <input type="text" name="cperson" class="form-control" placeholder="Enter Contact Person Name">
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label>Contact Person Number:</label>
-                        <input type="text" name="cnumber" class="form-control" placeholder="Enter Contact Person Number">
-                    </div>             
+                    </div>           
                     <div class="col-md-6 col-sm-12">
                         <label>TAN No:</label>
                         <input type="text" name="tanno" class="form-control" placeholder="Enter TAN No">
@@ -60,29 +51,12 @@
                         <input type="text" name="iec" class="form-control" placeholder="Enter IEC No">
                     </div>
                     <div class="col-md-12 col-sm-12">
-                        <label>Shipping Address:</label>
+                        <label>Address:</label>
                         <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="Enter Address "></textarea>
-                    </div>
-                    <div class="col-md-12 col-sm-12">
-                        <label>Factory/Delivery Address:</label>
-                        <textarea name="faddress" id="faddress" cols="30" rows="5" class="form-control" placeholder="Enter Factory Address "></textarea>
-                    </div>
-                    <div class="col-md-12 col-sm-12">
-                        <label>Billing Address:</label>
-                        <textarea name="baddress" id="baddress" cols="30" rows="5" class="form-control" placeholder="Enter Billing Address "></textarea>
-                    </div>              
+                    </div>            
                     <div class="col-md-12 col-sm-12">
                         <label>Bank Details:</label>
                         <textarea name="bank" id="bank" cols="30" rows="5" class="form-control">Account Name:<br>Account No:<br>IFSC Code:<br>Bank Name:<br>Branch Name:<br>Any Other Remarks:<br></textarea>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label>Firm:</label>
-                        <select name="firm" class="form-select">
-                            <option value="">Select Firm</option> 
-                            @foreach ($firms as $firm)
-                                <option value="{{ $firm->id }}">{{ $firm->name }}</option>
-                            @endforeach
-                        </select>
                     </div>                     
                     <div class="col-md-6 col-sm-12">
                         <label>Comm. Rate:</label>

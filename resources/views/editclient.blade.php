@@ -75,7 +75,20 @@
                     <div class="col-md-12 col-sm-12">
                         <label>Bank Details:</label>
                         <textarea name="bank" id="bank" cols="30" rows="5" class="form-control">{{ $client->bank }}</textarea>
-                    </div>   
+                    </div>  
+                    <div class="col-md-6 col-sm-12">
+                        <label>Firm:</label>
+                        <select name="firm" class="form-select">
+                            <option value="">Select Firm</option> 
+                            @foreach ($firms as $firm)
+                                <option value="{{ $firm->id }}">{{ $firm->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>                     
+                    <div class="col-md-6 col-sm-12">
+                        <label>Comm. Rate:</label>
+                        <input type="text" name="comm" class="form-control" value="{{ $client->comm }}" placeholder="Enter Comm. Rate">
+                    </div> 
                     <div class="form-group">
                         <label for="extrafield">No. of extra field</label>
                         <input type="text" class="form-control" id="extrafield" name="extrafield" placeholder="Enter no. of extra fields">
@@ -113,6 +126,8 @@
         const submitButton = document.querySelector("form#extra button[type=submit]");
         if(numMembers > 0){
           memberDetailsContainer.innerHTML = "<h2>Extra Details</h2>";
+        }else{
+            memberDetailsContainer.innerHTML = "";
         }
   
         for (let i = 1; i <= numMembers; i++) {

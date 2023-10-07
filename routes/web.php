@@ -69,10 +69,16 @@ Route::get('tally',[HomeController::class,'tally'])->name('tally');
 Route::get('addclient',[HomeController::class,'addclient'])->name('addclient');
 Route::post('saveclient',[HomeController::class,'saveclient'])->name('saveclient');
 Route::get('clientlist',[HomeController::class,'clientlist'])->name('clientlist');
+Route::get('viewclient/{id}',[HomeController::class,'viewclient'])->name('viewclient');
 Route::get('editclient/{id}',[HomeController::class,'editclient'])->name('editclient');
 Route::post('updateclient',[HomeController::class,'updateclient'])->name('updateclient');
 Route::get('share/{id}',[HomeController::class,'share'])->name('share');
 Route::post('sharable',[HomeController::class,'sharable'])->name('sharable');
+Route::get('firm',[HomeController::class,'firm'])->name('firm');
+Route::get('addfirm',[HomeController::class,'addfirm'])->name('addfirm');
+Route::get('editfirm/{id}',[HomeController::class,'editfirm'])->name('editfirm');
+Route::post('savefirm',[HomeController::class,'savefirm'])->name('savefirm');
+Route::post('updatefirm',[HomeController::class,'updatefirm'])->name('updatefirm');
 
 Route::get('addcontract',[HomeController::class,'addcontract'])->name('addcontract');
 Route::post('savecontract',[HomeController::class,'savecontract'])->name('savecontract');
@@ -91,7 +97,8 @@ Route::get('ledger/{id}',[HomeController::class,'ledger'])->name('ledger');
 Route::get('excel',[HomeController::class,'excel'])->name('excel');
 
 // Inventory Control Module-------
-
+Route::get('inventory',[HomeController::class,'inventory'])->name('inventory');
+Route::post('ifilter',[HomeController::class,'ifilter'])->name('ifilter');
 
 //Property Rent Module-------
 

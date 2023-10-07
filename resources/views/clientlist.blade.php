@@ -49,7 +49,7 @@
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->cperson }}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ $client->cnumber }}</td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;{!! $client->bank !!}</td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('editclient',['id'=>$client->id]) }}" class="btn btn-primary">Edit</a></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('editclient',['id'=>$client->id]) }}" class="btn btn-primary">Edit</a>&nbsp;&nbsp;<a href="{{ Route('viewclient',['id'=>$client->id]) }}" class="btn btn-primary">View</a></td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('share',['id'=>$client->id]) }}" class="btn btn-primary">Share</a></td>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ Route('ledger',['id'=>$client->id]) }}" class="btn btn-primary">View Ledger</a></td>
                         </tr>
