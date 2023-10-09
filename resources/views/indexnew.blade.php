@@ -309,7 +309,7 @@
                     <img src="{{asset('assets/images/employee.jpg') }}" class="avatar lg rounded me-3" alt="User Profile Picture">
                     <div class="dropdown flex-grow-1">
                         <span>Welcome,</span>
-                        <a href="#" class="user-name"><br><strong>{{ Auth::user()->name }}</strong></a>
+                        <a href="#" class="user-name"><br><strong>{{ Auth::user()->name }} </strong></a>
                         {{-- <ul class="dropdown-menu p-2 shadow-sm">
                             <li><a href="#"><i class="fa fa-user me-2"></i>My Profile</a></li>
                             <li><a href="#"><i class="fa fa-envelope-open me-2"></i>Messages</a></li>
