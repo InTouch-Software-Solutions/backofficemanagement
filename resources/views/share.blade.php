@@ -14,6 +14,11 @@
         @endforeach
     </div>
 @endif
+<br>
+<div class="card-header">
+    <a href="{{ Route('clientlist') }}" class="btn btn-primary float-end">Back</a>
+</div>
+<br>
 
 <form action="{{ Route('sharable') }}" method="post">
     @csrf

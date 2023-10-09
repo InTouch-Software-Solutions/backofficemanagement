@@ -12,6 +12,9 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
+                    <a href="{{ Route('employeesalary') }}" class="btn btn-primary float-end">Back</a>
+                </div>
+                <div class="card-header">
                     <div class="row">
                         <div class="col-6">
                             <form action="{{ Route('filter2') }}" method="post">

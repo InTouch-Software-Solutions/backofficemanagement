@@ -37,6 +37,9 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
+            <div class="card-header">
+                <a href="{{ Route('clientlist') }}" class="btn btn-primary float-end">Back</a>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
@@ -60,7 +63,7 @@
                     <table class="excel-table">
                         <thead>
                             <tr>
-                                <th colspan="9">PAN NO. ABXPA1180D</th>  
+                                <th colspan="9">PAN NO. {{ $data['pan'] }}</th>  
                             </tr>
                             <tr>
                                 <td colspan="9" style="text-align: center;"><strong>Dalal Rameshchand Madanlal Bhaya</strong><br>33/3, Murai Mohalla, Jethmal Building, Chhawani, Indore (M.P.) 452001.<br>Mobile: 94250-59975, 94250-53243</td>  
@@ -136,7 +139,7 @@
                                 <td rowspan="2" colspan="2"></td>
                             </tr>
                             <tr>
-                                <td colspan="7">Please pay the above amount through Rtgs/Neft in name of Dalal Rameshchand Madanlal Bhaya.<br>Bank Details: HDFC BANK, A/C No.: 00362560010633,  IFSC Code: HDFC0000036</td>
+                                <td colspan="7">Please pay the above amount through Rtgs/Neft in name of Dalal Rameshchand Madanlal Bhaya.<br><span style="text-decoration: underline"><strong>Bank Details:</strong> </span>{!! $data['bank'] !!}</td>
                             </tr>
                             
                             <!-- Add more rows as needed with varying colspan values -->
@@ -154,7 +157,7 @@
                     <table class="excel-table">
                         <thead>
                             <tr>
-                                <th colspan="9">PAN NO. ABXPA1180D</th>  
+                                <th colspan="9">PAN NO. {{ $data['pan'] }}</th>  
                             </tr>
                             <tr>
                                 <td colspan="9" style="text-align: center;"><strong>Dalal Rameshchand Madanlal Bhaya</strong><br>33/3, Murai Mohalla, Jethmal Building, Chhawani, Indore (M.P.) 452001.<br>Mobile: 94250-59975, 94250-53243</td>  
@@ -230,7 +233,7 @@
                                 <td rowspan="2" colspan="2"></td>
                             </tr>
                             <tr>
-                                <td colspan="7">Please pay the above amount through Rtgs/Neft in name of Dalal Rameshchand Madanlal Bhaya.<br>Bank Details: HDFC BANK, A/C No.: 00362560010633,  IFSC Code: HDFC0000036</td>
+                                <td colspan="7">Please pay the above amount through Rtgs/Neft in name of Dalal Rameshchand Madanlal Bhaya.<br><span style="text-decoration: underline"><strong>Bank Details:</strong> </span>{!! $data['bank'] !!}</td>
                             </tr>
                             
                             <!-- Add more rows as needed with varying colspan values -->

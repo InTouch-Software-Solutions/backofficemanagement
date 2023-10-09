@@ -44,6 +44,7 @@
                             </form>
                         </div>
                     </div>
+                    <a href="{{ Route('employees') }}" class="btn btn-primary float-end">Back</a>
                 </div>
                 @if(isset($date))
                 <div class="table-responsive">

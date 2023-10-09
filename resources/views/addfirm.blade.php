@@ -14,6 +14,9 @@
 <br>
 <div class="col-12">
     <div class="card">
+        <div class="card-header">
+            <a href="{{ Route('firm') }}" class="btn btn-primary float-end">Back</a>
+        </div>
         <div class="card-body">
             <form action="{{ Route('savefirm') }}" method="post">
                 @csrf

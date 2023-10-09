@@ -22,6 +22,7 @@ use Illuminate\Support\Str;
 
 
 
+
 class HomeController extends Controller
 {
     public function __construct()
@@ -32,8 +33,23 @@ class HomeController extends Controller
     public function index(){
         $employee_count = count(Employee::all());
         $total_salary = Employee::sum('salary');
-    
-        return view('index',compact('employee_count','total_salary'));
+        $category = [];
+        $value = [];
+        $cats = ExpensesCategory::all();
+        foreach($cats as $cat){
+            $category[] = $cat->name;
+            $x = 0;
+            $cs = CashBook::where('reason', $cat->id)->get();
+            foreach($cs as $c){
+                $x = $x + $c->amount;
+            }    
+            $value[] = $x;
+        }
+        return view('index',compact('employee_count','total_salary', 'category', 'value'));
+    }
+
+    public function back(){
+        return redirect()->back();
     }
     public function employees(){
         $employees = Employee::all();
@@ -612,6 +628,8 @@ class HomeController extends Controller
             $contract->condition = $request->condition;
         }
         $contract->charge = $validated['charge'];
+        $firm = User::where('id', $validated['purchaser'])->pluck('firm');
+        $contract->pfirm = $firm;
         $contract->save();
         $max = ContractNote::max('orderno');
         $contract->orderno = $max + 1;
@@ -871,11 +889,16 @@ class HomeController extends Controller
             'edate' => 'required',
             'id' => 'required'
         ]);
+        $firmid = User::where('id', $validated['id'])->pluck('firm');
+        $firmpan = Firm::where('id', $firmid)->pluck('pan'); 
+        $firmbank = Firm::where('id', $firmid)->pluck('bank'); 
         $sbills = BrokerageBill::whereDate('contractdate', '>=', $validated['sdate'])->whereDate('contractdate', '<=', $validated['edate'])->where('seller', $validated['id'])->get();
         $bbills = BrokerageBill::whereDate('contractdate', '>=', $validated['sdate'])->whereDate('contractdate', '<=', $validated['edate'])->where('purchaser', $validated['id'])->get();
         $data = [
             'sdate' => $validated['sdate'],
             'edate' => $validated['edate'],
+            'pan' => $firmpan[0],
+            'bank' => $firmbank[0],
         ];
         $id = $validated['id'];
          return view('ledger',compact('sbills', 'bbills', 'data', 'id'));
@@ -986,7 +1009,18 @@ class HomeController extends Controller
         $validated = $request->validate([
             'firm' => 'required',
         ]);
-        
+        $f = Firm::where('id', $validated['firm'])->pluck('name');
+        // $contracts = ContractNote::where('pfirm', $validated['firm'])->where('status', 'pending')->get();
+        $contracts = ContractNote::whereIn(DB::raw('(orderno, version)'), function ($query) {
+            $query->select(DB::raw('orderno, MAX(version) as version'))
+                ->from('contract_notes')
+                ->groupBy('orderno');
+        })->where('pfirm', $validated['firm'])->where('status', 'pending')
+        ->get();
+        $firms = Firm::all();
+        return view('inventory', compact('contracts', 'firms', 'f'));        
     }
+
+
 }
 

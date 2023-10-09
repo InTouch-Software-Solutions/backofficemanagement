@@ -14,6 +14,9 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
+            <div class="card-header">
+                <a href="{{ Route('deliverybook') }}" class="btn btn-primary float-end">Back</a>
+            </div>
             <div class="card-body">
                 <?php
                     $d = DB::table('contract_notes')->where('id',$id)->pluck('date');    

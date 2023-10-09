@@ -166,7 +166,7 @@
     <style>
         * {
             font-family: 'Times New Roman', Times, serif;
-            font-size: 16px;
+            font-size: 18px;
         }
         .page-link.active, .active > .page-link {
             color: var(--theme-color) !important;
@@ -175,6 +175,11 @@
             background-color: var(--theme-color) !important;
             color: white !important;
         }
+        label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
     </style>
  
 
@@ -226,7 +231,7 @@
 
                     <div class="flex-grow-1">
                         <ul class="nav navbar-nav flex-row justify-content-end align-items-center">
-                            <li class="d-none d-sm-block"><a href="app-events.html" class="icon-menu"><i class="fa fa-calendar"></i></a></li>
+                            {{-- <li class="d-none d-sm-block"><a href="app-events.html" class="icon-menu"><i class="fa fa-calendar"></i></a></li>
                             <li class="d-none d-sm-block"><a href="app-chat.html" class="icon-menu"><i class="fa fa-comments"></i></a></li>
                             <li><a href="app-inbox.html" class="icon-menu"><i class="fa fa-envelope"></i><span class="notification-dot"></span></a></li>
                             <li class="dropdown">
@@ -287,8 +292,10 @@
                                     <li><a class="dropdown-item rounded-pill" href="javascript:void(0);"><i class="me-2 fa fa-print"></i> <span>Invoices</span></a></li>
                                     <li><a class="dropdown-item rounded-pill" href="javascript:void(0);"><i class="me-2 fa fa-refresh"></i> <span>Renewals</span></a></li>
                                 </ul>
-                            </li>
-                            <li><a href="page-login.html" class="icon-menu"><i class="fa fa-sign-out"></i></a></li>
+                            </li> --}}
+                            <li><a href="{{ Route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off me-2"></i></a><form id="logout-form" action="{{ route('logout') }}" method="get" class="d-none">
+                                @csrf
+                            </form></li>
                         </ul>
                     </div>
                 </div>
@@ -302,8 +309,8 @@
                     <img src="{{asset('assets/images/employee.jpg') }}" class="avatar lg rounded me-3" alt="User Profile Picture">
                     <div class="dropdown flex-grow-1">
                         <span>Welcome,</span>
-                        <a href="#" class="dropdown-toggle user-name" data-bs-toggle="dropdown"><br><strong>Admin</strong></a>
-                        <ul class="dropdown-menu p-2 shadow-sm">
+                        <a href="#" class="user-name"><br><strong>{{ Auth::user()->name }}</strong></a>
+                        {{-- <ul class="dropdown-menu p-2 shadow-sm">
                             <li><a href="#"><i class="fa fa-user me-2"></i>My Profile</a></li>
                             <li><a href="#"><i class="fa fa-envelope-open me-2"></i>Messages</a></li>
                             <li><a href="#"><i class="fa fa-cog me-2"></i>Settings</a></li>
@@ -311,24 +318,23 @@
                             <li><a href="{{ Route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off me-2"></i>Logout</a><form id="logout-form" action="{{ route('logout') }}" method="get" class="d-none">
                                 @csrf
                             </form></li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>
             <!-- nav tab: menu list -->
             <ul class="nav nav-tabs text-center mb-2" role="tablist">
-                <li class="nav-item flex-fill"><a class="nav-link active" id="hr_menu_nav_link" data-bs-toggle="tab" href="#hr_menu" role="tab">HR</a></li>
+                <li class="nav-item flex-fill"><a class="nav-link" id="hr_menu_nav_link" data-bs-toggle="tab" href="#hr_menu" role="tab">HR</a></li>
                 <li class="nav-item flex-fill"><a class="nav-link" data-bs-toggle="tab" href="#project_menu" role="tab">Contract</a></li>
                 {{-- <li class="nav-item flex-fill"><a class="nav-link" data-bs-toggle="tab" href="#sub_menu" role="tab"><i class="fa fa-th-large"></i></a></li> --}}
                 <li class="nav-item flex-fill"><a class="nav-link" data-bs-toggle="tab" href="#setting_menu" role="tab"><i class="fa fa-cog"></i></a></li>
             </ul>
             <!-- nav tab: content -->
             <div class="tab-content px-0">
-                <div class="tab-pane fade show active" id="hr_menu" role="tabpanel" >
+                <div class="tab-pane fade" id="hr_menu" role="tabpanel" >
                     <nav class="sidebar-nav">
                         <ul class="metismenu list-unstyled">
                             <li class="active"><a href="{{ Route('index') }}"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-                            <li><a href="app-holidays.html"><i class="fa fa-list-ul"></i><span>Holidays</span></a></li>
                             <li>
                                 <a href="#Employees" class="has-arrow"><i class="fa fa-users"></i><span>Employees</span></a>
                                 <ul class="list-unstyled">
@@ -353,13 +359,13 @@
                                     <li><a href="{{ Route('employeesalary') }}">Employee Salary</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="#Report" class="has-arrow"><i class="fa fa-bar-chart"></i><span>Report</span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="report-expense.html">Expense Report</a></li>
                                     <li><a href="report-invoice.html">Invoice Report</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
                         </ul>
                     </nav>
                 </div>
@@ -381,7 +387,6 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ Route('addclient') }}">Add Clients</a></li>
                                     <li><a href="{{ Route('clientlist') }}">Clients List</a></li>
-                                    <li><a href="client-detail.html">Clients Detail</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{ Route('firm') }}"><i class="fa fa-tachometer"></i><span>Firms</span></a></li>
@@ -568,6 +573,31 @@ $(document).ready(function () {
             localStorage.setItem('themeColor', selectedTheme); // Save the selected theme color
         });
     });
+</script>
+<script>
+    // JavaScript code to handle active tab state
+document.addEventListener("DOMContentLoaded", function () {
+    // Retrieve active tab from local storage
+    var activeTab = localStorage.getItem("activeTab");
+
+    // If there is an active tab in local storage, set it as active
+    if (activeTab) {
+        var tab = document.querySelector(activeTab);
+        if (tab) {
+            tab.classList.add("show", "active");
+        }
+    }
+
+    // Add event listener to tabs to store active tab in local storage
+    var tabPanes = document.querySelectorAll(".tab-pane");
+    tabPanes.forEach(function (pane) {
+        pane.addEventListener("click", function () {
+            // Store active tab in local storage
+            localStorage.setItem("activeTab", "#" + pane.id);
+        });
+    });
+});
+
 </script>
 
 

@@ -14,7 +14,11 @@
         @endforeach
     </div>
 @endif
-
+<br>
+<div>
+    <a href="{{ Route('employees') }}" class="btn btn-primary float-end">Back</a>
+</div>
+<br>
 <form action="{{ Route('saveattendance') }}" method="post">
     @csrf
     <div class="form-group">

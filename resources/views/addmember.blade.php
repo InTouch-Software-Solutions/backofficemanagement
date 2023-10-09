@@ -1,11 +1,15 @@
 @extends('indexnew')
 @section('content')
 <div class="col-12" style="text-align: center;">
-  <h1 class="mt-3 mb-3">Edit Member</h1>
+  <h1 class="mt-3 mb-3">Add Member</h1>
 </div>
 <br>
 <div class="container mt-5">
-    <div class="row">
+  <div class="card-header">
+    <a href="{{ Route('familyrecord',['id'=>$id]) }}" class="btn btn-primary float-end">Back</a>
+  </div>
+  <br>
+  <div class="row">
         <div class="col-12">
             <form action="{{ Route('savemember') }}" method="post">
                 @csrf
@@ -34,6 +38,6 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form> 
         </div>    
-    </div>    
+  </div>    
 </div>
 @endsection

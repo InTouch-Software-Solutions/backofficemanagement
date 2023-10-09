@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Models\CashBook;
 use App\Models\Employee;
+use App\Models\ExpensesCategory;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $employee_count = count(Employee::all());
     $total_salary = Employee::sum('salary');
-    
     return view('index',compact('employee_count','total_salary'));
 })->name('index');
+Route::get('back',[HomeController::class, 'back'])->name('back');
 
 
 // Employee Module------DATA, FAMILY RECORD, ATTENDANCE,  
@@ -94,7 +97,6 @@ Route::get('markstatus/{id}',[HomeController::class,'markstatus'])->name('markst
 Route::post('createbrokeragebill',[HomeController::class,'createbrokeragebill'])->name('createbrokeragebill');
 Route::get('brokeragebill',[HomeController::class,'brokeragebill'])->name('brokeragebill');
 Route::get('ledger/{id}',[HomeController::class,'ledger'])->name('ledger');
-Route::get('excel',[HomeController::class,'excel'])->name('excel');
 
 // Inventory Control Module-------
 Route::get('inventory',[HomeController::class,'inventory'])->name('inventory');

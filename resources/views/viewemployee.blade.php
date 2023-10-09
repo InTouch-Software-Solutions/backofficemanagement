@@ -7,6 +7,9 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
+            <div class="card-header">
+                <a href="{{ Route('employees') }}" class="btn btn-primary float-end">Back</a>
+            </div>
             <div class="card-body">
                 <div>
                     <h3>{{ $employee->name }}</h3>

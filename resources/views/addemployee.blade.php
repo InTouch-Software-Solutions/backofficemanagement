@@ -5,7 +5,11 @@
 </div>
 <br>
 <div class="container mt-5">
-    <div class="row">
+  <div>
+    <a href="{{ Route('employees') }}" class="btn btn-primary float-end">Back</a>
+  </div>
+  <br>
+  <div class="row">
         <div class="col-12">
             <form id="employeeform" action="{{ Route('saveemployee') }}" method="post">
                 @csrf
@@ -56,7 +60,7 @@
                 <button type="submit" style="display: none;" class="btn btn-primary">Submit</button>
             </form> 
         </div>    
-    </div>    
+  </div>    
 </div>
 @endsection
 @section('jscontent')
