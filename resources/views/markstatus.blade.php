@@ -23,6 +23,8 @@
                     $q = DB::table('contract_notes')->where('id',$id)->pluck('remaining');    
                     $p = DB::table('contract_notes')->where('id',$id)->pluck('purchaser');    
                     $s = DB::table('contract_notes')->where('id',$id)->pluck('seller');    
+                    $firm = DB::table('users')->where('id', $p)->pluck('firm');
+                    $commr = DB::table('firms')->where('id', $firm[0])->pluck('comm');
                     $date = $d[0];
                     $purchaser= $p[0];
                     $seller = $s[0];
@@ -46,11 +48,11 @@
                     <label>P.O. No.</label>
                     <input type="text" class="form-control mt-1" name="pono" placeholder="Enter P.O. No." required>
                     <label>Comm. Rate</label>
-                    <input type="text" class="form-control mt-1" name="comm" placeholder="Enter Comm. Rate" required>
+                    <input type="text" class="form-control mt-1" name="comm" value="{{ $commr[0] }}">
                     <label>Status</label>
                     <select id="options" name="status" class="form-select mt-1">
                         <option value="">Select Status</option>
-                        <option value="pending">Pending</option>
+                        <option value="pending">Continuous</option>
                         <option value="delivered">Delivered</option>
                     </select>
                      <div id="dateInput" class="hidden mt-1">

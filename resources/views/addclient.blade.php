@@ -59,12 +59,12 @@
                         <input type="text" name="fassi" class="form-control" placeholder="Enter Fssai No">
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <label>IEC No (optional):</label>
+                        <label>IEC No:</label>
                         <input type="text" name="iec" class="form-control" placeholder="Enter IEC No">
                     </div>
-                    <div class="col-md-12 col-sm-12">
-                        <label>Shipping Address:</label>
-                        <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="Enter Address "></textarea>
+                    <div class="col-md-6 col-sm-12">
+                        <label>Invoice No:</label>
+                        <input type="text" name="invoiceno" class="form-control" placeholder="Enter Client Invoice No">
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <label>Factory/Delivery Address:</label>

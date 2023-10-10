@@ -60,12 +60,12 @@
                         <input type="text" name="fassi" class="form-control" value="{{ $client->fassi }}">
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <label>IEC No (optional):</label>
+                        <label>IEC No :</label>
                         <input type="text" name="iec" class="form-control" value="{{ $client->iec }}">
                     </div>
-                    <div class="col-md-12 col-sm-12">
-                        <label>Shipping Address:</label>
-                        <textarea name="address" id="address" cols="30" rows="5" class="form-control" >{{ $client->address }}</textarea>
+                    <div class="col-md-6 col-sm-12">
+                        <label>Invoice No :</label>
+                        <input type="text" name="invoiceno" class="form-control" value="{{ $client->invoiceno }}">
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <label>Factory/Delivery Address:</label>

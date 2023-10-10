@@ -484,11 +484,9 @@ class HomeController extends Controller
         }
         $client->password = bcrypt(Str::random(10));
         $client->role = $validated['role'];
-        if($request->address){
-            $client->address = $request->address;
-        }
         if($request->faddress){
             $client->faddress = $request->faddress;
+            $client->address = $request->faddress;
         }
         if($request->baddress){
             $client->baddress = $request->baddress;
@@ -520,6 +518,9 @@ class HomeController extends Controller
         if($request->iec){
             $client->iec = $request->iec;
         }
+        if($request->invoiceno){
+            $client->invoiceno = $request->invoiceno;
+        }
         if($request->comm){
             $client->comm = $request->comm;
         }
@@ -540,11 +541,9 @@ class HomeController extends Controller
         if($request->phone){
             $client->phone = $request->phone;
         }
-        if($request->address){
-            $client->address = $request->address;
-        }
         if($request->faddress){
             $client->faddress = $request->faddress;
+            $client->address = $request->faddress;
         }
         if($request->baddress){
             $client->baddress = $request->baddress;
@@ -572,6 +571,9 @@ class HomeController extends Controller
         }
         if($request->iec){
             $client->iec = $request->iec;
+        }
+        if($request->invoiceno){
+            $client->invoiceno = $request->invoiceno;
         }
         if($request->firm){
             $client->firm = $request->firm;

@@ -1,6 +1,30 @@
 @extends('indexnew')
 @section('csscontent')
 <style>
+    #print1 {
+        position: relative;
+        width: auto; /* Set the width of your #print1 div */
+        margin: 0 auto; /* Center the #print1 div */
+    }
+
+    #print1::after {
+        content: "";
+        background: url({{ asset('assets/images/logo.png') }}) center center no-repeat; /* Path to your watermark image */
+        /* background-size: 500px; */
+        opacity: 0.1; /* Adjust the opacity of the watermark */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Set the width of the watermark */
+        height: 100%; /* Set the height of the watermark */
+        z-index: 1; /* Ensure the watermark is rendered above the image */
+    }
+
+    #print1 img {
+        z-index: 2; /* Ensure the image is rendered above the watermark */
+        width: 100%; /* Make sure the image fills the container */
+        height: auto; /* Let the height adjust automatically based on the image's aspect ratio */
+    }
     table{
         background-color: #f2f2f2;
     }
@@ -24,9 +48,7 @@
     table.excel-table tbody tr:nth-child(even) {
         background-color: #f2f2f2;
     }
-    table.excel-table tbody tr:hover {
-        background-color: #ddd;
-    }
+
 </style>
 @endsection
 @section('content')
@@ -74,8 +96,13 @@
                                 <?php 
                                     $pname = DB::table('users')->where('id', $id)->pluck('name');
                                     $address = DB::table('users')->where('id', $id)->pluck('address');
+                                    $invoice = DB::table('users')->where('id', $id)->pluck('invoiceno');
                                 ?>
                                 <td rowspan="2" colspan="5"><strong>{{ $pname[0] }}</strong><br>{{ $address[0] }}</td>  
+                                <td colspan="2">Invoice No.</td>
+                                <td colspan="2">{{ $invoice[0] }}</td>
+                            </tr>
+                            <tr>
                                 <td>From:</td>
                                 <td>{{ $data['sdate'] }}</td>
                                 <td>To:</td>
@@ -146,8 +173,9 @@
                         </tbody>
                     </table>
                 </div>
+                <br>
                 <div class="col-12 text-end">
-                    <button class="btn btn-outline-secondary" id="printButton"><i class="fa fa-print"></i> Print</button>
+                    <button class="btn btn-outline-primary" id="printButton"><i class="fa fa-print"></i> Print</button>
                 </div>
                 <br><br><br>
                 <div style="text-align: center;">
@@ -168,8 +196,13 @@
                                 <?php 
                                     $sname = DB::table('users')->where('id', $id)->pluck('name');
                                     $address = DB::table('users')->where('id', $id)->pluck('address');
+                                    $invoice = DB::table('users')->where('id', $id)->pluck('invoiceno');
                                 ?>
-                                <td rowspan="2" colspan="5"><strong>{{ $sname[0] }}</strong><br>{{ $address[0] }}</td>  
+                                <td rowspan="3" colspan="5"><strong>{{ $sname[0] }}</strong><br>{{ $address[0] }}</td>  
+                                <td colspan="2">Invoice No.</td>
+                                <td colspan="2">{{ $invoice[0] }}</td>
+                            </tr>
+                            <tr>
                                 <td>From:</td>
                                 <td>{{ $data['sdate'] }}</td>
                                 <td>To:</td>
@@ -240,8 +273,9 @@
                         </tbody>
                     </table>
                 </div>
+                <br>
                 <div class="col-12 text-end">
-                    <button class="btn btn-outline-secondary" id="printButton2"><i class="fa fa-print"></i> Print</button>
+                    <button class="btn btn-outline-primary" id="printButton2"><i class="fa fa-print"></i> Print</button>
                 </div>
                 @endif
                 

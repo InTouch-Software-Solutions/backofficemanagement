@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2023 at 01:23 PM
+-- Generation Time: Oct 10, 2023 at 07:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -312,7 +312,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (35, '2023_10_07_032800_create_firms_table', 28),
 (36, '2023_10_07_033352_add_column_to_users_table', 29),
 (38, '2023_10_07_074011_create_table_brokerage_bills', 30),
-(39, '2023_10_09_040633_add_column_to_contract_notes_table', 31);
+(39, '2023_10_09_040633_add_column_to_contract_notes_table', 31),
+(40, '2023_10_10_035047_add_column_to_users_table', 32);
 
 -- --------------------------------------------------------
 
@@ -386,17 +387,18 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `invoiceno` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `password`, `address`, `pan`, `gst`, `fassi`, `iec`, `faddress`, `baddress`, `bank`, `cperson`, `cnumber`, `firm`, `tanno`, `comm`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Aayush', 'admin@gmail.com', 'admin', 0, '$2y$10$HEEFnMt2PcX./FxO1aePJewK90REonpCDsnUwXdGdZg9hsYZYMjrC', '0', NULL, NULL, NULL, NULL, '0', '0', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-10-06 22:12:37', '2023-10-06 22:12:37'),
-(2, 'NutriVita Oil, Indore', 'c1@gmail.com', 'client', 7894561236, '$2y$10$KaxFiTxN2wsuPgVfalydjOafY0WEOeX77SKIVS2Db..dCBxC6NGEq', 'address 1', '741258963256', '798465132465', '132465798', '132465798', 'address 2', 'address 3', '<p>Account Name: c1<br>Account No: 123<br>IFSC Code: SB125IN<br>Bank Name: SBI<br>Branch Name: Indore<br>Any Other Remarks: None<br>&nbsp;</p>', 'c1', 7412589635, 1, '789654123654', '100', NULL, NULL, '2023-10-06 22:28:00', '2023-10-07 00:56:40'),
-(3, 'Fortune Edible Oil, kota', 'c2@gmail.com', 'client', 7984651325, '$2y$10$7GaXwNzcrwinwX5vpfuv8OcEMvKaiTuXjtBjt5x5HqkpsMet7Jeli', 'address 1', '132465113246', '798465132465', '465132465798', '132465', 'address 2', 'address 3', '<p>Account Name: xyz1<br>Account No: 1231<br>IFSC Code: 132465<br>Bank Name: SBI<br>Branch Name: Indore<br>Any Other Remarks: None<br>&nbsp;</p>', 'c2', 1234651325, 1, '798465132465', '100', NULL, NULL, '2023-10-07 01:28:52', '2023-10-07 01:28:52');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `password`, `address`, `pan`, `gst`, `fassi`, `iec`, `faddress`, `baddress`, `bank`, `cperson`, `cnumber`, `firm`, `tanno`, `comm`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`, `invoiceno`) VALUES
+(1, 'Aayush', 'admin@gmail.com', 'admin', 0, '$2y$10$HEEFnMt2PcX./FxO1aePJewK90REonpCDsnUwXdGdZg9hsYZYMjrC', '0', NULL, NULL, NULL, NULL, '0', '0', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-10-06 22:12:37', '2023-10-06 22:12:37', '01A'),
+(2, 'NutriVita Oil, Indore', 'c1@gmail.com', 'client', 7894561236, '$2y$10$KaxFiTxN2wsuPgVfalydjOafY0WEOeX77SKIVS2Db..dCBxC6NGEq', 'address 1', '741258963256', '798465132465', '132465798', '132465798', 'address 2', 'address 3', '<p>Account Name: c1<br>Account No: 123<br>IFSC Code: SB125IN<br>Bank Name: SBI<br>Branch Name: Indore<br>Any Other Remarks: None<br>&nbsp;</p>', 'c1', 7412589635, 1, '789654123654', '100', NULL, NULL, '2023-10-06 22:28:00', '2023-10-07 00:56:40', '02A'),
+(3, 'Fortune Edible Oil, kota', 'c2@gmail.com', 'client', 7984651325, '$2y$10$7GaXwNzcrwinwX5vpfuv8OcEMvKaiTuXjtBjt5x5HqkpsMet7Jeli', 'address 1', '132465113246', '798465132465', '465132465798', '132465', 'address 2', 'address 3', '<p>Account Name: xyz1<br>Account No: 1231<br>IFSC Code: 132465<br>Bank Name: SBI<br>Branch Name: Indore<br>Any Other Remarks: None<br>&nbsp;</p>', 'c2', 1234651325, 1, '798465132465', '100', NULL, NULL, '2023-10-07 01:28:52', '2023-10-07 01:28:52', '03A');
 
 --
 -- Indexes for dumped tables
@@ -569,7 +571,7 @@ ALTER TABLE `firms`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
